@@ -1,0 +1,16 @@
+.lImg {
+    width: 100%;
+    max-height: 300px;
+}
+
+.bodySty {
+    padding-top: 74px;
+    text-align: center;
+}
+
+.lbtn {
+    background-color: #009688;
+    color: white;
+    height: 49px;
+    width: 221px;
+}
