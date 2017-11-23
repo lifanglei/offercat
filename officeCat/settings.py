@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    "moduleData"
 ]
 
 MIDDLEWARE = [
@@ -75,14 +76,15 @@ WSGI_APPLICATION = 'officeCat.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'officeCat',
-    #     'User': 'root',
-    #     'PASSWORD': 'root',
-    #     'client_encoding': 'UTF8',
-    #     'PORT': '5432'
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'offerCat',
+        'User': 'leebryant',
+        'PASSWORD': 'LeeKobe24',
+        'client_encoding': 'UTF8',
+        'timezone': 'UTC',
+        'PORT': '5432'
+    }
 }
 
 

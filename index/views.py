@@ -1,10 +1,11 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from moduleData import models
 
 
 def index(request):
+    # models.onceUser.objects.create(user_name='bryant', user_pwd='leekobe24')
+    man = models.onceUser.objects.raw('select * from moduleData_onceuser where id = 1')
     context = {
-        'name': 'bryant',
-        'isLogin': 'true'
+        'user': man
     }
     return render(request, 'Index/index.html', context)
