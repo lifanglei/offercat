@@ -2,358 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f929b9fe-13ed-4811-be4a-6a6b6ed30f49" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/Material-Design-Iconic-Font.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/Material-Design-Iconic-Font.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/Material-Design-Iconic-Font.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/Material-Design-Iconic-Font.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/ionicons.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/ionicons.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/ionicons.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/abstract.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/backAirplane.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/back_mountain.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/beach.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/bg-slidebar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/black_wall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/building.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/coffee.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar50.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/avatar6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/back_video.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/back_video_100x50.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/book.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/car1-thumb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/car1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/car2-thumb.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/car2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/city_cloud.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/coffee_cup1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/demo992.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/express_ipad_content1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/express_iphone_content1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/express_macbook_content1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/hero1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/hero2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/hero3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/intel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/iphone_1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/iphone_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/iphone_3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/m4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/macbook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/macbook2016.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/maxis.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/microsoft.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-imac-material.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-imac-material2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-imac-material3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-imac.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-macbook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock-safari.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/mock6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/n1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/new_mac.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/new_mac.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/nokia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/office1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/office2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/office3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/office4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/p75.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/paris-thumb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/paris.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixel1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixel2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixel3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixelH.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/pixelPro.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port12.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port16.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port19.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port20.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port21.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port22.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port23.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port24.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/port9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/portG1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/post1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/post2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/post3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/post4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/post5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/postG1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/postG2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/postG3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/postG4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/postG5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/appleWatch.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/galaxyTab.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/gear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/ipad.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/iphone7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/lumia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/m1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/m2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/m3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/m4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/m5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/macbook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/macbook2016.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/s7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/safariBig1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/surface.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/surfaceBook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/vr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/products/xboxController.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/safari.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/safariBig1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/safariBig2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/safariBig3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/samsung.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/sony.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/surface.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/team.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/ubuntu_tablet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/w1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/watch.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/facebook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/header_mail2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/icon_cloud.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/icon_download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/img1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/img2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/img3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/img4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/instagram.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/intel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/logo-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/logo_blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/mail300_1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/mail300_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/maxis.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/microsoft.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/nokia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/samsung.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/sony.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/email/twitter.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/favicon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/keyboard.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/meeting.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/mountain.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/next.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/owl.video.play.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/prev.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/road.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/room.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/skyline.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/skyline2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/team2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/plugins.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/preload.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.amber-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.blue-grey-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.brown-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.cyan-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-orange-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.deep-purple-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.green-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.grey-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.indigo-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-blue-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.light-green-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.lime-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.orange-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.pink-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.purple-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.red-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.teal-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-300.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-400.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-500.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-600.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-700.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/style.yellow-800.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/css/width-boxed.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/Material-Design-Iconic-Font.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/fonts/ionicons.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/100x100.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/64blue.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/64orange.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/img/demo/64sky.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/app.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/charts-bar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/charts-circle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/charts-line.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/charts-more.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/coming.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/component-carousels.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/component-snackbar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/configurator.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/ecommerce.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-cv-landing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-cv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-generic-3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-generic-5.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-generic-6.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/home-generic-7.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/html5shiv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/lead-cv-full.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/lead-full.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/lead.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/plugins.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/portfolio.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statics/js/respond.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/login/forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/register/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/register/forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/register/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/register/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/register/register.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.keystream" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.keystream.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata_i" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/d651ee35-7a1a-45c4-aa57-f347f873622a/_metadata_/metadata_i.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index/views.py" afterPath="$PROJECT_DIR$/index/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/views.py" afterPath="$PROJECT_DIR$/login/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/officeCat/urls.py" afterPath="$PROJECT_DIR$/officeCat/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Index/index.html" afterPath="$PROJECT_DIR$/templates/Index/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Login/login.html" afterPath="$PROJECT_DIR$/templates/Login/login.html" />
     </list>
@@ -375,33 +41,25 @@
     <expand>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="offerCat@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="Django default" type="e3449647:DbNodeDescriptor" />
       </path>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="offerCat@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="Django default" type="e3449647:DbNodeDescriptor" />
         <item name="offerCat" type="e3449647:DbNodeDescriptor" />
       </path>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="offerCat@localhost" type="e3449647:DbNodeDescriptor" />
-        <item name="offerCat" type="e3449647:DbNodeDescriptor" />
-        <item name="public" type="e3449647:DbNodeDescriptor" />
-      </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="offerCat@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="Django default" type="e3449647:DbNodeDescriptor" />
         <item name="offerCat" type="e3449647:DbNodeDescriptor" />
         <item name="public" type="e3449647:DbNodeDescriptor" />
-        <item name="" type="fce03ad6:DatabaseStructure$GroupNode" />
       </path>
       <path>
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="offerCat@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="Django default" type="e3449647:DbNodeDescriptor" />
         <item name="offerCat" type="e3449647:DbNodeDescriptor" />
         <item name="public" type="e3449647:DbNodeDescriptor" />
         <item name="" type="fce03ad6:DatabaseStructure$GroupNode" />
-        <item name="moduleData_onceuser" type="e3449647:DbNodeDescriptor" />
       </path>
     </expand>
     <select />
@@ -411,42 +69,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/officeCat/settings.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="83" column="34" lean-forward="false" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/moduleData/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="62" lean-forward="false" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
-              <folding />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="16" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d651ee35-7a1a-45c4-aa57-f347f873622a/console.sql">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/be019d88-68dc-4d23-9672-bf6ce6b1a7ae/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugins.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statics/css/plugins.min.css">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="4" column="71" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="4" selection-end-column="71" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -454,68 +116,62 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="page.html" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/navbar-white/page.html">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="1172" column="32" lean-forward="true" selection-start-line="1172" selection-start-column="32" selection-end-line="1172" selection-end-column="32" />
+              <caret line="21" column="44" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1187" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
               <folding>
-                <element signature="n#div#1;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#5;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#6;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statics/css/index/index.css">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/register/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state relative-caret-position="105">
+              <caret line="7" column="50" lean-forward="true" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/register/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+            <state relative-caret-position="217">
+              <caret line="91" column="40" lean-forward="false" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
-                <marker date="1511431203000" expanded="true" signature="206:252" ph="select * fro... moduleData_candidate" />
+                <marker date="1511777264000" expanded="false" signature="4756:4762" ph="©" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Login/login.html">
+      <file leaf-file-name="page-login_register2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/navbar-white/page-login_register2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="65" column="38" lean-forward="false" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statics/css/login/login.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="360">
+              <caret line="24" column="34" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1294" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -526,9 +182,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -538,6 +194,8 @@
       <find>django.contrib.staticfiles</find>
       <find>STATICFILES_DIRS</find>
       <find>carousel</find>
+      <find>SiteMap</find>
+      <find>Pages</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -558,10 +216,8 @@
         <option value="$PROJECT_DIR$/Login/views.py" />
         <option value="$PROJECT_DIR$/Index/urls.py" />
         <option value="$PROJECT_DIR$/Login/urls.py" />
-        <option value="$PROJECT_DIR$/login/views.py" />
         <option value="$PROJECT_DIR$/login/urls.py" />
         <option value="$PROJECT_DIR$/index/urls.py" />
-        <option value="$PROJECT_DIR$/officeCat/urls.py" />
         <option value="$PROJECT_DIR$/templates/static/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/templates/static/js/bootstrap.min.js" />
         <option value="$PROJECT_DIR$/statics/css/index/index.css" />
@@ -570,10 +226,19 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d651ee35-7a1a-45c4-aa57-f347f873622a/console_1.sql" />
         <option value="$PROJECT_DIR$/moduleData/models.py" />
         <option value="$PROJECT_DIR$/officeCat/settings.py" />
-        <option value="$PROJECT_DIR$/index/views.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d651ee35-7a1a-45c4-aa57-f347f873622a/console.sql" />
-        <option value="$PROJECT_DIR$/templates/Index/index.html" />
+        <option value="$PROJECT_DIR$/register/urls.py" />
+        <option value="$PROJECT_DIR$/officeCat/urls.py" />
+        <option value="$PROJECT_DIR$/index/views.py" />
+        <option value="$PROJECT_DIR$/login/forms.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/be019d88-68dc-4d23-9672-bf6ce6b1a7ae/console.sql" />
+        <option value="$PROJECT_DIR$/login/views.py" />
+        <option value="$USER_HOME$/atalent work/material-style-2.0.2/HTML/header-primary-navbar-white/page-login_register.html" />
         <option value="$PROJECT_DIR$/templates/Login/login.html" />
+        <option value="$PROJECT_DIR$/register/forms.py" />
+        <option value="$PROJECT_DIR$/templates/register/register.html" />
+        <option value="$PROJECT_DIR$/register/views.py" />
+        <option value="$PROJECT_DIR$/templates/Index/index.html" />
       </list>
     </option>
   </component>
@@ -615,22 +280,12 @@
             <path>
               <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
               <item name="officeCat" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
               <item name="officeCat" type="462c0819:PsiDirectoryNode" />
-              <item name="moduleData" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="officeCat" type="462c0819:PsiDirectoryNode" />
-              <item name="officeCat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="officeCat" type="462c0819:PsiDirectoryNode" />
-              <item name="statics" type="462c0819:PsiDirectoryNode" />
+              <item name="register" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
@@ -649,12 +304,18 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="Login" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="officeCat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="officeCat" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="register" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -744,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511431273427</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add">
+      <created>1511456743348</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1511456743348</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -758,27 +426,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32599726" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328152" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@officeCat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28885832" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.226979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2907916" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32599726" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@officeCat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18707015" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17285945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11470113" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39889959" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21320495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -791,193 +460,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="d" />
-    <option name="LAST_COMMIT_MESSAGE" value="d" />
+    <MESSAGE value="add" />
+    <option name="LAST_COMMIT_MESSAGE" value="add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/index/views.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/officeCat/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="126" column="39" lean-forward="true" selection-start-line="126" selection-start-column="39" selection-end-line="126" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1511431203000" expanded="true" signature="206:252" ph="select * fro... moduleData_candidate" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCat/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#235#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statics/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11910">
-          <caret line="794" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="804" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statics/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24840">
-          <caret line="1656" column="0" lean-forward="false" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCat/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCat/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#235#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statics/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11910">
-          <caret line="794" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="804" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statics/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24840">
-          <caret line="1656" column="0" lean-forward="false" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/officeCat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -997,9 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#235#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,14 +504,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1038,7 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11850">
           <caret line="794" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="804" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,7 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24840">
           <caret line="1656" column="0" lean-forward="true" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,32 +548,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/officeCat/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-          <folding>
-            <element signature="e#643#684#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/vcs.xml" />
-    <entry file="file://$PROJECT_DIR$/login/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/statics/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11850">
           <caret line="794" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="804" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1101,24 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24840">
           <caret line="1656" column="0" lean-forward="false" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,9 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#235#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1148,19 +586,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/db/models/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="386" column="8" lean-forward="false" selection-start-line="386" selection-start-column="8" selection-end-line="386" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d651ee35-7a1a-45c4-aa57-f347f873622a/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="29" lean-forward="true" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1172,12 +601,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moduleData/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="62" lean-forward="false" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/statics/img/favicon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="das://table:/3fdbe78/d651ee35-7a1a-45c4-aa57-f347f873622a/offerCat.public.moduleData_onceuser">
@@ -1187,21 +613,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1511431203000" expanded="true" signature="206:252" ph="select * fro... moduleData_candidate" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d651ee35-7a1a-45c4-aa57-f347f873622a/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1222,34 +637,230 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/moduleData/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/officeCat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="83" column="34" lean-forward="false" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+        <state relative-caret-position="206">
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCat/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/db/models/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="365" column="8" lean-forward="false" selection-start-line="365" selection-start-column="8" selection-end-line="365" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/core/handlers/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/utils/deprecation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/core/handlers/exception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/header-white-navbar-white/page-login_register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="55" column="47" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="168" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/header-dark-navbar-white/page-login_register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="168" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/header-primary-navbar-white/page-login_register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="74" lean-forward="false" selection-start-line="14" selection-start-column="74" selection-end-line="14" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/header-primary-navbar-white/page-login_register2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="97" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1489" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/navbar-white/page-login_register2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="34" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1294" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="16" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/3fdbe78/be019d88-68dc-4d23-9672-bf6ce6b1a7ae/offerCat.public.moduleData_onceuser">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="65" column="38" lean-forward="false" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+        <state relative-caret-position="350">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="50" lean-forward="true" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/register/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="91" column="40" lean-forward="false" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+          <folding>
+            <marker date="1511777264000" expanded="false" signature="4756:4762" ph="©" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/be019d88-68dc-4d23-9672-bf6ce6b1a7ae/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="71" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="4" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/register/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" column="64" lean-forward="false" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/atalent work/material-style-2.0.2/HTML/navbar-white/page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="44" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1187" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="1172" column="32" lean-forward="true" selection-start-line="1172" selection-start-column="32" selection-end-line="1172" selection-end-column="32" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+        <state relative-caret-position="93">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

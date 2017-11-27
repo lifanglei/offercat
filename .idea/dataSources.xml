@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="offerCat@localhost" uuid="d651ee35-7a1a-45c4-aa57-f347f873622a">
+    <data-source source="LOCAL" name="Django default" uuid="be019d88-68dc-4d23-9672-bf6ce6b1a7ae">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/officeCat/settings.py</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/offerCat</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/offerCat</jdbc-url>
       <driver-properties>
         <property name="ApplicationName" value="DataGrip" />
       </driver-properties>

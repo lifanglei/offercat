@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#333">
+    <title>Material Style</title>
+      {% load staticfiles %}
+    <meta name="description" content="Material Style Theme">
+    <link rel="shortcut icon" href="{% static "img/favicon.png?v=3" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{% static "css/preload.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/plugins.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.light-blue-500.min.css" %}">
+  </head>
+  <body>
+    <div id="ms-preload" class="ms-preload">
+      <div id="status">
+        <div class="spinner">
+          <div class="dot1"></div>
+          <div class="dot2"></div>
+        </div>
+      </div>
+    </div>
+    <div class="ms-site-container">
+      <nav class="navbar navbar-expand-md  navbar-static ms-navbar ms-navbar-white navbar-mode">
+        <div class="container container-full">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url "index:index" %}">
+              <!-- <img src="assets/img/demo/logo-navbar.png" alt=""> -->
+              <span class="ms-logo ms-logo-sm">M</span>
+              <span class="ms-title">Offer
+                <strong>猫</strong>
+              </span>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="ms-navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown active">
+                <a href="{% url "index:index" %}" class="nav-link dropdown-toggle animated fadeIn animation-delay-7"  role="button"  data-name="home">首页
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- container -->
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-5 order-xl-2">
+            <div class="card card-primary animated fadeInUp animation-delay-7">
+              <div class="card-block">
+                <h1 class="color-primary text-center">Login</h1>
+                <form class="form-horizontal" action="/login/" method="post">
+                    {% csrf_token %}
+                  <fieldset>
+                    <div class="form-group row">
+                      <label for="inputEmail" class="col-md-3 control-label">手机号</label>
+                      <div class="col-md-9">
+                        {{ form.user_name }}</div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-md-3 control-label">密码</label>
+                      <div class="col-md-9">
+                       {{ form.user_pwd }} </div>
+                    </div>
+                  </fieldset>
+                  <button class="btn btn-raised btn-primary btn-block" type="submit">Login
+                    <i class="zmdi zmdi-long-arrow-right no-mr ml-1"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 order-xl-1">
+            <div class="card card-primary animated fadeInUp animation-delay-7">
+              <div class="card-block">
+                <h1 class="color-primary text-center">注册</h1>
+                <form class="form-horizontal" action="/register/" method="post">
+                    {% csrf_token %}
+                  <fieldset>
+                    <div class="row form-group">
+                      <label for="inputEmail" class="col-md-2 control-label">手机</label>
+                      <div class="col-md-9">
+                       {{ form.user_name }} </div>
+                    </div>
+                    <div class="row form-group">
+                      <label for="inputPassword" class="col-md-2 control-label">验证码</label>
+                      <div class="col-md-9">
+                        {{ form.user_pwd }} </div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <div class="col">
+                        <button class="btn btn-raised btn-primary btn-block" type="submit">注册</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- container -->
+{#      <footer class="ms-footer">#}
+{#        <div class="container">#}
+{#          <p>Copyright &copy; </p>#}
+{#        </div>#}
+{#      </footer>#}
+    </div>
+    <script src="{% static "js/plugins.min.js" %}"></script>
+    <script src="{% static "js/app.min.js" %}"></script>
+  </body>
+</html>
