@@ -1,0 +1,31 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "moment": "^2.19.2",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start-full":"npm run build-css && run-p -ncr watch-css start",
+    "build": "react-scripts build",
+    "build-css": "node-less-chokidar src",
+    "watch-css": "node-less-chokidar src --watch",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "less": "^2.7.3",
+    "node-less-chokidar": "^0.1.2",
+    "npm-run-all": "^4.1.2",
+    "redux-devtools": "^3.4.1"
+  }
+}
