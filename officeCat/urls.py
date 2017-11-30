@@ -17,8 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^index', include('index.urls', namespace='index')),
-    url(r'^login/$', include('login.urls', namespace='login')),
-    url(r'^register', include('register.urls', namespace='register')),
+    url(r'^index/', include('index.urls', namespace='index')),
+    url(r'^login/', include('login.urls', namespace='login')),
+    url(r'^register/', include('register.urls', namespace='register')),
     url(r'^admin/', admin.site.urls),
 ]
