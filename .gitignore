@@ -6,6 +6,8 @@ media/
 # C extensions
 *.so
 
+officeCat/settings.py
+
 # Distribution / packaging
 .Python
 env/
