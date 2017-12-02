@@ -1,4 +1,5 @@
 #-*- coding: UTF-8 -*-
+from datetime import datetime
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator, ASCIIUsernameValidator
@@ -39,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-
+    last_login = models.DateTimeField(_('last login'), default=timezone.now, null=True)
     objects = UserManager()
 
     EMAIL_FIELD = 'email'

@@ -1,4 +1,6 @@
 #-*- coding: UTF-8 -*-
+from datetime import datetime
+from django.utils import timezone
 from django.contrib.auth import get_user_model,authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
@@ -12,10 +14,13 @@ jwt_encode_handler = jwt_settings.JWT_ENCODE_HANDLER
 jwt_decode_handler = jwt_settings.JWT_DECODE_HANDLER
 
 
-class UserRegisterSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True)
+class UserRegisterSerializer(serializers.ModelSerializer):
+
     password = serializers.CharField(write_only=True,style={'input_type': 'password'})
     email = serializers.EmailField(required=True)
+    token = serializers.SerializerMethodField(read_only=True)
+    captcha_val = serializers.CharField(max_length=128, required=True,write_only=True)
+    captcha_key = serializers.CharField(max_length=128, required=True,write_only=True)
 
     class Meta:
         model = User
@@ -23,6 +28,9 @@ class UserRegisterSerializer(serializers.Serializer):
             'username',
             'password',
             'email',
+            'token',
+            'captcha_val',
+            'captcha_key',
         ]
 
     def create(self,validated_data):
@@ -31,15 +39,23 @@ class UserRegisterSerializer(serializers.Serializer):
             email = validated_data['email'],
         )
         user.password = make_password(validated_data['password']) #hash password
-
         user.save()
         return user
 
-class UserLoginSerializer(JSONWebTokenSerializer):
+
+
+    def get_token(self,obj):
+        payload = jwt_payload_handler(obj)
+        return jwt_encode_handler(payload)
+
+
+class UserLoginSerializer(JSONWebTokenSerializer,serializers.ModelSerializer):
     token = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=False, write_only=True,style={'input_type': 'password'})
     id = serializers.CharField(allow_blank=True, read_only=True)
+    captcha_val = serializers.CharField(max_length=128, required=True,write_only=True)
+    captcha_key = serializers.CharField(max_length=128, required=True,write_only=True)
     class Meta:
         model = User
         fields = [
@@ -47,12 +63,16 @@ class UserLoginSerializer(JSONWebTokenSerializer):
             'username',
             'password',
             'token',
+            'captcha_val',
+            'captcha_key',
         ]
         extra_kwargs = {"password":
                             {"write_only": True}
                         }
     # check user auth
     def validate(self, data):
+
+        # check user auth
         credentials = {
             self.username_field: data.get(self.username_field),
             'password': data.get('password')
@@ -67,7 +87,8 @@ class UserLoginSerializer(JSONWebTokenSerializer):
                     raise serializers.ValidationError(msg)
 
                 payload = jwt_payload_handler(user)
-
+                user.last_login = timezone.now()
+                user.save()
                 return {
                     'token': jwt_encode_handler(payload),
                     'user': user
@@ -83,6 +104,9 @@ class UserLoginSerializer(JSONWebTokenSerializer):
             msg = _('Must include "{username_field}" and "password".')
             msg = msg.format(username_field=self.username_field)
             raise serializers.ValidationError(msg)
+
+
+
 
 class CapthaValueSerializer(serializers.Serializer):
     val = serializers.CharField(max_length=128, required=True)
