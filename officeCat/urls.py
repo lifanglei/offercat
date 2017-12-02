@@ -20,5 +20,11 @@ urlpatterns = [
     url(r'^index/', include('index.urls', namespace='index')),
     url(r'^login/', include('login.urls', namespace='login')),
     url(r'^register/', include('register.urls', namespace='register')),
+    url(r'^accounts/', include('accounts.urls',namespace='accounts')),
     # url(r'^admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    url(r'^utils/', include('captcha.urls')),
+
 ]
