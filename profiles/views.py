@@ -14,7 +14,11 @@ from rest_framework.settings import api_settings
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Profile, WorkExperience, EducationalExperience, Skills
-from .serializers import ProfileSerializer, WorkExperienceSerializer, EducationalExperienceSerializer, SkillsSerializer
+from .serializers import (ProfileSerializer,
+                          WorkExperienceSerializer,
+                          EducationalExperienceSerializer,
+                          SkillsSerializer,
+                          ProfileOverViewSerializer,)
 
 
 class ProfileView(ModelViewSet):
@@ -41,6 +45,16 @@ class SkillsView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = SkillsSerializer
 
+class ProfileOverViewAPIView(generics.RetrieveAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = ProfileOverViewSerializer
+    queryset = Profile.objects.all()
+    lookup_field = 'id'
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, context={'request': request})
+        return Response(serializer.data)
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])

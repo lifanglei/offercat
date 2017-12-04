@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from rest_framework_jwt.views import obtain_jwt_token
 
-from .views import ProfileView, WorkExperienceView, EducationalExoerienceView, SkillsView
+from .views import (ProfileView, WorkExperienceView, EducationalExoerienceView, SkillsView, ProfileOverViewAPIView)
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -12,6 +12,7 @@ router.register('skills', SkillsView, base_name='skills')
 
 urlpatterns = [
     # /profiles/,
+    url(r'^overview/(?P<id>.+)/$', ProfileOverViewAPIView.as_view(), name='profile-overview'),
 ]
 
 urlpatterns += router.urls

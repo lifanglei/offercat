@@ -57,6 +57,17 @@ class Profile(models.Model):
         full_name = '{0} {1}'.format(self.first_name, self.last_name)
         return full_name.strip()
 
+    def query_work_exp(self,):
+        return WorkExperience.objects.filter(user=self.user)
+
+    def query_edu_exp(self,):
+        return EducationalExperience.objects.filter(user=self.user)
+
+    def query_skills(self,):
+        return Skills.objects.filter(user=self.user)
+
+
+
 
 class WorkExperience(models.Model):
     company = models.CharField(_(u'公司'), max_length=200, blank=False)
