@@ -8,7 +8,7 @@
 
 # production
 /build
-.idea/workspace.xml
+.idea
 src/css/*.css
 src/css/*.css.map
 

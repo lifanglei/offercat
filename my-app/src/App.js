@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import NavBarComponent from './components/navBar';
+import NomarchComponent from './components/noMatch';
+import loginContainer from './containers/loginContainer'
 import './css/App.css';
-import back from './img/1.jpg';
 import {
   BrowserRouter as Router,
   Route,
@@ -55,16 +56,16 @@ class Clock extends React.Component {
 class App extends Component {
   render() {
     return (
-        <div>
           <Router>
             <div>
               <NavBarComponent/>
+              <Route path="/login" component={loginContainer}/>
               <Route path="/home" component={Home}/>
               <Route path="/welcome" component={Welcome}/>
               <Route path="/clock" component={Clock}/>
+              <Route component={NomarchComponent}/>
             </div>
           </Router>
-        </div>
     );
   }
 }
