@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
+from django.conf import settings
 from rest_framework.documentation import include_docs_urls
 
 
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^login/', include('login.urls', namespace='login')),
     url(r'^register/', include('register.urls', namespace='register')),
     url(r'^accounts/', include('accounts.urls',namespace='accounts')),
+    url(r'^profiles/', include('profiles.urls',namespace='profiles')),
     # url(r'^admin/', admin.site.urls),
 ]
 
@@ -31,3 +33,7 @@ urlpatterns += [
     url(r'^utils/', include('captcha.urls')),
     url(r'^api-docs/', include('rest_framework_docs.urls')),
 ]
+
+if settings.DEBUG :
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

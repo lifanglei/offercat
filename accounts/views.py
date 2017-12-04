@@ -1,4 +1,4 @@
-#-*- coding: UTF-8 -*-
+# -*- coding: UTF-8 -*-
 # Create your views here.
 from django.contrib.auth import get_user_model
 from captcha.models import CaptchaStore
@@ -10,8 +10,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
-from rest_framework_jwt.settings import api_settings as jwt_settings
-from accounts.serializers import (
+from .serializers import (
     CapthaValueSerializer,
     UserRegisterSerializer,
     UserLoginSerializer)
@@ -27,28 +26,27 @@ class UserRegisterAPIView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = UserRegisterSerializer
 
-    def get(self, request, format=None):
+    def get(self, request):
         key = CaptchaStore.generate_key()
 
         data = {
             'captcha_key': key,
-            'captcha_url': reverse('captcha-image', kwargs={'key': key},request= request),
-            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request= request),
-            'captcha_refresh': reverse('captcha-refresh',request= request),
+            'captcha_url': reverse('captcha-image', kwargs={'key': key}, request=request),
+            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
+            'captcha_refresh': reverse('captcha-refresh', request=request),
             'audio_url': None
         }
         if captcha_settings.CAPTCHA_FLITE_PATH:
             data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
-        return Response(data,status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
 
-
-    def post(self,request, format = None):
+    def post(self, request, **kwargs):
         data = request.data
 
         val = data['captcha_val'].lower()
-        hashKey = data['captcha_key']
+        hash_key = data['captcha_key']
 
-        if val != CaptchaStore.objects.get(hashkey=hashKey).response:
+        if val != CaptchaStore.objects.get(hashkey=hash_key).response:
             key = CaptchaStore.generate_key()
             data = {
                 'captcha_key': key,
@@ -56,8 +54,8 @@ class UserRegisterAPIView(generics.CreateAPIView):
                 'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
                 'captcha_refresh': reverse('captcha-refresh', request=request),
                 'audio_url': None,
-                'registersuccess': False,
-                'errormessage': {'captha_val':'Invalidated captcha value!'}
+                'register_success': False,
+                'error_message': {'captcha_val': 'Invalidated captcha value!'}
             }
             if captcha_settings.CAPTCHA_FLITE_PATH:
                 data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
@@ -71,41 +69,42 @@ class UserRegisterAPIView(generics.CreateAPIView):
 
             headers = self.get_success_headers(serializer.data)
             response_data_success = serializer.data
-            response_data_success['registersuccess'] = True
+            response_data_success['register_success'] = True
             return Response(response_data_success, status=status.HTTP_201_CREATED, headers=headers)
         else:
             errors = serializer.errors
 
             response_data_fail = {
                 'username': data.get('username'),
-                'registersuccess': False,
-                'errormessage': errors
+                'register_success': False,
+                'error_message': errors
             }
-            return Response(response_data_fail,status=status.HTTP_400_BAD_REQUEST)
+            return Response(response_data_fail, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserLoginAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = UserLoginSerializer
 
-    def get(self, request, format=None):
+    def get(self, request, ):
         key = CaptchaStore.generate_key()
 
         data = {
             'captcha_key': key,
-            'captcha_url': reverse('captcha-image', kwargs={'key': key},request= request),
-            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request= request),
-            'captcha_refresh': reverse('captcha-refresh',request= request),
+            'captcha_url': reverse('captcha-image', kwargs={'key': key}, request=request),
+            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
+            'captcha_refresh': reverse('captcha-refresh', request=request),
             'audio_url': None
         }
         if captcha_settings.CAPTCHA_FLITE_PATH:
             data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
-        return Response(data,status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        data = request.data #request.POST
+        data = request.data  # request.POST
         val = data['captcha_val'].lower()
-        hashKey = data['captcha_key']
-        if val != CaptchaStore.objects.get(hashkey=hashKey).response:
+        hash_key = data['captcha_key']
+        if val != CaptchaStore.objects.get(hashkey=hash_key).response:
             key = CaptchaStore.generate_key()
             data = {
                 'captcha_key': key,
@@ -113,8 +112,8 @@ class UserLoginAPIView(APIView):
                 'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
                 'captcha_refresh': reverse('captcha-refresh', request=request),
                 'audio_url': None,
-                'loginsuccess': False,
-                'errormessage': {'captha_val':'Invalidated captcha value!'}
+                'login_success': False,
+                'error_message': {'captcha_val': 'Invalidated captcha value!'}
             }
             if captcha_settings.CAPTCHA_FLITE_PATH:
                 data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
@@ -123,15 +122,9 @@ class UserLoginAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
-            user = serializer.object.get('user') or request.user
-            token = serializer.object.get('token')
-            response_data_success = {
-                'id': user.id,
-                'username': user.username,
-                'loginsuccess': True,
-                'token': token,
-            }
-            return Response(response_data_success,status=status.HTTP_200_OK)
+            response_data_success = serializer.data
+            response_data_success['login_success'] = True
+            return Response(response_data_success, status=status.HTTP_200_OK)
         else:
             errors = serializer.errors
             custom_key = api_settings.NON_FIELD_ERRORS_KEY
@@ -143,49 +136,52 @@ class UserLoginAPIView(APIView):
 
             response_data_fail = {
                 'username': data.get('username'),
-                'loginsuccess': False,
-                'errormessage': errors
+                'login_success': False,
+                'error_message': errors
             }
             return Response(response_data_fail, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def captcha(request):
     key = CaptchaStore.generate_key()
     data = {
         'captcha_key': key,
-        'captcha_url': reverse('captcha-image', kwargs={'key': key},request= request),
-        'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request= request),
-        'captcha_refresh': reverse('captcha-refresh',request= request),
+        'captcha_url': reverse('captcha-image', kwargs={'key': key}, request=request),
+        'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
+        'captcha_refresh': reverse('captcha-refresh', request=request),
         'audio_url': None
     }
     if captcha_settings.CAPTCHA_FLITE_PATH:
         data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
-    return Response(data,status=status.HTTP_200_OK)
+    return Response(data, status=status.HTTP_200_OK)
+
 
 class capthaView(APIView):
     serializer_class = CapthaValueSerializer
 
-    def get(self, request, format=None):
+    @staticmethod
+    def get(request, ):
         key = CaptchaStore.generate_key()
 
         data = {
             'captcha_key': key,
-            'captcha_url': reverse('captcha-image', kwargs={'key': key},request= request),
-            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request= request),
-            'captcha_refresh': reverse('captcha-refresh',request= request),
+            'captcha_url': reverse('captcha-image', kwargs={'key': key}, request=request),
+            'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
+            'captcha_refresh': reverse('captcha-refresh', request=request),
             'audio_url': None
         }
         if captcha_settings.CAPTCHA_FLITE_PATH:
             data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
-        return Response(data,status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
 
-    def post(self,request,format=None):
+    @staticmethod
+    def post(request,):
         data = request.data
         val = data['val'].lower()
-        hashKey = data['captcha_key']
-        if val != CaptchaStore.objects.get(hashkey=hashKey).response:
+        hash_key = data['captcha_key']
+        if val != CaptchaStore.objects.get(hashkey=hash_key).response:
             key = CaptchaStore.generate_key()
             data = {
                 'captcha_key': key,

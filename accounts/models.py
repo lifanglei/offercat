@@ -1,5 +1,4 @@
-#-*- coding: UTF-8 -*-
-from datetime import datetime
+# -*- coding: UTF-8 -*-
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator, ASCIIUsernameValidator
@@ -7,6 +6,7 @@ from django.db import models
 from django.utils import six, timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
+
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
 
     def clean(self):
-        super(AbstractUser, self).clean()
+        super(AbstractBaseUser, self).clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
@@ -61,5 +61,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-class Profile(models.Model):
-    pass
+    def get_full_name(self):
+        pass
+
+    def get_short_name(self):
+        pass
