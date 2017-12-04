@@ -6,6 +6,8 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from .utils import user_directory_path
+from django.core.signals import request_finished
+
 # Create your models here.
 User = settings.AUTH_USER_MODEL
 
@@ -56,14 +58,59 @@ class Profile(models.Model):
         return full_name.strip()
 
 
-
-class Test(models.Model):
-    image = models.ImageField()
+class WorkExperience(models.Model):
+    company = models.CharField(_(u'公司'), max_length=200, blank=False)
+    position = models.CharField(_(u'职位'), max_length=100, blank=False)
+    start_date = models.CharField(_(u'开始日期'), max_length=10, blank=False)
+    end_date = models.CharField(_(u'结束日期'), max_length=10, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
 
     class Meta:
-        verbose_name = _('test')
-        verbose_name_plural = _('tests')
+        db_table = 'profiles_work_exp'
+        verbose_name = _('Work Experience')
+        verbose_name_plural = _('Work Experience')
 
+
+class EducationalExperience(models.Model):
+    EDU_BACHELOR = 1
+    EDU_MASTER = 2
+    EDU_PHD = 3
+    EDU_MBA = 4
+    EDUCATION_DEGREE = [(EDU_BACHELOR, u'本科'),
+                        (EDU_MASTER, u'硕士'),
+                        (EDU_PHD, u'博士'),
+                        (EDU_MBA, 'MBA')]
+    college = models.CharField(_(u'学校'), max_length=200, blank=False)
+    major = models.CharField(_(u'专业'), max_length=100, blank=False)
+    degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, blank=False)
+    graduate_date = models.DateField(_(u'毕业年份'),blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+    class Meta:
+        db_table = 'profiles_edu_exp'
+        verbose_name = _('Educational Experience')
+        verbose_name_plural = _('Educational Experience')
+
+class Skills(models.Model):
+    LEVEL_1 = 1
+    LEVEL_2 = 2
+    LEVEL_3 = 3
+    LEVEL_4 = 4
+    LEVEL_5 = 5
+    SKILL_LEVEL = [ (LEVEL_1, u'入门'),
+                    (LEVEL_2, u'掌握'),
+                    (LEVEL_3, u'熟练'),
+                    (LEVEL_4, u'精通'),
+                    (LEVEL_5, u'专家'), ]
+
+    name = models.CharField(_(u'技能'), max_length=50, blank=False)
+    level = models.IntegerField(_(u'水平'), choices=SKILL_LEVEL, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, )
+
+    class Meta:
+        db_table = 'profiles_skills'
+        verbose_name = _('Educational Experience')
+        verbose_name_plural = _('Educational Experience')
 
 @receiver(models.signals.post_delete, sender=Profile)
 def auto_delete_file_on_delete(sender, instance, **kwargs):

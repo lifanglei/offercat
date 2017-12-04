@@ -13,13 +13,9 @@ from rest_framework.views import APIView
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Test, Profile
-from .serializers import SaveImageSerializer, ProfileSerializer
+from .models import Profile, WorkExperience, EducationalExperience, Skills
+from .serializers import ProfileSerializer, WorkExperienceSerializer, EducationalExperienceSerializer, SkillsSerializer
 
-class ImageSaveView(generics.CreateAPIView):
-    queryset = Test.objects.all()
-    permission_classes = [AllowAny]
-    serializer_class = SaveImageSerializer
 
 class ProfileView(ModelViewSet):
     queryset = Profile.objects.all()
@@ -29,6 +25,22 @@ class ProfileView(ModelViewSet):
     def get_queryset(self):
         print("{0}".format(self.request.user))
         return super(ProfileView,self).get_queryset()
+
+class WorkExperienceView(ModelViewSet):
+    queryset = WorkExperience.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = WorkExperienceSerializer
+
+class EducationalExoerienceView(ModelViewSet):
+    queryset = EducationalExperience.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = EducationalExperienceSerializer
+
+class SkillsView(ModelViewSet):
+    queryset = Skills.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = SkillsSerializer
+
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])
@@ -42,4 +54,5 @@ class ProfileView(ModelViewSet):
 #         return HttpResponse(resized_img, content_type=content_type)
 #     except:
 #         return Response(status=status.HTTP_404_NOT_FOUND)
+
 

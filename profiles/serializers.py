@@ -1,20 +1,9 @@
 # -*- coding: UTF-8 -*-
 from rest_framework import serializers
-from .models import Test, Profile
+from .models import Profile, WorkExperience, EducationalExperience, Skills
 from .utils import get_default_image, ChoicesDisplayField
+from django.utils.translation import ugettext_lazy as _
 
-
-class SaveImageSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(default= get_default_image(), use_url=True,write_only=True)
-    image_url = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = Test
-        fields = ('image', 'image_url')
-
-    def get_image_url(self, obj):
-        print(obj.image.url)
-        return self.context['request'].build_absolute_uri(obj.image.url)
 
 class ProfileSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(default= get_default_image(), use_url=True,write_only=True)
@@ -57,3 +46,51 @@ class ProfileSerializer(serializers.ModelSerializer):
         return obj.get_full_name()
 
 
+class WorkExperienceSerializer(serializers.ModelSerializer):
+    edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:work_exp-detail', lookup_url_kwarg='pk')
+    class Meta:
+        model = WorkExperience
+        fields = (
+            'id',
+            'user',
+            'company',
+            'position',
+            'start_date',
+            'end_date',
+            'edit_url',
+        )
+
+class EducationalExperienceSerializer(serializers.ModelSerializer):
+    degree = ChoicesDisplayField(choices=EducationalExperience.EDUCATION_DEGREE)
+    graduate_date = serializers.DateField(format="%Y")
+    edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:edu_exp-detail', lookup_url_kwarg='pk')
+
+    class Meta:
+        model = EducationalExperience
+        fields = (
+            'id',
+            'user',
+            'college',
+            'major',
+            'degree',
+            'graduate_date',
+            'edit_url',
+        )
+
+
+class SkillsSerializer(serializers.ModelSerializer):
+    degree = ChoicesDisplayField(choices=Skills.SKILL_LEVEL)
+    graduate_date = serializers.DateField(format="%Y")
+    edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:skills-detail', lookup_url_kwarg='pk')
+
+    class Meta:
+        model = EducationalExperience
+        fields = (
+            'id',
+            'user',
+            'college',
+            'major',
+            'degree',
+            'graduate_date',
+            'edit_url',
+        )
