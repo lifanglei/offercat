@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from rest_framework import serializers
-from .models import Profile, WorkExperience, EducationalExperience, Skills
+from .models import Profile, WorkExperience, EducationalExperience, Skill
 from .utils import get_default_image, ChoicesDisplayField
 from django.utils.translation import ugettext_lazy as _
 
@@ -78,8 +78,8 @@ class EducationalExperienceSerializer(serializers.ModelSerializer):
         )
 
 
-class SkillsSerializer(serializers.ModelSerializer):
-    degree = ChoicesDisplayField(choices=Skills.SKILL_LEVEL)
+class SkillSerializer(serializers.ModelSerializer):
+    degree = ChoicesDisplayField(choices=Skill.SKILL_LEVEL)
     graduate_date = serializers.DateField(format="%Y")
     edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:skills-detail', lookup_url_kwarg='pk')
 
@@ -150,5 +150,5 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
     def get_skills(self,obj):
         if obj.query_skills().count() == 0:
             return []
-        return SkillsSerializer(obj.query_skills(), many=True, context={'request': self.context.get('request')}).data
+        return SkillSerializer(obj.query_skills(), many=True, context={'request': self.context.get('request')}).data
 

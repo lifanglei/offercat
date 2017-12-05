@@ -5,7 +5,7 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
-from .utils import user_directory_path
+from .utils import user_directory_path, validate_file_extension
 from django.core.signals import request_finished
 
 # Create your models here.
@@ -43,7 +43,7 @@ class Profile(models.Model):
     email = models.EmailField(_(u'个人邮箱'), blank=True)
     address = models.CharField(_(u'现居地'), max_length=10, blank=True)
     description = models.TextField(_(u'个人简介'), blank=True)
-    avatar = models.ImageField(_(u'照片'), upload_to=user_directory_path,blank=True)
+    avatar = models.ImageField(_(u'照片'), upload_to=user_directory_path, blank=True)
 
     class Meta:
         db_table = 'profiles'
@@ -64,7 +64,7 @@ class Profile(models.Model):
         return EducationalExperience.objects.filter(user=self.user)
 
     def query_skills(self,):
-        return Skills.objects.filter(user=self.user)
+        return Skill.objects.filter(user=self.user)
 
 
 
@@ -102,7 +102,7 @@ class EducationalExperience(models.Model):
         verbose_name = _('Educational Experience')
         verbose_name_plural = _('Educational Experience')
 
-class Skills(models.Model):
+class Skill(models.Model):
     LEVEL_1 = 1
     LEVEL_2 = 2
     LEVEL_3 = 3
@@ -123,19 +123,37 @@ class Skills(models.Model):
         verbose_name = _('Educational Experience')
         verbose_name_plural = _('Educational Experience')
 
+
+class Resume(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, )
+    resume = models.FileField(upload_to=user_directory_path, validators=[validate_file_extension])
+
+    class Meta:
+        db_table = 'profiles_resume'
+        verbose_name = _('Personal Resume')
+        verbose_name_plural = _('Personal Resumes')
+
+
 @receiver(models.signals.post_delete, sender=Profile)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
+def auto_delete_avatar_on_delete(sender, instance, **kwargs):
     import shutil
     """
     Deletes file from filesystem
     when corresponding `Profile` object is deleted.
     """
-    # if instance.avatar:
-    #     print(os.path.dirname(instance.avatar.path))
-    #     if os.path.isfile(instance.avatar.path):
-    #         os.remove(instance.avatar.path)
     if instance.avatar:
         print(os.path.dirname(instance.avatar.path))
         if os.path.isdir(os.path.dirname(instance.avatar.path)):
             shutil.rmtree(os.path.dirname(instance.avatar.path))
 
+
+@receiver(models.signals.post_delete, sender=Resume)
+def auto_delete_resume_on_delete(sender, instance, **kwargs):
+    import shutil
+    """
+    Deletes file from filesystem
+    when corresponding `Profile` object is deleted.
+    """
+    if instance.resume:
+        if os.path.isdir(os.path.dirname(instance.resume.path)):
+            shutil.rmtree(os.path.dirname(instance.resume.path))

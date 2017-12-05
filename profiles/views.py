@@ -13,12 +13,12 @@ from rest_framework.views import APIView
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Profile, WorkExperience, EducationalExperience, Skills
+from .models import Profile, WorkExperience, EducationalExperience, Skill
 from .serializers import (ProfileSerializer,
                           WorkExperienceSerializer,
                           EducationalExperienceSerializer,
-                          SkillsSerializer,
-                          ProfileOverViewSerializer,)
+                          SkillSerializer,
+                          ProfileOverViewSerializer, )
 
 
 class ProfileView(ModelViewSet):
@@ -40,10 +40,10 @@ class EducationalExoerienceView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = EducationalExperienceSerializer
 
-class SkillsView(ModelViewSet):
-    queryset = Skills.objects.all()
+class SkillView(ModelViewSet):
+    queryset = Skill.objects.all()
     permission_classes = [AllowAny]
-    serializer_class = SkillsSerializer
+    serializer_class = SkillSerializer
 
 class ProfileOverViewAPIView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]

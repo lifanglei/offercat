@@ -21,9 +21,6 @@ from rest_framework.documentation import include_docs_urls
 # from django.contrib import admin
 
 urlpatterns = [
-    url(r'^index/', include('index.urls', namespace='index')),
-    url(r'^login/', include('login.urls', namespace='login')),
-    url(r'^register/', include('register.urls', namespace='register')),
     url(r'^accounts/', include('accounts.urls',namespace='accounts')),
     url(r'^profiles/', include('profiles.urls',namespace='profiles')),
     # url(r'^admin/', admin.site.urls),
