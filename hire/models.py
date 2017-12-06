@@ -18,8 +18,7 @@ class Company(models.Model):
     size = models.CharField(max_length=10, blank=True)
     stock = models.CharField(max_length=50, blank=True)
     description = models.TextField(max_length=50, blank=True )
-    photo = models.ImageField(upload_to=user_directory_path, null=True ,blank=True)
-
+    photo = models.ImageField(upload_to=user_directory_path,blank=True)
 
     class Meta:
         verbose_name = _('company')
@@ -32,11 +31,15 @@ class Position(models.Model):
     SALARY_LEVEL3 = 3
     SALARY_LEVEL4 = 4
     SALARY_LEVEL5 = 5
+    SALARY_LEVEL6 = 6
+    SALARY_LEVEL7 = 7
     SALARY_LEVEL = [(SALARY_LEVEL1, u'5k以下'),
-                    (SALARY_LEVEL2, u'5k-10k'),
-                    (SALARY_LEVEL3, u'10k-15k'),
-                    (SALARY_LEVEL4, '15k-25k'),
-                    (SALARY_LEVEL4, '25k以上')]
+                    (SALARY_LEVEL2, '5k-10k'),
+                    (SALARY_LEVEL3, '10k-15k'),
+                    (SALARY_LEVEL4, '15k-20k'),
+                    (SALARY_LEVEL5, '20k-25k'),
+                    (SALARY_LEVEL6, '25k-30k'),
+                    (SALARY_LEVEL7, u'50k以上')]
 
     TYPE_SOCIAL = 1
     TYPE_GRADUATION = 2
@@ -79,9 +82,8 @@ class Position(models.Model):
     duty = models.TextField(blank=True)
     detail_req = models.TextField(blank=True)
     email = models.EmailField(blank=False)
-    last_update = models.DateTimeField(_('date joined'), default=timezone.now)
+    last_update = models.DateTimeField(_('date created and updated'), default=timezone.now)
     subscription_count = models.IntegerField(default=0, blank=True)
-
 
     class Meta:
         verbose_name = _('position')
@@ -92,7 +94,7 @@ def auto_delete_avatar_on_delete(sender, instance, **kwargs):
     import shutil
     """
     Deletes file from filesystem
-    when corresponding `Profile` object is deleted.
+    when corresponding `Company` object is deleted.
     """
     if instance.photo:
         if os.path.isdir(os.path.dirname(instance.photo.path)):
