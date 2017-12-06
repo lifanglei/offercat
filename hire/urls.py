@@ -5,8 +5,8 @@ from .views import (CompanyView, PositionView)
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('profile', CompanyView, base_name='company')
-router.register('work_exp', PositionView, base_name='position')
+router.register('company', CompanyView, base_name='company')
+router.register('position', PositionView, base_name='position')
 
 urlpatterns = [
     # /profiles/,

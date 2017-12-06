@@ -5,7 +5,7 @@ from .models import Company, Position
 from django.utils.translation import ugettext_lazy as _
 
 class CompanySerializer(serializers.ModelSerializer):
-    photo = serializers.ImageField(use_url=True, write_only=True)
+    photo = serializers.ImageField(use_url=True, required=False, write_only=True)
     photo_url = serializers.SerializerMethodField(read_only=True)
     edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_url_kwarg='pk')
 
@@ -24,6 +24,8 @@ class CompanySerializer(serializers.ModelSerializer):
             'edit_url',
         )
 
+    def get_photo_url(self,obj):
+        return self.context['request'].build_absolute_uri(obj.photo.url)
 
 class PositionSerializer(serializers.ModelSerializer):
     edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_url_kwarg='pk')

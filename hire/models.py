@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
+import os
 from django.db import models
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from profiles.utils import user_directory_path
@@ -16,7 +18,7 @@ class Company(models.Model):
     size = models.CharField(max_length=10, blank=True)
     stock = models.CharField(max_length=50, blank=True)
     description = models.TextField(max_length=50, blank=True )
-    photo = models.ImageField(_(u'照片'), upload_to=user_directory_path, blank=True)
+    photo = models.ImageField(upload_to=user_directory_path, null=True ,blank=True)
 
 
     class Meta:
@@ -85,4 +87,13 @@ class Position(models.Model):
         verbose_name = _('position')
         verbose_name_plural = _('positions')
 
-
+@receiver(models.signals.post_delete, sender=Company)
+def auto_delete_avatar_on_delete(sender, instance, **kwargs):
+    import shutil
+    """
+    Deletes file from filesystem
+    when corresponding `Profile` object is deleted.
+    """
+    if instance.photo:
+        if os.path.isdir(os.path.dirname(instance.photo.path)):
+            shutil.rmtree(os.path.dirname(instance.photo.path))
