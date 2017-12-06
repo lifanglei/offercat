@@ -50,8 +50,8 @@ class UserLoginSerializer(JSONWebTokenSerializer, serializers.ModelSerializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=False, write_only=True, style={'input_type': 'password'})
     id = serializers.CharField(allow_blank=True, read_only=True)
-    captcha_val = serializers.CharField(max_length=128, required=True, write_only=True)
-    captcha_key = serializers.CharField(max_length=128, required=True, write_only=True)
+    # captcha_val = serializers.CharField(max_length=128, required=True, write_only=True)
+    # captcha_key = serializers.CharField(max_length=128, required=True, write_only=True)
 
     class Meta:
         model = User
@@ -60,8 +60,8 @@ class UserLoginSerializer(JSONWebTokenSerializer, serializers.ModelSerializer):
             'username',
             'password',
             'token',
-            'captcha_val',
-            'captcha_key',
+            # 'captcha_val',
+            # 'captcha_key',
         )
         extra_kwargs = {"password": {"write_only": True}}
 

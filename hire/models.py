@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from profiles.utils import user_directory_path
 from profiles.models import User
@@ -11,12 +12,12 @@ from profiles.models import User
 class Company(models.Model):
     name = models.CharField(max_length=100, blank=True)
     web_site = models.URLField(blank=True)
-    type = models.CharField(max_length=10, blank=True)
+    industry = models.CharField(max_length=10, blank=True)
     size = models.CharField(max_length=10, blank=True)
     stock = models.CharField(max_length=50, blank=True)
     description = models.TextField(max_length=50, blank=True )
     photo = models.ImageField(_(u'照片'), upload_to=user_directory_path, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     class Meta:
         verbose_name = _('company')
@@ -63,6 +64,7 @@ class Position(models.Model):
                         (EDU_MASTER, u'硕士'),
                         (EDU_PHD, u'博士'),
                         (EDU_MBA, 'MBA')]
+
     name = models.CharField(max_length=100, blank=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True)
     department = models.CharField(max_length=100, blank=True)
@@ -75,6 +77,9 @@ class Position(models.Model):
     duty = models.TextField(blank=True)
     detail_req = models.TextField(blank=True)
     email = models.EmailField(blank=False)
+    last_update = models.DateTimeField(_('date joined'), default=timezone.now)
+    subscription_count = models.IntegerField(default=0, blank=True)
+
 
     class Meta:
         verbose_name = _('position')

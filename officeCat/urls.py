@@ -23,6 +23,7 @@ from rest_framework.documentation import include_docs_urls
 urlpatterns = [
     url(r'^accounts/', include('accounts.urls',namespace='accounts')),
     url(r'^profiles/', include('profiles.urls',namespace='profiles')),
+    url(r'^hire/', include('hire.urls',namespace='hire')),
     # url(r'^admin/', admin.site.urls),
 ]
 
