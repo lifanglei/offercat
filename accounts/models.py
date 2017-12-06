@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin, AbstractUser, UserManag
 from django.contrib.auth.validators import UnicodeUsernameValidator, ASCIIUsernameValidator
 from django.db import models
 from django.utils import six, timezone
+from .utils import MyASCIIUsernameValidator, MyUnicodeUsernameValidator
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
@@ -12,7 +13,7 @@ from django.core.signals import request_finished
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
-    username_validator = UnicodeUsernameValidator() if six.PY3 else ASCIIUsernameValidator()
+    username_validator = MyUnicodeUsernameValidator() if six.PY3 else MyASCIIUsernameValidator()
 
     username = models.CharField(
         _('username'),
@@ -21,13 +22,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         db_index=True,
         help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
         validators=[username_validator],
+        blank=False,
         error_messages={
-            'unique': _("A user with that username already exists."),
+            'invalid':_(u"用户名不合法！"),
+            'unique': _(u"该用户已被注册！"),
+            'blank': _(u"请输入用户名！"),
         },
     )
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
     # last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    email = models.EmailField(_('email address'), blank=True)
+    password = models.CharField(_('password'), max_length=128, blank=False,)
+    email = models.EmailField(_('email address'), blank=False, unique=True,)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -52,6 +57,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        indexes = [
+            models.Index(fields=['username', 'email']),
+        ]
 
     def clean(self):
         super(AbstractBaseUser, self).clean()
