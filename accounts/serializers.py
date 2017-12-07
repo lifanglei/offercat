@@ -24,11 +24,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(allow_blank=False, write_only=True, style={'input_type': 'password'}, error_messages={
         'blank': _(u"请输入密码！"),
     })
-    email = serializers.EmailField(required=True,error_messages={
-        'invalid': _(u"邮箱不正确！"),
-        'unique': _(u"该邮箱已被注册！"),
-        'blank': _(u"请输入邮箱！"),
-    })
+    # email = serializers.EmailField(required=True,error_messages={
+    #     'invalid': _(u"邮箱不正确！"),
+    #     'unique': _(u"该邮箱已被注册！"),
+    #     'blank': _(u"请输入邮箱！"),
+    # })
     token = serializers.SerializerMethodField(read_only=True)
     captcha_val = serializers.CharField(max_length=128, allow_blank=False, write_only=True, error_messages={
         'blank': _(u"验证码不匹配，请重新验证！"),
@@ -40,6 +40,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
+            'id',
             'username',
             'password',
             'email',

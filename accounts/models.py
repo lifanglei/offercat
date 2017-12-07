@@ -32,7 +32,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
     # last_name = models.CharField(_('last name'), max_length=30, blank=True)
     password = models.CharField(_('password'), max_length=128, blank=False,)
-    email = models.EmailField(_('email address'), blank=False, unique=True,)
+    email = models.EmailField(_('email address'), blank=False, unique=True, error_messages={
+        'invalid': _(u"邮箱不正确！"),
+        'unique': _(u"该邮箱已被注册！"),
+        'blank': _(u"请输入邮箱！"),
+    })
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
