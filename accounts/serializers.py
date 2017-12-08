@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
 from rest_framework_jwt.serializers import api_settings as jwt_settings
 from django.utils.translation import ugettext as _
@@ -16,26 +17,41 @@ jwt_decode_handler = jwt_settings.JWT_DECODE_HANDLER
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=True, validators=[User.username_validator], error_messages={
-        'blank': _(u"请输入用户名！"),
-        'unique': _(u"该用户已被注册！"),
-        'invalid':_(u"用户名只能包括字母，数字以及@/./+/-/_！")
+    # username = serializers.CharField(required=True, allow_blank=False,
+    #                                  validators=[User.username_validator,
+    #                                              UniqueValidator(queryset=User.objects.all(),
+    #                                                              message=_(u"该用户已被注册！"))],
+    #                                  error_messages={
+    #                                      'blank': _(u"请输入用户名！"),
+    #                                      'unique': _(u"该用户已被注册！"),
+    #                                      'invalid': _(u"用户名只能包括字母，数字以及@/./+/-/_！")
+    #                                  })
+    password = serializers.CharField(allow_blank=False,
+                                     write_only=True,
+                                     style={'input_type': 'password'},
+                                     error_messages={
+                                         'blank': _(u"请输入密码！"),
+                                     })
+    email = serializers.EmailField(required=True,
+                                   validators=[UniqueValidator(queryset=User.objects.all(), message=_(u"该邮箱已被注册！"))],
+                                   error_messages={
+        'invalid': _(u"邮箱格式不正确！"),
+        'unique': _(u"该邮箱已被注册！"),
+        'blank': _(u"请输入邮箱！"),
     })
-    password = serializers.CharField(allow_blank=False, write_only=True, style={'input_type': 'password'}, error_messages={
-        'blank': _(u"请输入密码！"),
-    })
-    # email = serializers.EmailField(required=True,error_messages={
-    #     'invalid': _(u"邮箱不正确！"),
-    #     'unique': _(u"该邮箱已被注册！"),
-    #     'blank': _(u"请输入邮箱！"),
-    # })
     token = serializers.SerializerMethodField(read_only=True)
-    captcha_val = serializers.CharField(max_length=128, allow_blank=False, write_only=True, error_messages={
-        'blank': _(u"验证码不匹配，请重新验证！"),
-    })
-    captcha_key = serializers.CharField(max_length=128, allow_blank=False, write_only=True, error_messages={
-        'blank': _(u"验证码不匹配，请重新验证！"),
-    })
+    captcha_val = serializers.CharField(max_length=128,
+                                        allow_blank=False,
+                                        write_only=True,
+                                        error_messages={
+                                            'blank': _(u"验证码不匹配，请重新验证！"),
+                                        })
+    captcha_key = serializers.CharField(max_length=128,
+                                        allow_blank=False,
+                                        write_only=True,
+                                        error_messages={
+                                            'blank': _(u"验证码不匹配，请重新验证！"),
+                                        })
 
     class Meta:
         model = User
@@ -64,14 +80,15 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(JSONWebTokenSerializer):
-    username_email = serializers.CharField(required=True,error_messages={
+    username_email = serializers.CharField(required=True, error_messages={
         'blank': _(u"请输入用户名或邮箱！"),
     })
     password = serializers.CharField(required=True, write_only=True, style={'input_type': 'password'}, error_messages={
         'blank': _(u"请输入密码！"),
     })
     id = serializers.CharField(allow_blank=True, read_only=True)
-    username = serializers.CharField(read_only=True,)
+    username = serializers.CharField(read_only=True, )
+
     # captcha_val = serializers.CharField(max_length=128, required=True, write_only=True)
     # captcha_key = serializers.CharField(max_length=128, required=True, write_only=True)
 
@@ -94,13 +111,12 @@ class UserLoginSerializer(JSONWebTokenSerializer):
         """
         super(JSONWebTokenSerializer, self).__init__(*args, **kwargs)
 
-
     # check user auth
     def validate(self, data):
         tmp = User.objects.filter(Q(username=data.get('username_email')) | Q(email=data.get('username_email'))).first()
 
         if tmp:
-        # check user auth
+            # check user auth
             name = tmp.username
             credentials = {
                 self.username_field: name,
@@ -138,7 +154,6 @@ class UserLoginSerializer(JSONWebTokenSerializer):
     # def get_token(self, obj):
     #     payload = jwt_payload_handler(obj)
     #     return jwt_encode_handler(payload)
-
 
 
 class CapthaValueSerializer(serializers.Serializer):

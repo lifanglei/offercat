@@ -7,6 +7,30 @@ from django.utils.translation import ugettext_lazy as _
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
+# for config data types
+class PositionCategory(models.Model):
+    type = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = _('position category')
+        verbose_name_plural = _('position categories')
+
+
+class IndustryCategory(models.Model):
+    type = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = _('Industry category')
+        verbose_name_plural = _('Industry categories')
+
+
+class SalaryRange(models.Model):
+    type = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name = _('salary range')
+        verbose_name_plural = _('salary range')
+
 class Collection(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING())
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
@@ -53,9 +77,15 @@ class Invitation(models.Model):
         verbose_name = _('invitation')
         verbose_name_plural = _('invitations')
 
-class Subscription(models.Model):
 
+
+
+
+class Subscription(models.Model):
+    # TODO
+    postion = models.ForeignKey(PositionCategory,on_delete=models.Model)
 
     class Meta:
         verbose_name = _('subscription')
         verbose_name_plural = _('subscriptions')
+

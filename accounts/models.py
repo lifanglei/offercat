@@ -2,18 +2,19 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator, ASCIIUsernameValidator
+from django.core.validators import EmailValidator
 from django.db import models
 from django.utils import six, timezone
-from .utils import MyASCIIUsernameValidator, MyUnicodeUsernameValidator
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
-from django.core.signals import request_finished
 
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
-    username_validator = MyUnicodeUsernameValidator() if six.PY3 else MyASCIIUsernameValidator()
+    username_validator = UnicodeUsernameValidator(
+        message=_(u"用户名只能包含字母，数字以及@/./+/-/")) if six.PY3 else ASCIIUsernameValidator(
+        message=_(u"用户名只能包含字母，数字以及@/./+/-/"))
 
     username = models.CharField(
         _('username'),
@@ -24,16 +25,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         validators=[username_validator],
         blank=False,
         error_messages={
-            'invalid':_(u"用户名不合法！"),
+            'invalid':_(u"用户名格式不正确！"),
             'unique': _(u"该用户已被注册！"),
             'blank': _(u"请输入用户名！"),
         },
     )
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
     # last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    password = models.CharField(_('password'), max_length=128, blank=False,)
-    email = models.EmailField(_('email address'), blank=False, unique=True, error_messages={
-        'invalid': _(u"邮箱不正确！"),
+    password = models.CharField(_('password'), max_length=128, blank=False, )
+    email = models.EmailField(_('email address'), blank=False, unique=True,
+                              error_messages={
+        'invalid': _(u"邮箱格式不正确！"),
         'unique': _(u"该邮箱已被注册！"),
         'blank': _(u"请输入邮箱！"),
     })
