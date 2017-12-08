@@ -15,6 +15,7 @@ class authContainer extends Component {
   componentDidMount() {
     console.log(' authContainer-componentDidMount:');
     localstore.deleteToken();
+    const {location} = this.props;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,7 +26,6 @@ class authContainer extends Component {
   render() {
 
     console.log(' authContainer-render');
-
     return (
         <div className="authContainer bg-full-page  back-fixed">
           <div className="mw-500 absolute-center">
@@ -45,7 +45,7 @@ class authContainer extends Component {
                      className="withoutripple">
                     <i className="zmdi zmdi-account"></i>登录</a>
                 </li>
-                <li role="presentation" onClick={() => {
+                <li ref={(indi)=>{this.signUpIndicator = indi}} role="presentation" onClick={() => {
                   this.indicator.style.left = '166.656px';
                   this.title.innerText = "注册";
                 }}>

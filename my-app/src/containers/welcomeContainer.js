@@ -20,10 +20,10 @@ class welcomeContainer extends Component {
               </div>
               <div className="navbar-collapse">
                 <ul className="nav navbar-nav">
-                  <li className="dropdown"><a aria-current="true">首页<div class="ripple-container"></div></a></li>
+                  <li className="dropdown"><a aria-current="true">首页<div className="ripple-container"></div></a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
-                  <li><a className="login">注册</a>|<a className="signup">登录</a></li>
+                  <li><a onClick={()=>{this.props.history.push('/login')}}className="login">注册</a>|<a onClick={()=>{this.props.history.push('/login?from=signup')}} className="signup">登录</a></li>
                 </ul>
               </div>
             </div>
