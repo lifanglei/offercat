@@ -16,14 +16,14 @@ function tabs() {
       width: l[m] + "px"
     }), p += l[m]
   }
-  $(".nav.nav-tabs > li").click(function (t) {
-    var e = (a = $(this).parent()).data("id");
-    a.children().removeClass("current"), $(this).addClass("current");
-    for (var i = a.children(), s = 0; s < i.length - 1; s++)$(i[s]).hasClass("current") && $("#i" + e).css({
-      left: n["tabL" + e][s] + "px",
-      width: o["tabW" + e][s] + "px"
-    })
-  })
+  // $(".nav.nav-tabs > li").click(function (t) {
+  //   var e = (a = $(this).parent()).data("id");
+  //   a.children().removeClass("current"), $(this).addClass("current");
+  //   for (var i = a.children(), s = 0; s < i.length - 1; s++)$(i[s]).hasClass("current") && $("#i" + e).css({
+  //     left: n["tabL" + e][s] + "px",
+  //     width: o["tabW" + e][s] + "px"
+  //   })
+  // })
 }
 !function (t, o, n) {
   var e = t();

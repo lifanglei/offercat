@@ -1,4 +1,4 @@
-.loginContainer{
+.authContainer{
   background-image: url(../img/login_back.jpg);
   background-size: cover;
   background-position: center center;
@@ -10,6 +10,18 @@
     background-size: cover;
     background-position: center center;
   }
+
+  .captcha-wrapper:hover .popup2{
+    display: inline;
+  }
+
+  .popup2{
+    bottom: 5px;
+    position: absolute;
+    right: 120px;
+    display: none;
+  }
+
   .back-mountain:after{
     display: block;
     content: "";
@@ -22,5 +34,17 @@
     height: 100%;
     background-color: rgba(1,82,118,.55);
     z-index: 0;
+  }
+  #verifyCode::placeholder { /* Most modern browsers support this now. */
+    color:    #9e9e9e!important;
+  }
+  #verifyCode{
+    padding-left: 4px;
+    margin-bottom: 8px;
+  }
+
+  #verifyCode:focus {
+    outline: none !important;
+    border:2px solid #009688;
   }
 }

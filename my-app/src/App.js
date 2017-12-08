@@ -1,71 +1,33 @@
 import React, {Component} from 'react';
-import NavBarComponent from './components/navBar';
+import {Provider} from 'react-redux'
+import appContainer from './containers/appContainer';
+import authContainer from './containers/authContainer';
+import welcomeContainer from './containers/welcomeContainer';
 import NomarchComponent from './components/noMatch';
-import loginContainer from './containers/loginContainer'
+import {AuthenticatedRoute} from './components/authenticatedRoute';
+import configureStore from './store/store';
 import './css/App.css';
 import {
   BrowserRouter as Router,
   Route,
+  Switch
 } from 'react-router-dom'
 
-class Welcome extends React.Component {
-  render() {
-    return <h1>Hello, {this.props.name}</h1>;
-  }
-}
-const Home = () => (
-    <div className="container">
-      <h2>Home</h2>
-      {/*<img src={back}></img>*/}
-    </div>
-);
-
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-        () => this.tick(),
-        1000
-    );
-  }
-
-  tick = () => {
-    this.setState({
-      date: this.state.date
-    });
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  render() {
-    return (
-        <div className="container">
-          <h1>Hello, world!</h1>
-          <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        </div>
-    );
-  }
-}
+let store = configureStore();
 
 class App extends Component {
   render() {
     return (
+        <Provider store={store}>
           <Router>
-            <div>
-              <NavBarComponent/>
-              <Route path="/login" component={loginContainer}/>
-              <Route path="/home" component={Home}/>
-              <Route path="/welcome" component={Welcome}/>
-              <Route path="/clock" component={Clock}/>
+            <Switch>
+              <Route path="/login" component={authContainer}/>
+              <Route path="/welcome" component={welcomeContainer}/>
+              <AuthenticatedRoute path="/home" component={appContainer}/>
               <Route component={NomarchComponent}/>
-            </div>
+            </Switch>
           </Router>
+        </Provider>
     );
   }
 }
