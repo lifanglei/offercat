@@ -17,10 +17,12 @@ class Profile(models.Model):
     EDU_MASTER = 2
     EDU_PHD = 3
     EDU_MBA = 4
+    EDU_OTHER = 5
     EDUCATION_DEGREE = [(EDU_BACHELOR, u'本科'),
                         (EDU_MASTER, u'硕士'),
                         (EDU_PHD, u'博士'),
-                        (EDU_MBA, 'MBA')]
+                        (EDU_MBA, 'MBA'),
+                        (EDU_OTHER, u'其他')]
     SERVICE_STUDENT, SERVICE_GRADUATE, SERVICE_YEAR1, SERVICE_YEAR2, SERVICE_YEAR3, SERVICE_YEAR4, SERVICE_YEAR5, \
     SERVICE_YEAR10, SERVICE_10MORE = list(range(1, 10))
 

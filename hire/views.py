@@ -6,7 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
 from .models import Company, Position
 from .serializers import CompanySerializer, CompanyOrderOnRecentPositionsSerializer , PositionSerializer
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 from django.db.models import Count, When, Case
 
 # Create your views here.
@@ -17,9 +17,11 @@ class CompanyView(ModelViewSet):
     serializer_class = CompanySerializer
 
 class PositionView(ModelViewSet):
-    queryset = Position.objects.all().order_by('-created_at')
+    queryset = Position.objects.all().order_by('-id')
     permission_classes = [AllowAny]
     serializer_class = PositionSerializer
+    filter_backends = (SearchFilter,)
+    search_fields = ('^name', '^department','^company__name','=company__abbreviation')
 
 class CompanyOrderListAPIView(ListAPIView):
     three_days_ago = timezone.now() - timedelta(days=3)

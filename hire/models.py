@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from profiles.utils import user_directory_path
-
+from django.contrib.postgres import fields
 
 # Create your models here.
 
@@ -56,7 +56,7 @@ class Company(models.Model):
     industry = models.IntegerField(choices=INDUSTRY, blank=True)
     size = models.IntegerField(choices=SIZE, blank=True)
     stock = models.IntegerField(choices=STOCK, blank=True)
-    shareholders = models.CharField(max_length= 100,blank=True)
+    shareholders = fields.ArrayField(blank=True,default= list, base_field= models.CharField(max_length=30), size=5)
     introduction = models.TextField(max_length=100, blank=True )
     description = models.TextField(blank=True)
     headquarters = models.CharField(max_length= 10,blank=True)

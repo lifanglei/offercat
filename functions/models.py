@@ -4,41 +4,11 @@ from hire.models import Position
 from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from hire.models import Company, Position
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 # for config data types
-
-class PositionCategory(models.Model):
-    type = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = _('position category')
-        verbose_name_plural = _('position categories')
-
-    def __str__(self):
-        return self.type
-
-
-class IndustryCategory(models.Model):
-    type = models.CharField(max_length=50)
-
-    class Meta:
-        verbose_name = _('Industry category')
-        verbose_name_plural = _('Industry categories')
-
-    def __str__(self):
-        return self.type
-
-class SalaryRange(models.Model):
-    type = models.CharField(max_length=20)
-
-    class Meta:
-        verbose_name = _('salary range')
-        verbose_name_plural = _('salary range')
-
-    def __str__(self):
-        return self.type
 
 class Collection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -94,11 +64,30 @@ class Invitation(models.Model):
 
 class Subscription(models.Model):
     # TODO
-    postion = models.ForeignKey(PositionCategory,on_delete=models.CASCADE)
-    industry = models.ForeignKey(IndustryCategory,on_delete=models.CASCADE)
+    postion = models.IntegerField(choices=Position.CATEGORY)
+    industry = models.ForeignKey(choices=Company.INDUSTRY)
+    salary = models.IntegerField(choices=Position.SALARY_LEVEL,)
 
 
     class Meta:
         verbose_name = _('subscription')
         verbose_name_plural = _('subscriptions')
 
+
+class Laud(models.Model):
+    position = models.IntegerField(choices=Position.CATEGORY)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(blank=False, default=timezone.now)
+    title = models.CharField(max_length=50, blank=False)
+    content = models.TextField(blank=False)
+    is_read = models.BooleanField(default=False)
+
+
+class PositionConstrain(models.Model):
+    # TODO
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+    constrain = models.IntegerField()

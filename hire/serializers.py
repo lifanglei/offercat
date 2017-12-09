@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from rest_framework import serializers
-
+from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
 from .models import Company, Position
 
@@ -14,6 +14,8 @@ class CompanySerializer(serializers.ModelSerializer):
     stock = ChoicesDisplayField(choices=Company.STOCK)
     edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_url_kwarg='pk')
     position_set = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name="hire:position-detail",)
+    shareholders = serializers.ListField(child= serializers.CharField(max_length=30, allow_blank=False), max_length = 5)
+
     class Meta:
         model = Company
         fields = (
@@ -29,6 +31,32 @@ class CompanySerializer(serializers.ModelSerializer):
             'photo_url',
             'edit_url',
             'position_set',
+            'shareholders',
+            'abbreviation',
+        )
+
+
+    def get_photo_url(self,obj):
+        if obj.photo:
+            return self.context['request'].build_absolute_uri(obj.photo.url)
+        else:
+            return None
+
+
+class CompanyBriefSerializer(serializers.ModelSerializer):
+    photo_url = serializers.SerializerMethodField(read_only=True)
+    industry = ChoicesDisplayField(choices=Company.INDUSTRY,read_only=True)
+    edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_url_kwarg='pk')
+
+    class Meta:
+        model = Company
+        fields = (
+            'id',
+            'name',
+            'industry',
+            'introduction',
+            'photo_url',
+            'edit_url',
             'abbreviation',
         )
 
@@ -40,18 +68,18 @@ class CompanySerializer(serializers.ModelSerializer):
 
 class PositionSerializer(serializers.ModelSerializer):
     edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_url_kwarg='pk')
-    company_url = serializers.HyperlinkedIdentityField(read_only=True, view_name="hire:company-detail",
-                                                       lookup_field ='company_id',lookup_url_kwarg='pk')
+    # company_url = serializers.HyperlinkedIdentityField(read_only=True, view_name="hire:company-detail",
+    #                                                    lookup_field ='company_id',lookup_url_kwarg='pk')
     category = ChoicesDisplayField(choices=Position.CATEGORY)
-    created_at = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
-    last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
+    created_at = serializers.SerializerMethodField(read_only=True)
+    company = CompanyBriefSerializer(read_only=True)
+    # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
 
     class Meta:
         model = Position
         fields = (
             'id',
             'name',
-            'company',
             'department',
             'salary',
             'category',
@@ -64,13 +92,20 @@ class PositionSerializer(serializers.ModelSerializer):
             'detail_req',
             'email',
             'created_at',
-            'last_update',
             'subscription_count',
             'edit_url',
-            'company_url',
+            # 'company_url',
+            'company',
         )
-        read_only_fields = ('last_update', 'subscription_count','created_at')
+        read_only_fields = ('subscription_count',)
         extra_kwargs = {}
+
+    def get_created_at(self,obj):
+        if obj.created_at.date() == timezone.now().date():
+            return obj.created_at.strftime(u"今天 %H:%M")
+        else:
+            return obj.created_at.strftime("%Y-%m-%d %H:%M")
+
 
 
 class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
