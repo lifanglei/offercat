@@ -34,7 +34,7 @@ class Profile(models.Model):
                      (SERVICE_YEAR10, u'10年'),
                      (SERVICE_10MORE, u'10年以上')]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, )
+    user = models.OneToOneField(User, on_delete=models.CASCADE,)
     first_name = models.CharField(_(u'名'), max_length=30, blank=True)
     last_name = models.CharField(_(u'姓'), max_length=30, blank=True)
     edu_degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, blank=True)
