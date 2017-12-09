@@ -24,7 +24,7 @@ class Company(models.Model):
     INDUSTRY_FINANCIAL_LEASING = 10
     INDUSTRY_FUTURES = 11
     INDUSTRY_OTHER = 12
-    INDUSTRY = [(INDUSTRY_BANK,u"银行"),
+    INDUSTRY = ((INDUSTRY_BANK,u"银行"),
                 (INDUSTRY_SECURITIES,u"证券"),
                 (INDUSTRY_FUND,u"基金"),
                 (INDUSTRY_PRIVATE_EQUITY,u"私募股权"),
@@ -35,7 +35,7 @@ class Company(models.Model):
                 (INDUSTRY_TRUST,u"信托"),
                 (INDUSTRY_FINANCIAL_LEASING,u"金融租赁"),
                 (INDUSTRY_FUTURES,u"期货"),
-                (INDUSTRY_OTHER,u"其他")]
+                (INDUSTRY_OTHER,u"其他"))
 
     SIZE_SMALL = 1
     SIZE_MEDIUM = 2

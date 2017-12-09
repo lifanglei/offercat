@@ -35,7 +35,6 @@ class CompanySerializer(serializers.ModelSerializer):
             'abbreviation',
         )
 
-
     def get_photo_url(self,obj):
         if obj.photo:
             return self.context['request'].build_absolute_uri(obj.photo.url)
