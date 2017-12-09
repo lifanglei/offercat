@@ -1,7 +1,8 @@
 import React from 'react'
 import '../css/noMatch.css'
+
 const NoMatch = ({ location }) => (
-    <div>
+    <div className="nomatch">
       <div className="container">
         <div className="boo-wrapper">
           <div className="boo">
@@ -16,7 +17,7 @@ const NoMatch = ({ location }) => (
         </div>
       </div>
       <div className="text-center animated fadeInUp animation-delay-7" style={{textAlign: 'center'}}>
-        <a href="index.html">
+        <a href="/home/app">
           <i className="zmdi zmdi-home"></i>返回首页</a>
       </div>
     </div>

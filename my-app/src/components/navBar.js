@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import '../css/navbar.css'
 import {
-  NavLink
+  NavLink,
+  withRouter
 } from 'react-router-dom'
 
 class NavBarComponent extends Component {
@@ -20,9 +21,9 @@ class NavBarComponent extends Component {
             </div>
             <div className="navbar-collapse">
               <ul className="nav navbar-nav">
-                <li className="dropdown"><NavLink to="/home" activeClassName="active">Home</NavLink></li>
-                <li className="dropdown"><NavLink to="/welcome" activeClassName="active">welcome</NavLink></li>
-                <li className="dropdown"><NavLink to="/clock" activeClassName="active">clock</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/app`} activeClassName="active">Home</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/test`} activeClassName="active">welcome</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/clock`} activeClassName="active">clock</NavLink></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li><a className="login">注册</a>|<a className="signup">登录</a></li>
@@ -30,11 +31,8 @@ class NavBarComponent extends Component {
             </div>
           </div>
         </nav>
-
-
-
     )
   }
 }
 
-export default NavBarComponent;
+export default withRouter(NavBarComponent);

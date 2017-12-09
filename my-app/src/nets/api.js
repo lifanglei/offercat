@@ -15,9 +15,9 @@ const callApi = (endpoint, request, token) => {
     'Content-Type': 'application/json',
   };
 
-  // if(token){
-  //   headers['Authorization'] = 'jwt '+token;
-  // }
+  if(token){
+    headers['Authorization'] = 'jwt '+token;
+  }
 
   const requestWithHeaders = {
     ...{headers},
@@ -44,8 +44,21 @@ const callApi = (endpoint, request, token) => {
 };
 
 export default {
-  loginWithfetchToken(userinfo) {
-    const url = '/accounts/api/login/';
+  getCaptcha() {
+    const url = 'http://localhost:8080/accounts/api/register/';
+    return callApi(url, {
+      method: 'GET'
+    })
+  },
+  userSignup(userinfo){
+    const url = 'http://localhost:8080/accounts/api/register/';
+    return callApi(url, {
+      method: 'POST',
+      body: userinfo
+    })
+  },
+  userSignin(userinfo){
+    const url = 'http://localhost:8080/accounts/api/login/';
     return callApi(url, {
       method: 'POST',
       body: userinfo

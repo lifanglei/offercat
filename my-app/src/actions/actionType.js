@@ -7,5 +7,19 @@ const createConstants = (...constants) => {
 };
 
 export default createConstants(
+    'USER_LOGIN_REQUEST',
+    'USER_LOGIN_SUCCESS',
+    'USER_LOGIN_FAILURE',
+    'USER_LOGIN_FINISH',
 
-)
+    'USER_SIGNUP_REQUEST',
+    'USER_SIGNUP_SUCCESS',
+    'USER_SIGNUP_FAILURE',
+    'USER_SIGNUP_FINISH',
+
+    'SIGNUP_CAP_REQUEST',
+    'SIGNUP_CAP_SUCCESS',
+    'SIGNUP_CAP_FAILURE',
+
+    'INTERNAL_SERVER_ERROR',
+);
