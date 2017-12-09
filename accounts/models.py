@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import uuid
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, AbstractUser, UserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator, ASCIIUsernameValidator
@@ -54,6 +55,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     last_login = models.DateTimeField(_('last login'), default=timezone.now, null=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True,db_index=True,)
+
+
     objects = UserManager()
 
     EMAIL_FIELD = 'email'

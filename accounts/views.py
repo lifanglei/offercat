@@ -124,7 +124,6 @@ class UserLoginAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=False):
             response_data_success = serializer.object
-            print(serializer)
             response_data_success['login_success'] = True
             return Response(response_data_success, status=status.HTTP_200_OK)
         else:

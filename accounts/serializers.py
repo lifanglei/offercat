@@ -63,6 +63,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'token',
             'captcha_val',
             'captcha_key',
+            'uuid',
         )
 
     def create(self, validated_data):
@@ -88,7 +89,7 @@ class UserLoginSerializer(JSONWebTokenSerializer):
     })
     id = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField(read_only=True, )
-
+    uuid = serializers.CharField(read_only=True)
     # captcha_val = serializers.CharField(max_length=128, required=True, write_only=True)
     # captcha_key = serializers.CharField(max_length=128, required=True, write_only=True)
 
@@ -98,7 +99,8 @@ class UserLoginSerializer(JSONWebTokenSerializer):
             'username_email',
             'password',
             'token',
-            'username'
+            'username',
+            'uuid',
             # 'captcha_val',
             # 'captcha_key',
         )
@@ -125,7 +127,6 @@ class UserLoginSerializer(JSONWebTokenSerializer):
 
             if all(credentials.values()):
                 user = authenticate(**credentials)
-                print(user)
                 if user:
                     if not user.is_active:
                         msg = _(u"用户已注销！")
@@ -138,7 +139,8 @@ class UserLoginSerializer(JSONWebTokenSerializer):
                         "token": jwt_encode_handler(payload),
                         "id": user.id,
                         "username": user.username,
-                        "email": user.email
+                        "email": user.email,
+                        "uuid": user.uuid,
                     }
                 else:
                     msg = _(u"密码错误！")

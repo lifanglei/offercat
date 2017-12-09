@@ -5,41 +5,102 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from profiles.utils import user_directory_path
-from profiles.models import User
 
 
 # Create your models here.
 
 
 class Company(models.Model):
+
+    INDUSTRY_BANK = 1
+    INDUSTRY_SECURITIES = 2
+    INDUSTRY_FUND = 3
+    INDUSTRY_PRIVATE_EQUITY = 4
+    INDUSTRY_RISkK_INVESTMENT = 5
+    INDUSTRY_FINANCIAL_TECHNOLOGY = 6
+    INDUSTRY_INTERNET_FINANCE = 7
+    INDUSTRY_INSURANCE = 8
+    INDUSTRY_TRUST = 9
+    INDUSTRY_FINANCIAL_LEASING = 10
+    INDUSTRY_FUTURES = 11
+    INDUSTRY_OTHER = 12
+    INDUSTRY = [(INDUSTRY_BANK,u"银行"),
+                (INDUSTRY_SECURITIES,u"证券"),
+                (INDUSTRY_FUND,u"基金"),
+                (INDUSTRY_PRIVATE_EQUITY,u"私募股权"),
+                (INDUSTRY_RISkK_INVESTMENT,u"风险投资"),
+                (INDUSTRY_FINANCIAL_TECHNOLOGY,u"金融科技"),
+                (INDUSTRY_INTERNET_FINANCE,u"互联网金融"),
+                (INDUSTRY_INSURANCE,u"保险"),
+                (INDUSTRY_TRUST,u"信托"),
+                (INDUSTRY_FINANCIAL_LEASING,u"金融租赁"),
+                (INDUSTRY_FUTURES,u"期货"),
+                (INDUSTRY_OTHER,u"其他")]
+
+    SIZE_SMALL = 1
+    SIZE_MEDIUM = 2
+    SIZE_LARGE = 3
+    SIZE = [(SIZE_SMALL, u"小于100人"), (SIZE_MEDIUM, u"100至1000人"), (SIZE_LARGE, u"1000人以上")]
+
+    STOCK_SH = 1
+    STOCK_SZ = 2
+    STOCK_HK = 3
+    STOCK_NASDAQ = 4
+    STOCK_NY = 5
+    STOCK_OTHER = 6
+    STOCK_NONE = 7
+    STOCK = [(STOCK_SH, u"上交所"), (STOCK_SZ, u"深交所"), (STOCK_HK, u"港交所"), (STOCK_NASDAQ, u"纳斯达克"), (STOCK_NY, u"纽交所"), (STOCK_OTHER, u"其他上市地点"), (STOCK_NONE, u"未上市")]
+
     name = models.CharField(max_length=100, blank=True)
     web_site = models.URLField(blank=True)
-    industry = models.CharField(max_length=10, blank=True)
-    size = models.CharField(max_length=10, blank=True)
-    stock = models.CharField(max_length=50, blank=True)
-    description = models.TextField(max_length=50, blank=True )
+    industry = models.IntegerField(choices=INDUSTRY, blank=True)
+    size = models.IntegerField(choices=SIZE, blank=True)
+    stock = models.IntegerField(choices=STOCK, blank=True)
+    shareholders = models.CharField(max_length= 100,blank=True)
+    introduction = models.TextField(max_length=100, blank=True )
+    description = models.TextField(blank=True)
+    headquarters = models.CharField(max_length= 10,blank=True)
     photo = models.ImageField(upload_to=user_directory_path,blank=True)
+    abbreviation = models.CharField(max_length= 10,blank=True)
 
     class Meta:
         verbose_name = _('company')
         verbose_name_plural = _('companies')
 
+    def __str__(self):
+        return self.name
+
 
 class Position(models.Model):
+
     SALARY_LEVEL1 = 1
     SALARY_LEVEL2 = 2
     SALARY_LEVEL3 = 3
     SALARY_LEVEL4 = 4
     SALARY_LEVEL5 = 5
     SALARY_LEVEL6 = 6
-    SALARY_LEVEL7 = 7
+
     SALARY_LEVEL = [(SALARY_LEVEL1, u'5k以下'),
                     (SALARY_LEVEL2, '5k-10k'),
                     (SALARY_LEVEL3, '10k-15k'),
-                    (SALARY_LEVEL4, '15k-20k'),
-                    (SALARY_LEVEL5, '20k-25k'),
-                    (SALARY_LEVEL6, '25k-30k'),
-                    (SALARY_LEVEL7, u'50k以上')]
+                    (SALARY_LEVEL4, '15k-25k'),
+                    (SALARY_LEVEL5, '25k-50k'),
+                    (SALARY_LEVEL6, u'50k以上')]
+
+    CATEGORY_MARKET = 1
+    CATEGORY_INVESTMENT = 2
+    CATEGORY_PRODUCTION = 3
+    CATEGORY_RISK = 4
+    CATEGORY_OPERATING = 5
+    CATEGORY_TECHNOLOGY = 6
+    CATEGORY_FUNCTION = 7
+    CATEGORY = [(CATEGORY_MARKET, u"市场与销售"),
+                         (CATEGORY_INVESTMENT, u"投研"),
+                         (CATEGORY_PRODUCTION, u"产品"),
+                         (CATEGORY_RISK, u"风控"),
+                         (CATEGORY_OPERATING, u"运营"),
+                         (CATEGORY_TECHNOLOGY, u"技术"),
+                         (CATEGORY_FUNCTION, u"职能")]
 
     TYPE_SOCIAL = 1
     TYPE_GRADUATION = 2
@@ -71,9 +132,10 @@ class Position(models.Model):
                         (EDU_MBA, 'MBA')]
 
     name = models.CharField(max_length=100, blank=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,)
     department = models.CharField(max_length=100, blank=True)
     salary = models.IntegerField(choices=SALARY_LEVEL, blank=False)
+    category = models.IntegerField(choices=CATEGORY, blank=False)
     type = models.IntegerField(choices=TYPE, blank=False)
     work_exp_req = models.IntegerField(choices=WORK_EXP_REQ, blank=False)
     edu_req = models.IntegerField(choices=EDUCATION_DEGREE, blank=False)
@@ -82,12 +144,18 @@ class Position(models.Model):
     duty = models.TextField(blank=True)
     detail_req = models.TextField(blank=True)
     email = models.EmailField(blank=False)
-    last_update = models.DateTimeField(_('date created and updated'), default=timezone.now)
+    created_at = models.DateTimeField(_('date created'), default=timezone.now, db_index=True)
+    last_update = models.DateTimeField(_('date updated'), default=timezone.now,)
     subscription_count = models.IntegerField(default=0, blank=True)
+    is_active = models.BooleanField(_('active'), default=True,)
 
     class Meta:
         verbose_name = _('position')
         verbose_name_plural = _('positions')
+
+    def __str__(self):
+        return self.name
+
 
 @receiver(models.signals.post_delete, sender=Company)
 def auto_delete_avatar_on_delete(sender, instance, **kwargs):
