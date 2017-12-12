@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.utils.encoding import smart_str
+from django.core.urlresolvers import reverse
 from rest_framework import serializers
 from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
@@ -8,7 +8,8 @@ from .models import Company, Position
 from django.utils.translation import ugettext_lazy as _
 
 class PositionBriefSerializer(serializers.ModelSerializer):
-    edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
+    # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
+    edit_url = serializers.SerializerMethodField()
     category = ChoicesDisplayField(choices=Position.CATEGORY)
     type = ChoicesDisplayField(choices=Position.TYPE)
     created_at = serializers.SerializerMethodField(read_only=True)
@@ -37,9 +38,12 @@ class PositionBriefSerializer(serializers.ModelSerializer):
 
     def get_created_at(self,obj):
         if obj.created_at.date() == timezone.now().date():
-            return smart_str(obj.created_at.strftime(u"今天 %H:%M"))
+            return obj.created_at.strftime(u"今天 %H:%M")
         else:
             return obj.created_at.strftime("%Y-%m-%d")
+
+    def get_edit_url(self,obj):
+        return reverse('hire:position-detail',kwargs={'uuid': obj.uuid})
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -48,7 +52,8 @@ class CompanySerializer(serializers.ModelSerializer):
     industry = ChoicesDisplayField(choices=Company.INDUSTRY)
     size = ChoicesDisplayField(choices=Company.SIZE)
     stock = ChoicesDisplayField(choices=Company.STOCK)
-    edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail',lookup_field='uuid')
+    # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail',lookup_field='uuid')
+    edit_url = serializers.SerializerMethodField()
     # position_set = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name="hire:position-detail",)
     position_set = PositionBriefSerializer(many=True, read_only=True)
     shareholders = serializers.ListField(child=serializers.CharField(max_length=30, allow_blank=False), max_length = 5)
@@ -81,12 +86,14 @@ class CompanySerializer(serializers.ModelSerializer):
         else:
             return None
 
+    def get_edit_url(self,obj):
+        return reverse('hire:company-detail',kwargs={'uuid': obj.uuid})
 
 class CompanyBriefSerializer(serializers.ModelSerializer):
     photo_url = serializers.SerializerMethodField(read_only=True)
     industry = ChoicesDisplayField(choices=Company.INDUSTRY,read_only=True)
-    edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_field='uuid',)
-
+    # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_field='uuid',)
+    edit_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Company
@@ -109,8 +116,12 @@ class CompanyBriefSerializer(serializers.ModelSerializer):
         else:
             return None
 
+    def get_edit_url(self,obj):
+        return reverse('hire:company-detail',kwargs={'uuid': obj.uuid})
+
 class PositionSerializer(serializers.ModelSerializer):
-    edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
+    # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
+    edit_url = serializers.SerializerMethodField()
     # company_url = serializers.HyperlinkedIdentityField(read_only=True, view_name="hire:company-detail",
     #                                                    lookup_field ='company_id',lookup_url_kwarg='pk')
     category = ChoicesDisplayField(choices=Position.CATEGORY)
@@ -145,8 +156,8 @@ class PositionSerializer(serializers.ModelSerializer):
             'company_info',
             'uuid',
         )
-        # read_only_fields = ('subscription_count', 'uuid')
-        # extra_kwargs = {'company': {'write_only': True},}
+        read_only_fields = ('subscription_count', 'uuid')
+        extra_kwargs = {'company': {'write_only': True},}
 
 
     def get_created_at(self,obj):
@@ -158,6 +169,8 @@ class PositionSerializer(serializers.ModelSerializer):
     def get_collection_count(self, obj):
         return obj.collection_set.count()
 
+    def get_edit_url(self,obj):
+        return reverse('hire:position-detail',kwargs={'uuid': obj.uuid})
 
 
 class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
@@ -165,7 +178,8 @@ class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
     # industry = ChoicesDisplayField(choices=Company.INDUSTRY, read_only=True)
     # size = ChoicesDisplayField(choices=Company.SIZE, read_only=True)
     # stock = ChoicesDisplayField(choices=Company.STOCK, read_only=True)
-    detail_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_url_kwarg='pk')
+    # detail_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_field='uuid')
+    edit_url = serializers.SerializerMethodField()
     recent_position_count = serializers.IntegerField(read_only=True)
 
     class Meta:
@@ -177,7 +191,7 @@ class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
             'web_site',
             'introduction',
             'photo_url',
-            'detail_url',
+            'edit_url',
             'recent_position_count',
             'uuid',
         )
@@ -188,3 +202,6 @@ class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
             return self.context['request'].build_absolute_uri(obj.photo.url)
         else:
             return None
+
+    def get_edit_url(self,obj):
+        return reverse('hire:company-detail',kwargs={'uuid': obj.uuid})

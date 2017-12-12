@@ -61,7 +61,7 @@ class CompanyOrderListAPIView(ListAPIView):
     serializer_class = CompanyOrderOnRecentPositionsSerializer
     filter_backends = (OrderingFilter,)
     ordering = ('-recent_position_count','id')
-
+    lookup_field = 'uuid'
     def get_queryset(self):
         queryset = super(CompanyOrderListAPIView, self).get_queryset()
         print(self.request.query_params)
