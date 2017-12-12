@@ -20,6 +20,15 @@ class CompanyView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = CompanySerializer
 
+    def get_queryset(self):
+        print(self.request.query_params)
+        if self.request.query_params:
+            if self.request.query_params["ordering"] == "hotness":
+                three_days_ago = timezone.now() - timedelta(days=3)
+                return Company.objects.annotate(recent_position_count=Count(Case(
+                        When(position__last_update__gte=three_days_ago, then=1),))).order_by('-recent_position_count')
+
+        return super(CompanyView, self).get_queryset()
 
 class PositionView(ModelViewSet):
     queryset = Position.objects.all().order_by('-id')
@@ -27,6 +36,14 @@ class PositionView(ModelViewSet):
     serializer_class = PositionSerializer
     filter_backends = (SearchFilter,)
     search_fields = ('^name', '^department','^company__name','=company__abbreviation')
+
+    def get_queryset(self):
+        print(self.request.query_params)
+        if self.request.query_params:
+            if self.request.query_params["ordering"] == "hotness":
+                return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
+
+        return super(PositionView, self).get_queryset()
 
 
 class CompanyOrderListAPIView(ListAPIView):
@@ -37,7 +54,13 @@ class CompanyOrderListAPIView(ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CompanyOrderOnRecentPositionsSerializer
     filter_backends = (OrderingFilter,)
-    ordering = ('-recent_position_count',)
+    ordering = ('-recent_position_count','id')
+
+    def get_queryset(self):
+        queryset = super(CompanyOrderListAPIView, self).get_queryset()
+        print(self.request.query_params)
+        return queryset
+
 
 
 @api_view(['GET'])

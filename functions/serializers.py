@@ -25,9 +25,10 @@ class LaudSerializer(serializers.ModelSerializer):
 
 class CollectionSerializer(serializers.ModelSerializer):
 
+
     class Meta:
         model = Collection
-        fields = '__all__'
+        fields = ('id', 'user', 'position',)
 
 class ApplicationSerializer(serializers.ModelSerializer):
 
