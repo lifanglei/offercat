@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls',namespace='accounts')),
     url(r'^profiles/', include('profiles.urls',namespace='profiles')),
     url(r'^hire/', include('hire.urls',namespace='hire')),
+    url(r'^functions/', include('functions.urls',namespace='functions')),
     # url(r'^admin/', admin.site.urls),
 ]
 
