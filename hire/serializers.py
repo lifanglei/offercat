@@ -110,7 +110,7 @@ class PositionSerializer(serializers.ModelSerializer):
     category = ChoicesDisplayField(choices=Position.CATEGORY)
     type = ChoicesDisplayField(choices=Position.TYPE)
     created_at = serializers.SerializerMethodField(read_only=True)
-    company = CompanyBriefSerializer(read_only=True)
+    # company = CompanyBriefSerializer(read_only=True)
     # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
     collection_count = serializers.SerializerMethodField()
 
