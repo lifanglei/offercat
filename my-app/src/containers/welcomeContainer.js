@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import '../css/navbar.css'
+import CompanyBanner from '../components/banner';
+import JobList from  '../components/joblist';
+import '../css/welcomeContainer.css';
 
 class welcomeContainer extends Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class welcomeContainer extends Component {
   }
   render(){
     return (
-        <div>
+        <div className="welcome-container">
           <nav className="navbar yamm ms-navbar ms-navbar-primary shrink navbar-fixed-top">
             <div className="container container-full">
               <div className="navbar-header">
@@ -20,14 +22,22 @@ class welcomeContainer extends Component {
               </div>
               <div className="navbar-collapse">
                 <ul className="nav navbar-nav">
-                  <li className="dropdown"><a aria-current="true">首页<div class="ripple-container"></div></a></li>
+                  <li className="dropdown"><a aria-current="true">首页<div className="ripple-container"></div></a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
-                  <li><a className="login">注册</a>|<a className="signup">登录</a></li>
+                  <li><a onClick={()=>{this.props.history.push('/login')}}className="login">注册</a>|<a onClick={()=>{this.props.history.push('/login?from=signup')}} className="signup">登录</a></li>
                 </ul>
               </div>
             </div>
           </nav>
+          <div className="main">
+            <div>
+              <CompanyBanner/>
+            </div>
+            <div className="container container-full">
+              <JobList/>
+            </div>
+          </div>
         </div>
     )
   }
