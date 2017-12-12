@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import os
+import uuid
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
@@ -61,7 +62,8 @@ class Company(models.Model):
     description = models.TextField(blank=True)
     headquarters = models.CharField(max_length= 10,blank=True)
     photo = models.ImageField(upload_to=user_directory_path,blank=True)
-    abbreviation = models.CharField(max_length= 10,blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, blank=True)
+    abbreviation = models.CharField(max_length= 10, blank=True)
 
     class Meta:
         verbose_name = _('company')
@@ -148,6 +150,7 @@ class Position(models.Model):
     last_update = models.DateTimeField(_('date updated'), default=timezone.now,)
     subscription_count = models.IntegerField(default=0, blank=True)
     is_active = models.BooleanField(_('active'), default=True,)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,blank=True)
 
     class Meta:
         verbose_name = _('position')

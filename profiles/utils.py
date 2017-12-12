@@ -41,7 +41,12 @@ def get_default_image():
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return '{0}/id_{1}/{2}'.format(type(instance).__name__.lower(), instance.pk, filename)
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(instance.uuid, ext)
+    print(instance.pk)
+    print(instance.__dict__)
+    return '{0}/{1}'.format(type(instance).__name__.lower(), filename)
+
 
 def validate_file_extension(value):
     import os

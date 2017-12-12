@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from django.utils.encoding import smart_str
 from rest_framework import serializers
 from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
@@ -29,13 +30,14 @@ class PositionBriefSerializer(serializers.ModelSerializer):
             'created_at',
             'subscription_count',
             'edit_url',
+            'uuid',
         )
-        read_only_fields = ('subscription_count',)
+        read_only_fields = ('subscription_count','uuid')
         extra_kwargs = {}
 
     def get_created_at(self,obj):
         if obj.created_at.date() == timezone.now().date():
-            return obj.created_at.strftime(u"今天 %H:%M")
+            return smart_str(obj.created_at.strftime(u"今天 %H:%M"))
         else:
             return obj.created_at.strftime("%Y-%m-%d")
 
@@ -48,7 +50,7 @@ class CompanySerializer(serializers.ModelSerializer):
     stock = ChoicesDisplayField(choices=Company.STOCK)
     edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_url_kwarg='pk')
     # position_set = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name="hire:position-detail",)
-    position_set = PositionBriefSerializer(many=True)
+    position_set = PositionBriefSerializer(many=True, read_only=True)
     shareholders = serializers.ListField(child= serializers.CharField(max_length=30, allow_blank=False), max_length = 5)
 
     class Meta:
@@ -68,7 +70,10 @@ class CompanySerializer(serializers.ModelSerializer):
             'position_set',
             'shareholders',
             'abbreviation',
+            'uuid',
         )
+        read_only_fields = ('subscription_count','uuid')
+
 
     def get_photo_url(self,obj):
         if obj.photo:
@@ -94,8 +99,9 @@ class CompanyBriefSerializer(serializers.ModelSerializer):
             'photo_url',
             'edit_url',
             'abbreviation',
+            'uuid'
         )
-        read_only_fields = ('web_site',)
+        read_only_fields = ('web_site','uuid')
 
     def get_photo_url(self,obj):
         if obj.photo:
@@ -136,9 +142,10 @@ class PositionSerializer(serializers.ModelSerializer):
             # 'company_url',
             'company',
             'collection_count',
+            'uuid',
         )
-        read_only_fields = ('subscription_count',)
-        extra_kwargs = {}
+        read_only_fields = ('subscription_count','uuid')
+
 
     def get_created_at(self,obj):
         if obj.created_at.date() == timezone.now().date():
@@ -169,8 +176,9 @@ class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
             'photo_url',
             'detail_url',
             'recent_position_count',
+            'uuid',
         )
-        read_only_fields = ('detail_url', 'recent_position_count', 'web_site')
+        read_only_fields = ('detail_url', 'recent_position_count', 'web_site','uuid')
 
     def get_photo_url(self, obj):
         if obj.photo:
