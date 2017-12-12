@@ -19,7 +19,7 @@ class CompanyView(ModelViewSet):
     queryset = Company.objects.all()
     permission_classes = [AllowAny]
     serializer_class = CompanySerializer
-
+    lookup_field = 'uuid'
     def get_queryset(self):
         print(self.request.query_params)
         if self.request.query_params:
@@ -30,12 +30,18 @@ class CompanyView(ModelViewSet):
 
         return super(CompanyView, self).get_queryset()
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
 class PositionView(ModelViewSet):
     queryset = Position.objects.all().order_by('-id')
     permission_classes = [AllowAny]
     serializer_class = PositionSerializer
     filter_backends = (SearchFilter,)
     search_fields = ('^name', '^department','^company__name','=company__abbreviation')
+    lookup_field = 'uuid'
 
     def get_queryset(self):
         print(self.request.query_params)
