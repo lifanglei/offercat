@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import '../css/navbar.css'
+import CompanyBanner from '../components/banner';
+import JobList from  '../components/joblist';
+import '../css/welcomeContainer.css';
 
 class welcomeContainer extends Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class welcomeContainer extends Component {
   }
   render(){
     return (
-        <div>
+        <div className="welcome-container">
           <nav className="navbar yamm ms-navbar ms-navbar-primary shrink navbar-fixed-top">
             <div className="container container-full">
               <div className="navbar-header">
@@ -28,6 +30,14 @@ class welcomeContainer extends Component {
               </div>
             </div>
           </nav>
+          <div className="main">
+            <div>
+              <CompanyBanner/>
+            </div>
+            <div className="container container-full">
+              <JobList/>
+            </div>
+          </div>
         </div>
     )
   }

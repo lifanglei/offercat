@@ -64,7 +64,7 @@ class appContainer extends Component {
     return (
         <div>
           <NavBarComponent/>
-          <div className="main">
+          <div className="appContainer main">
             <Switch>
               <Route path={`${match.url}/app`} component={Home}/>
               <Route path={`${match.url}/test`} component={Welcome}/>
