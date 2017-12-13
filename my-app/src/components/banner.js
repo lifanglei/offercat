@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import Slider from "react-slick";
+import {connect} from 'react-redux';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../css/companyBanner.less';
+import '../css/banner.css';
+import {fetchCompanyListRequest} from '../actions/companyListActions';
 
 import {
   withRouter
@@ -11,17 +13,18 @@ import {
 
 class CompanyCard extends React.Component {
   render(){
+    const {company,history}= this.props;
     return (
       <div className="ms-thumbnail-container">
         <figure className="ms-thumbnail ms-thumbnail-horizontal">
           <div className="img-wrapper">
-          <img className="logo" style={{  height:'120px',width:'120px'}} src="//www.lgstatic.com/i/image/M00/25/23/CgqKkVcdz7uAGGO3AAANQYQXTVQ154.jpg" alt="滴度科技logo"/>
+          <img className="logo" style={{  height:'120px',width:'120px'}} src={company.photo_url} alt="暂无公司logo"/>
           </div>
-            <div className="caption">company name</div>
+            <div className="caption">{company.name}</div>
           <figcaption className="ms-thumbnail-caption text-center">
             <div  className="ms-thumbnail-caption-content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="javascript:void(0)"  className="btn btn-white btn-raised color-primary">
+              <p>{company.introduction}</p>
+              <a onClick={()=>{history.push('/home/company/'+company.uuid)}} className="btn btn-white btn-raised color-primary">
                 进入公司主页<div  className="ripple-container"></div></a>
             </div>
             </figcaption>
@@ -32,9 +35,18 @@ class CompanyCard extends React.Component {
 
 }
 class CompanyBanner extends Component {
+  componentWillMount(){
+    console.log("banner willMount");
+    this.props.fetchCompany();
+  }
+
+  componentWillReceiveProps(nextProps) {
+      console.log('Companybanner receive next props', nextProps);
+  };
+
   render() {
-    const {match} = this.props;
-    var settings = {
+    const {match,companys,history} = this.props;
+    const settings = {
       dots: true,
       infinite: false,
       speed: 500,
@@ -64,20 +76,41 @@ class CompanyBanner extends Component {
         }
       }]
     };
+    const companyCards = companys.map((company)=>{
+      return <div><CompanyCard key={company.id} history={history} company={company}/></div>
+    });
 
     return (
         <div className="banner-wrapper">
           <Slider {...settings}>
-            <div><CompanyCard/></div>
-            <div><CompanyCard/></div>
-            <div><CompanyCard/></div>
-            <div><CompanyCard/></div>
-            <div><CompanyCard/></div>
-            <div><CompanyCard/></div>
+            {companyCards}
           </Slider>
         </div>
     )
   }
 }
 
-export default withRouter(CompanyBanner);
+
+
+function mapStateToProps(state, ownProps) {
+  const {companys, currentPage, totalCount, errorMessage} = state.companyList;
+  return {
+    companys,
+    currentPage,
+    totalCount,
+    errorMessage
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchCompany() {
+      dispatch(fetchCompanyListRequest());
+    }
+  }
+}
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CompanyBanner));

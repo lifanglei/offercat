@@ -69,6 +69,8 @@ class appContainer extends Component {
               <Route path={`${match.url}/app`} component={Home}/>
               <Route path={`${match.url}/test`} component={Welcome}/>
               <Route path={`${match.url}/clock`} component={Clock}/>
+              <Route path={`${match.url}/company/:companyId`} component={Clock}/>
+              <Route path={`${match.url}/positions/:positionId`} component={Welcome}/>
               <Route component={NomarchComponent}/>
             </Switch>
           </div>

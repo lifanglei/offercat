@@ -63,5 +63,11 @@ export default {
       method: 'POST',
       body: userinfo
     })
+  },
+  companyList(){
+    const url = 'http://localhost:8080/hire/company/';
+    return callApi(url, {
+      method: 'GET'
+    })
   }
 }

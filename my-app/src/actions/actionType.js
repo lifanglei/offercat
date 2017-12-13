@@ -21,5 +21,9 @@ export default createConstants(
     'SIGNUP_CAP_SUCCESS',
     'SIGNUP_CAP_FAILURE',
 
+    'COMPANY_LIST_REQUEST',
+    'COMPANY_LIST_SUCCESS',
+    'COMPANY_LIST_FAILURE',
+
     'INTERNAL_SERVER_ERROR',
 );

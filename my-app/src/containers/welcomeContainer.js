@@ -7,7 +7,12 @@ class welcomeContainer extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillMount() {
+     console.log('welcomeContainer will mount');
+  }
   render(){
+    console.log('welcomeContainer will ');
     return (
         <div className="welcome-container">
           <nav className="navbar yamm ms-navbar ms-navbar-primary shrink navbar-fixed-top">
