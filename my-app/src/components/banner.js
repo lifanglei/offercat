@@ -77,7 +77,7 @@ class CompanyBanner extends Component {
       }]
     };
     const companyCards = companys.map((company)=>{
-      return <div><CompanyCard key={company.id} history={history} company={company}/></div>
+      return <div key={company.id}><CompanyCard history={history} company={company}/></div>
     });
 
     return (

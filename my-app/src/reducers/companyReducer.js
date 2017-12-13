@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionType';
 
-function captchaReducer(state = { companys: [], totalCount: 0, currentPage: 1,errorMessage:''}, action) {
+function companyReducer(state = { companys: [], totalCount: 0, currentPage: 1,errorMessage:''}, action) {
   const {payload} = action;
   switch (action.type) {
     case actionTypes.COMPANY_LIST_SUCCESS:
@@ -19,4 +19,4 @@ function captchaReducer(state = { companys: [], totalCount: 0, currentPage: 1,er
       return state;
   }
 }
-export default captchaReducer;
+export default companyReducer;

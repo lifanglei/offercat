@@ -69,5 +69,11 @@ export default {
     return callApi(url, {
       method: 'GET'
     })
+  },
+  positionList(){
+    const url = 'http://localhost:8080/hire/position/';
+    return callApi(url, {
+      method: 'GET'
+    })
   }
 }

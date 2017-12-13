@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-full": "npm run build-css && run-p -ncr watch-css start",
-    "build": "react-scripts build",
+    "build": " node-less-chokidar src && react-scripts build",
     "build-css": "node-less-chokidar src",
     "watch-css": "node-less-chokidar src --watch",
     "test": "react-scripts test --env=jsdom",

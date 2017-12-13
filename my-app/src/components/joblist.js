@@ -1,9 +1,13 @@
 import React, {Component} from "react";
-import '../css/jobList.css'
+import {connect} from 'react-redux';
+import '../css/jobList.css';
+import {fetchPositionListRequest} from '../actions/positionListActions';
 
 import {
   withRouter
 } from 'react-router-dom'
+
+
 
 
 class JobCard extends React.Component {
@@ -83,19 +87,47 @@ class JobCard extends React.Component {
 
 }
 class JobList extends Component {
+
+  componentWillMount(){
+    console.log("position card willMount");
+    this.props.fetchPositions();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('position card receive next props', nextProps);
+  };
+
+
   render() {
     const {match} = this.props;
-
-
     return (
         <div className="joblist-wrapper">
-          <JobCard/>
-          <JobCard/>
-          <JobCard/>
           <JobCard/>
         </div>
     )
   }
 }
 
-export default withRouter(JobList);
+function mapStateToProps(state, ownProps) {
+  const {positions, currentPage, totalCount, errorMessage} = state.companyList;
+  return {
+    positions,
+    currentPage,
+    totalCount,
+    errorMessage
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchPositions() {
+      dispatch(fetchPositionListRequest());
+    }
+  }
+}
+
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(JobList));
