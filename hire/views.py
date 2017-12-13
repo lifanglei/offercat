@@ -9,6 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Company, Position
 from .serializers import CompanySerializer, CompanyOrderOnRecentPositionsSerializer , PositionSerializer
 
@@ -19,15 +20,19 @@ class CompanyView(ModelViewSet):
     queryset = Company.objects.all()
     permission_classes = [AllowAny]
     serializer_class = CompanySerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('industry', 'headquarters')
     lookup_field = 'uuid'
+
     def get_queryset(self):
-        print(self.request.query_params)
-        if self.request.query_params:
-            if self.request.query_params["ordering"] == "hotness":
+
+        if self.request.query_params.get('ordering', None):
+            if self.request.query_params.get('ordering', None) == "hotness":
                 three_days_ago = timezone.now() - timedelta(days=3)
                 return Company.objects.annotate(recent_position_count=Count(Case(
                         When(position__last_update__gte=three_days_ago, then=1),))).order_by('-recent_position_count')
-
+            if self.request.query_params.get('ordering', None)== "position_count":
+                return Company.objects.annotate(position_count=Count('position')).order_by('-position_count')
         return super(CompanyView, self).get_queryset()
 
     def retrieve(self, request, *args, **kwargs):

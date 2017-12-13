@@ -55,7 +55,7 @@ class CompanySerializer(serializers.ModelSerializer):
     # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail',lookup_field='uuid')
     edit_url = serializers.SerializerMethodField()
     # position_set = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name="hire:position-detail",)
-    position_set = PositionBriefSerializer(many=True, read_only=True)
+    positions = PositionBriefSerializer(many=True, read_only=True,source='position_set')
     shareholders = serializers.ListField(child=serializers.CharField(max_length=30, allow_blank=False), max_length = 5)
 
     class Meta:
@@ -72,9 +72,10 @@ class CompanySerializer(serializers.ModelSerializer):
             'photo',
             'photo_url',
             'edit_url',
-            'position_set',
+            'positions',
             'shareholders',
             'abbreviation',
+            'headquarters',
             'uuid',
         )
         read_only_fields = ('subscription_count','uuid')
