@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import os
+import os, uuid
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
@@ -46,6 +46,7 @@ class Profile(models.Model):
     address = models.CharField(_(u'现居地'), max_length=10, blank=True)
     description = models.TextField(_(u'个人简介'), blank=True)
     avatar = models.ImageField(_(u'照片'), upload_to=user_directory_path, blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
 
     class Meta:
         db_table = 'profiles'
@@ -77,6 +78,7 @@ class WorkExperience(models.Model):
     start_date = models.CharField(_(u'开始日期'), max_length=10, blank=False)
     end_date = models.CharField(_(u'结束日期'), max_length=10, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    # uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
 
     class Meta:
         db_table = 'profiles_work_exp'
@@ -98,6 +100,7 @@ class EducationalExperience(models.Model):
     degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, blank=False)
     graduate_date = models.DateField(_(u'毕业年份'),blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    # uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
 
     class Meta:
         db_table = 'profiles_edu_exp'
@@ -119,6 +122,7 @@ class Skill(models.Model):
     name = models.CharField(_(u'技能'), max_length=50, blank=False)
     level = models.IntegerField(_(u'水平'), choices=SKILL_LEVEL, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, )
+    # uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
 
     class Meta:
         db_table = 'profiles_skills'

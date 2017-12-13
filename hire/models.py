@@ -62,7 +62,7 @@ class Company(models.Model):
     description = models.TextField(blank=True)
     headquarters = models.CharField(max_length= 10,blank=True)
     photo = models.ImageField(upload_to=user_directory_path,blank=True)
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
     abbreviation = models.CharField(max_length= 10, blank=True)
 
     class Meta:
@@ -150,7 +150,7 @@ class Position(models.Model):
     last_update = models.DateTimeField(_('date updated'), default=timezone.now,)
     subscription_count = models.IntegerField(default=0, blank=True)
     is_active = models.BooleanField(_('active'), default=True,)
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
 
     class Meta:
         verbose_name = _('position')
