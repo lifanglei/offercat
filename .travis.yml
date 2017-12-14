@@ -1,5 +1,4 @@
 language: python
-warnings_are_errors: false
 python:
 - '3.5'
 node_js:
@@ -10,6 +9,7 @@ env:
   global:
   - DJANGO=1.8
   - PYTHON=python3.5
+  - CI=false
 cache:
   directories:
   - "$HOME/.cache/pip"
