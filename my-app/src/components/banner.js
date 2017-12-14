@@ -16,7 +16,7 @@ class CompanyCard extends React.Component {
     const {company,history}= this.props;
     return (
       <div className="ms-thumbnail-container">
-        <figure className="ms-thumbnail ms-thumbnail-horizontal">
+        <figure className="ms-thumbnail-horizontal">
           <div className="img-wrapper">
           <img className="logo" style={{  height:'120px'}} src={company.photo_url} alt="暂无公司logo"/>
           </div>
