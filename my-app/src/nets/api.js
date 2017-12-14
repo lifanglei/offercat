@@ -45,33 +45,33 @@ const callApi = (endpoint, request, token) => {
 
 export default {
   getCaptcha() {
-    const url = 'http://localhost:8080/accounts/api/register/';
+    const url = '/accounts/api/register/';
     return callApi(url, {
       method: 'GET'
     })
   },
   userSignup(userinfo){
-    const url = 'http://localhost:8080/accounts/api/register/';
+    const url = '/accounts/api/register/';
     return callApi(url, {
       method: 'POST',
       body: userinfo
     })
   },
   userSignin(userinfo){
-    const url = 'http://localhost:8080/accounts/api/login/';
+    const url = '/accounts/api/login/';
     return callApi(url, {
       method: 'POST',
       body: userinfo
     })
   },
   companyList(){
-    const url = 'http://localhost:8080/hire/company/';
+    const url = '/hire/company/';
     return callApi(url, {
       method: 'GET'
     })
   },
   positionList(){
-    const url = 'http://localhost:8080/hire/position/';
+    const url = '/hire/position/';
     return callApi(url, {
       method: 'GET'
     })

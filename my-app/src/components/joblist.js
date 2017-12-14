@@ -99,7 +99,7 @@ class JobList extends Component {
 
 
   render() {
-    const {match} = this.props;
+    const {match,positions} = this.props;
     return (
         <div className="joblist-wrapper">
           <JobCard/>
