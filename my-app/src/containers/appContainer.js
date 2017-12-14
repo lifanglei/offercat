@@ -9,50 +9,9 @@ import {
 
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Hello, 正在努力开发中.........</h1>;
   }
 }
-const Home = ({history}) => (
-    <div className="container">
-      <div onClick={()=>{console.log('hi');}}>Home</div>
-      <a>123</a>
-      <button onClick={()=>{history.push('/login')}}>test</button>
-    </div>
-);
-
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-        () => this.tick(),
-        1000
-    );
-  }
-
-  tick = () => {
-    this.setState({
-      date: this.state.date
-    });
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  render() {
-    return (
-        <div className="container">
-          <h1>Hello, world!</h1>
-          <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        </div>
-    );
-  }
-}
-
 
 class appContainer extends Component {
   constructor(props) {
@@ -66,10 +25,10 @@ class appContainer extends Component {
           <NavBarComponent/>
           <div className="appContainer main">
             <Switch>
-              <Route path={`${match.url}/app`} component={Home}/>
+              <Route path={`${match.url}/app`} component={Welcome}/>
               <Route path={`${match.url}/test`} component={Welcome}/>
-              <Route path={`${match.url}/clock`} component={Clock}/>
-              <Route path={`${match.url}/company/:companyId`} component={Clock}/>
+              <Route path={`${match.url}/clock`} component={Welcome}/>
+              <Route path={`${match.url}/company/:companyId`} component={Welcome}/>
               <Route path={`${match.url}/positions/:positionId`} component={Welcome}/>
               <Route component={NomarchComponent}/>
             </Switch>

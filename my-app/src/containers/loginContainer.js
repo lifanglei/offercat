@@ -33,7 +33,7 @@ class loginContainer extends Component {
   };
 
   componentDidMount() {
-    console.log('loginContainer-componentDidMount:');
+    console.log('loginContainer-componentDidMount:', this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,7 +41,11 @@ class loginContainer extends Component {
     const { login_success,error_message} = nextProps;
     if(login_success && localstore.getToken()){
       nextProps.userSigninFinish();
-      nextProps.history.push('/home/app');
+      if(this.props.location.state.from.pathname){
+        nextProps.history.push(this.props.location.state.from.pathname);
+      }else{
+        nextProps.history.push('/home/app');
+      }
     }else if(!login_success && error_message){
       this.setState({danger: true, errorText:error_message});
     }

@@ -15,7 +15,7 @@ class authContainer extends Component {
   componentDidMount() {
     console.log(' authContainer-componentDidMount:');
     localstore.deleteToken();
-    const {location} = this.props;
+    console.log(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
