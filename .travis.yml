@@ -1,10 +1,11 @@
 language: python
+warnings_are_errors: false
 python:
 - '3.5'
 node_js:
 - '7'
 services:
-- mongodb
+- postgresql
 env:
   global:
   - DJANGO=1.8
