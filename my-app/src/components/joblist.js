@@ -63,7 +63,7 @@ class JobCard extends React.Component {
                       {position.company_info.name}
                     </div>
                     <div className="col-sm-6 withripple zoom-img" style={{cursor:'pointer'}}>
-                      <img style={{  height:'100px'}} src={position.company_info.photo_url}/>
+                      <img style={{  width:'100px'}} src={position.company_info.photo_url}/>
                     </div>
                   </div>
                 </div>
