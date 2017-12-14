@@ -1,0 +1,13 @@
+[Unit] 
+Description=gunicorn daemon for officeCat
+After=network.target
+PartOf=gunicorn.target
+
+[Service] 
+User=root 
+Group=www-data 
+WorkingDirectory=/root/officeCat
+ExecStart=/root/officeCat/env/bin/gunicorn --workers 3 --access-logfile - --bind unix:/root/officeCat/officeCat.sock officeCat.wsgi:application
+
+[Install] 
+WantedBy=gunicorn.target
