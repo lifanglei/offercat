@@ -5,3 +5,4 @@ rm -rf ~/officeCat/static/
 exec ~/officeCat/manage.py collectstatic --noinput
 exec ~/officeCat/manage.py makemigrations
 exec ~/officeCat/manage.py migrate
+exec systemctl restart gunicorn@officeCat
