@@ -125,8 +125,11 @@ class PositionSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     # company_url = serializers.HyperlinkedIdentityField(read_only=True, view_name="hire:company-detail",
     #                                                    lookup_field ='company_id',lookup_url_kwarg='pk')
+    salary = ChoicesDisplayField(choices=Position.SALARY_LEVEL)
     category = ChoicesDisplayField(choices=Position.CATEGORY)
     type = ChoicesDisplayField(choices=Position.TYPE)
+    work_exp_req = ChoicesDisplayField(choices=Position.WORK_EXP_REQ)
+    edu_req = ChoicesDisplayField(choices=Position.EDUCATION_DEGREE)
     created_at = serializers.SerializerMethodField(read_only=True)
     company_info = CompanyBriefSerializer(read_only=True, source='company')
     # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
