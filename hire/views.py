@@ -12,10 +12,7 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Company, Position
 from .serializers import CompanySerializer, CompanyOrderOnRecentPositionsSerializer , PositionSerializer
-
-
 # Create your views here.
-
 class CompanyView(ModelViewSet):
     queryset = Company.objects.all()
     permission_classes = [AllowAny]
@@ -49,13 +46,12 @@ class PositionView(ModelViewSet):
     lookup_field = 'uuid'
 
     def get_queryset(self):
-        print(self.request.query_params)
+        print(self.request.user)
+        print(self.request.auth)
         if self.request.query_params:
             if self.request.query_params["ordering"] == "hotness":
                 return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
-
         return super(PositionView, self).get_queryset()
-
 
 class CompanyOrderListAPIView(ListAPIView):
     three_days_ago = timezone.now() - timedelta(days=3)
@@ -69,7 +65,6 @@ class CompanyOrderListAPIView(ListAPIView):
     lookup_field = 'uuid'
     def get_queryset(self):
         queryset = super(CompanyOrderListAPIView, self).get_queryset()
-        print(self.request.query_params)
         return queryset
 
 

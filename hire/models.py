@@ -7,7 +7,9 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from profiles.utils import user_directory_path
 from django.contrib.postgres import fields
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 # Create your models here.
 
 
@@ -61,7 +63,7 @@ class Company(models.Model):
     introduction = models.TextField(max_length=100, blank=True )
     description = models.TextField(blank=True)
     headquarters = models.CharField(max_length= 10,blank=True)
-    photo = models.ImageField(upload_to=user_directory_path,blank=True)
+    photo = models.ImageField(upload_to=user_directory_path , blank=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
     abbreviation = models.CharField(max_length= 10, blank=True)
 
@@ -74,7 +76,6 @@ class Company(models.Model):
 
 
 class Position(models.Model):
-
     SALARY_LEVEL1 = 1
     SALARY_LEVEL2 = 2
     SALARY_LEVEL3 = 3
@@ -151,7 +152,8 @@ class Position(models.Model):
     subscription_count = models.IntegerField(default=0, blank=True)
     is_active = models.BooleanField(_('active'), default=True,)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
-
+    collections = models.ManyToManyField(User, through='functions.Collection',related_name='collections')
+    lauds = models.ManyToManyField(User, through='functions.Laud',related_name='lauds')
     class Meta:
         verbose_name = _('position')
         verbose_name_plural = _('positions')

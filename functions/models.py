@@ -107,7 +107,7 @@ class Subscription(models.Model):
 
 
 class Laud(models.Model):
-    position = models.IntegerField(choices=Position.CATEGORY)
+    position = models.ForeignKey(Position, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

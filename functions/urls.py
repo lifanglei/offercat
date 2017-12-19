@@ -17,7 +17,7 @@ router.register('invitation', InvitationView, base_name='invitation')
 router.register('application', ApplicationView, base_name='application')
 
 urlpatterns = [
-    # /function/,
+    # /functions/,
 ]
 
 urlpatterns += router.urls

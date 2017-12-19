@@ -35,14 +35,12 @@ class UserRegisterAPIView(generics.CreateAPIView):
 
     def get(self, request):
         key = CaptchaStore.generate_key()
-
         data = {
             'captcha_key': key,
             'captcha_url': reverse('captcha-image', kwargs={'key': key}, request=request),
             'captcha2x_url': reverse('captcha-image-2x', kwargs={'key': key}, request=request),
             'audio_url': None
         }
-        print(data)
         if captcha_settings.CAPTCHA_FLITE_PATH:
             data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
         return Response(data, status=status.HTTP_200_OK)

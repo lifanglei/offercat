@@ -4,8 +4,9 @@ from rest_framework import serializers
 from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
 from .models import Company, Position
-
+from django.contrib.auth.models import AnonymousUser
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
 
 class PositionBriefSerializer(serializers.ModelSerializer):
     # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
@@ -134,7 +135,9 @@ class PositionSerializer(serializers.ModelSerializer):
     company_info = CompanyBriefSerializer(read_only=True, source='company')
     # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
     collection_count = serializers.SerializerMethodField()
-
+    is_collected = serializers.SerializerMethodField()
+    laud_count = serializers.SerializerMethodField()
+    is_lauded = serializers.SerializerMethodField()
     class Meta:
         model = Position
         fields = (
@@ -159,10 +162,12 @@ class PositionSerializer(serializers.ModelSerializer):
             'collection_count',
             'company_info',
             'uuid',
+            'is_collected',
+            'laud_count',
+            'is_lauded'
         )
         read_only_fields = ('subscription_count', 'uuid')
         extra_kwargs = {'company': {'write_only': True},}
-
 
     def get_created_at(self,obj):
         if obj.created_at.date() == timezone.now().date():
@@ -171,10 +176,27 @@ class PositionSerializer(serializers.ModelSerializer):
             return obj.created_at.strftime("%Y-%m-%d")
 
     def get_collection_count(self, obj):
-        return obj.collection_set.count()
+        return obj.collections.count()
+
+    def get_laud_count(self, obj):
+        return obj.lauds.count()
 
     def get_edit_url(self,obj):
         return reverse('hire:position-detail',kwargs={'uuid': obj.uuid})
+
+    def get_is_collected(self,obj):
+        curr_user = self.context['request'].user
+        if isinstance(curr_user, AnonymousUser):
+            return False
+        elif isinstance(curr_user, get_user_model()):
+            return curr_user in obj.collections.all()
+
+    def get_is_lauded(self, obj):
+        curr_user = self.context['request'].user
+        if isinstance(curr_user, AnonymousUser):
+            return False
+        elif isinstance(curr_user, get_user_model()):
+            return curr_user in obj.lauds.all()
 
 
 class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
