@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
-from .models import Subscription, Message,Laud,Collection,Application,Invitation
+from .models import Subscription,Laud,Collection,Application,Invitation
+from notifications.models import Notification
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -11,11 +12,27 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         model = Subscription
         fields = '__all__'
 
-class MessageSerializer(serializers.ModelSerializer):
+# class MessageSerializer(serializers.ModelSerializer):
+#
+#     class Meta:
+#         model = Message
+#         fields = '__all__'
 
+class NotificationSerializer(serializers.ModelSerializer):
+    created_at = serializers.SerializerMethodField()
     class Meta:
-        model = Message
-        fields = '__all__'
+        model = Notification
+        fields = (
+            'recipient',
+            'verb',
+            'created_at',
+        )
+
+    def get_created_at(self,obj):
+        if obj.timestamp.date() == timezone.now().date():
+            return obj.timestamp.strftime(u"今天 %H:%M")
+        else:
+            return obj.timestamp.strftime("%Y-%m-%d")
 
 class LaudSerializer(serializers.ModelSerializer):
 

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.conf import settings
+import notifications.urls
 from rest_framework.documentation import include_docs_urls
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     url(r'^profiles/', include('profiles.urls',namespace='profiles')),
     url(r'^hire/', include('hire.urls',namespace='hire')),
     url(r'^functions/', include('functions.urls',namespace='functions')),
+    # url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
     # url(r'^admin/', admin.site.urls),
 ]
 

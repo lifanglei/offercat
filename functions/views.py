@@ -9,20 +9,24 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
+from notifications.signals import notify
+from notifications.views import live_unread_notification_list as lunl
+from hire.models import Position
 from .models import (Subscription,
-                     Message,
                      Laud,
                      Application,
                      Collection,
                      Invitation)
+from django.contrib.auth import get_user_model
+from notifications.models import Notification
 from .serializers import (SubscriptionSerializer,
-                          MessageSerializer,
                           LaudSerializer,
+                          NotificationSerializer,
                           ApplicationSerializer,
                           CollectionSerializer,
                           InvitationSerializer)
 
-
+User = get_user_model()
 # Create your views here.
 
 class SubscriptionView(ModelViewSet):
@@ -30,10 +34,25 @@ class SubscriptionView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = SubscriptionSerializer
 
-class MessageView(ModelViewSet):
-    queryset = Message.objects.all()
+# class MessageView(ModelViewSet):
+#     queryset = Message.objects.all()
+#     permission_classes = [AllowAny]
+#     serializer_class = MessageSerializer
+
+class NotificationView(ModelViewSet):
+    queryset = Notification.objects.all()
     permission_classes = [AllowAny]
-    serializer_class = MessageSerializer
+    serializer_class = NotificationSerializer
+
+    def create(self, request, *args, **kwargs):
+        user = User.objects.get(pk=request.data['recipient'])
+        print(request.data['recipient'])
+        print(type(request.data['recipient']))
+        actor = Position.objects.first()
+        notify.send(actor, recipient=user, verb='testing notification')
+        rlt = {'rlt': 'success'}
+        return Response(rlt, status=status.HTTP_201_CREATED)
+
 
 class LaudView(ModelViewSet):
     queryset = Laud.objects.all()
@@ -55,3 +74,8 @@ class InvitationView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = InvitationSerializer
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def live_unread_notification_list(request):
+    print(request.user)
+    return lunl(request)

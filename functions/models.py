@@ -111,12 +111,17 @@ class Laud(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-class Message(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(blank=False, default=timezone.now)
-    title = models.CharField(max_length=50, blank=False)
-    content = models.TextField(blank=False)
-    is_read = models.BooleanField(default=False)
+# class Message(models.Model):
+#     receiver = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+#     sender = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, )
+#     created_at = models.DateTimeField(blank=False, default=timezone.now)
+#     title = models.CharField(max_length=50, blank=False)
+#     content = models.TextField(blank=False)
+#     is_read = models.BooleanField(default=False)
+#     is_hided = models.BooleanField(default=False)
+#     is_system_msg = models.BooleanField(default=False)
+
+
 
 
 

@@ -12,6 +12,7 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Company, Position
 from .serializers import CompanySerializer, CompanyOrderOnRecentPositionsSerializer , PositionSerializer
+
 # Create your views here.
 class CompanyView(ModelViewSet):
     queryset = Company.objects.all()
@@ -48,6 +49,7 @@ class PositionView(ModelViewSet):
     def get_queryset(self):
         print(self.request.user)
         print(self.request.auth)
+        print("{0}".format(self.request.user.is_authenticated == True))
         if self.request.query_params:
             if self.request.query_params["ordering"] == "hotness":
                 return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
