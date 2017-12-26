@@ -35,9 +35,10 @@ class PositionBriefSerializer(serializers.ModelSerializer):
             'created_at',
             'subscription_count',
             'edit_url',
+            'is_certified',
             'uuid',
         )
-        read_only_fields = ('subscription_count','uuid')
+        read_only_fields = ('subscription_count','uuid','is_certified')
         extra_kwargs = {}
 
     def get_created_at(self,obj):
@@ -167,9 +168,10 @@ class PositionSerializer(serializers.ModelSerializer):
             'uuid',
             'is_collected',
             'laud_count',
+            'is_certified',
             'is_lauded'
         )
-        read_only_fields = ('subscription_count', 'uuid')
+        read_only_fields = ('subscription_count', 'uuid', 'is_certified')
         extra_kwargs = {'company': {'write_only': True},}
 
     def get_created_at(self,obj):

@@ -154,7 +154,7 @@ class Position(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
     collections = models.ManyToManyField(User, through='functions.Collection',related_name='collections')
     lauds = models.ManyToManyField(User, through='functions.Laud',related_name='lauds')
-    # is_certified = models.BooleanField(_('certified'), default=False,)
+    is_certified = models.BooleanField(_('certified'), default=False,)
     class Meta:
         verbose_name = _('position')
         verbose_name_plural = _('positions')
