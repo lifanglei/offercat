@@ -11,8 +11,11 @@ from django.contrib.auth import get_user_model
 class PositionBriefSerializer(serializers.ModelSerializer):
     # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:position-detail', lookup_field='uuid')
     edit_url = serializers.SerializerMethodField()
+    salary = ChoicesDisplayField(choices=Position.SALARY_LEVEL)
     category = ChoicesDisplayField(choices=Position.CATEGORY)
     type = ChoicesDisplayField(choices=Position.TYPE)
+    work_exp_req = ChoicesDisplayField(choices=Position.WORK_EXP_REQ)
+    edu_req = ChoicesDisplayField(choices=Position.EDUCATION_DEGREE)
     created_at = serializers.SerializerMethodField(read_only=True)
     # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
 
