@@ -110,7 +110,6 @@ class Laud(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
 # class Message(models.Model):
 #     receiver = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 #     sender = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, )

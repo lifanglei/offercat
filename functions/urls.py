@@ -6,7 +6,7 @@ from .views import (SubscriptionView,
                     CollectionView,
                     InvitationView,
                     ApplicationView,
-                    live_unread_notification_list)
+                    live_unread_notification_list,)
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()

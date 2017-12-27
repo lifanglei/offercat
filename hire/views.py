@@ -10,6 +10,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework as filters
 from .models import Company, Position
 from .serializers import CompanySerializer, CompanyOrderOnRecentPositionsSerializer , PositionSerializer
 
@@ -39,20 +40,27 @@ class CompanyView(ModelViewSet):
         return Response(serializer.data)
 
 class PositionView(ModelViewSet):
+
     queryset = Position.objects.all().order_by('-id')
     permission_classes = [AllowAny]
     serializer_class = PositionSerializer
     filter_backends = (SearchFilter,)
     search_fields = ('^name', '^department','^company__name','=company__abbreviation')
+    filter_fields = ('category',)
     lookup_field = 'uuid'
 
     def get_queryset(self):
-        print(self.request.user)
-        print(self.request.auth)
-        print("{0}".format(self.request.user.is_authenticated == True))
         if self.request.query_params:
-            if self.request.query_params["ordering"] == "hotness":
+            if "ordering" in self.request.query_params and self.request.query_params["ordering"] == "hotness":
                 return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
+            elif "category" in self.request.query_params:
+                if self.request.query_params['category'] in [str(key) for key,value in Position.CATEGORY]:
+                    return Position.objects.filter(category=self.request.query_params['category'])
+                elif self.request.query_params['category'] in [value for key,value in Position.CATEGORY]:
+                    val = [key for key, value in Position.CATEGORY if value == self.request.query_params['category']][0]
+                    return Position.objects.filter(category=val)
+                else:
+                    return super(PositionView, self).get_queryset().none()
         return super(PositionView, self).get_queryset()
 
 class CompanyOrderListAPIView(ListAPIView):
