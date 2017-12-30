@@ -33,7 +33,6 @@ function signinReducer(state = {login_success: false, username:'',email:'',error
         serverError:''
       });
     case actionTypes.INTERNAL_SERVER_ERROR:
-      localstore.deleteToken();
       return Object.assign({}, state, {
         login_success: false,
         username:'',

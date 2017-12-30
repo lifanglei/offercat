@@ -1,0 +1,77 @@
+.company-detail-container{
+  .logo-wrapper{
+    padding: 20px;
+    .detail-logo-img{
+      height: 180px;
+    }
+  }
+  .nav.nav-tabs>li>a{
+    color: black!important;
+  }
+  .company-info{
+    padding-left: 10px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+  .share-panel{
+    padding-top: 15px;
+    text-align: right;
+    margin-bottom: 30px;
+  }
+  .basic-info{
+    .basic-info-frame{
+      margin-top: 5px;
+      padding: 20px;
+      border: solid 1px black;
+      &-item{
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+        margin-left: 15px;
+      }
+      &-name{
+        margin-left: 20px;
+      }
+    }
+  }
+  .companyDetailCard{
+    cursor: pointer;
+    border: solid 1px darkgray;
+    margin-bottom: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    .header{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .title{
+        color: #009688;
+        font-size: large;
+      }
+      .time{
+        color: gray;
+      }
+    }
+    .footer{
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .left{
+        display: flex;
+        flex-direction: row;
+        .salary{
+          font-size: larger;
+          color: red;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .companyDetailCard:hover{
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23);
+    transition: all 0.5s
+  }
+}

@@ -8,8 +8,6 @@ import {
 } from 'react-router-dom'
 
 
-
-
 class JobCard extends React.Component {
 
   onClickToPosition = (companyId)=>{
