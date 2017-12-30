@@ -3,7 +3,7 @@ from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
 from .models import Subscription,Laud,Collection,Application,Invitation
 from notifications.models import Notification
-
+from profiles.utils import ChoicesDisplayField
 from django.utils.translation import ugettext_lazy as _
 
 class SubscriptionSerializer(serializers.ModelSerializer):
@@ -33,6 +33,8 @@ class NotificationSerializer(serializers.ModelSerializer):
             return obj.timestamp.strftime(u"今天 %H:%M")
         else:
             return obj.timestamp.strftime("%Y-%m-%d")
+
+
 
 class LaudSerializer(serializers.ModelSerializer):
 
