@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
 from datetime import date, timedelta
 from django.utils import timezone
@@ -53,9 +54,19 @@ class NotificationView(ModelViewSet):
         print(request.data['recipient'])
         print(type(request.data['recipient']))
         actor = Position.objects.first()
-        notify.send(actor, recipient=user, verb='testing notification')
-        rlt = {'rlt': 'success'}
+        try:
+
+            notify.send(actor, recipient=user, verb=request.data['verb'])
+            rlt = {'rlt': 'success'}
+        except:
+            rlt = {'rlt': 'success'}
         return Response(rlt, status=status.HTTP_201_CREATED)
+
+    def get_queryset(self):
+        if not isinstance(self.request.user, AnonymousUser):
+            return Notification.objects.filter(recipient__exact=self.request.user)
+        else:
+            return self.queryset
 
 
 class LaudView(ModelViewSet):
