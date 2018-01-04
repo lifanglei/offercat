@@ -100,7 +100,8 @@ class CompanyBriefSerializer(serializers.ModelSerializer):
     industry = ChoicesDisplayField(choices=Company.INDUSTRY,read_only=True)
     # edit_url = serializers.HyperlinkedIdentityField(view_name='hire:company-detail', lookup_field='uuid',)
     edit_url = serializers.SerializerMethodField()
-
+    size = ChoicesDisplayField(choices=Company.SIZE)
+    stock = ChoicesDisplayField(choices=Company.STOCK)
     class Meta:
         model = Company
         fields = (
@@ -112,7 +113,9 @@ class CompanyBriefSerializer(serializers.ModelSerializer):
             'photo_url',
             'edit_url',
             'abbreviation',
-            'uuid'
+            'uuid',
+            'size',
+            'stock',
         )
         read_only_fields = ('web_site', 'uuid')
 
