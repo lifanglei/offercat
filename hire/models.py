@@ -155,6 +155,7 @@ class Position(models.Model):
     collections = models.ManyToManyField(User, through='functions.Collection',related_name='collections')
     lauds = models.ManyToManyField(User, through='functions.Laud',related_name='lauds')
     is_certified = models.BooleanField(_('certified'), default=False,)
+    post_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
     class Meta:
         verbose_name = _('position')
         verbose_name_plural = _('positions')

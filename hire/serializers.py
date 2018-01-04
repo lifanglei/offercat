@@ -145,6 +145,7 @@ class PositionSerializer(serializers.ModelSerializer):
     is_collected = serializers.SerializerMethodField()
     laud_count = serializers.SerializerMethodField()
     is_lauded = serializers.SerializerMethodField()
+    serializers.CurrentUserDefault()
     class Meta:
         model = Position
         fields = (
@@ -172,9 +173,10 @@ class PositionSerializer(serializers.ModelSerializer):
             'is_collected',
             'laud_count',
             'is_certified',
-            'is_lauded'
+            'is_lauded',
+            'post_by',
         )
-        read_only_fields = ('subscription_count', 'uuid', 'is_certified')
+        read_only_fields = ('subscription_count', 'uuid', 'is_certified','post_by')
         extra_kwargs = {'company': {'write_only': True},}
 
     def get_created_at(self,obj):
@@ -206,6 +208,12 @@ class PositionSerializer(serializers.ModelSerializer):
         elif isinstance(curr_user, get_user_model()):
             return curr_user in obj.lauds.all()
 
+    def _current_user(self, obj):
+        curr_user = self.context['request'].user
+        if isinstance(curr_user, AnonymousUser):
+            return None
+        elif isinstance(curr_user, get_user_model()):
+            return curr_user.id
 
 class CompanyOrderOnRecentPositionsSerializer(serializers.ModelSerializer):
     photo_url = serializers.SerializerMethodField(read_only=True)

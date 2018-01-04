@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
 
 # Create your views here.
@@ -27,8 +28,13 @@ class ProfileView(ModelViewSet):
     serializer_class = ProfileSerializer
 
     def get_queryset(self):
-        print("{0}".format(self.request.user))
-        return super(ProfileView,self).get_queryset()
+        curr_user = self.request.user
+        print(curr_user)
+        if isinstance(curr_user, AnonymousUser):
+            return super(ProfileView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(ProfileView, self).get_queryset().filter(user = self.request.user)
+
 
 class WorkExperienceView(ModelViewSet):
     queryset = WorkExperience.objects.all()

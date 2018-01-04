@@ -29,6 +29,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'avatar',
             'avatar_url',
             'edit_url',
+            'uuid',
         )
         extra_kwargs = {'first_name': {'write_only': True},
                         'last_name': {'write_only': True}}

@@ -63,6 +63,9 @@ class PositionView(ModelViewSet):
                     return super(PositionView, self).get_queryset().none()
         return super(PositionView, self).get_queryset()
 
+    def perform_create(self, serializer):
+        serializer.save(post_by=self.request.user)
+
 class CompanyOrderListAPIView(ListAPIView):
     three_days_ago = timezone.now() - timedelta(days=3)
     queryset = Company.objects.annotate(recent_position_count=Count(Case(
