@@ -5,7 +5,9 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
-from .utils import user_directory_path, validate_file_extension
+from .utils import user_directory_path, resume_directory_path, validate_resume_extension, get_default_image
+from accounts.utils import create_proflie
+
 from django.core.signals import request_finished
 
 # Create your models here.
@@ -37,17 +39,16 @@ class Profile(models.Model):
                      (SERVICE_10MORE, u'10年以上')]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,)
-    first_name = models.CharField(_(u'名'), max_length=30, blank=True)
-    last_name = models.CharField(_(u'姓'), max_length=30, blank=True)
-    edu_degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, blank=True)
-    service_years = models.IntegerField(_(u'工作年限'), choices=SERVICE_YEARS, blank=True)
-    tel = PhoneNumberField(_(u'手机号码'), max_length=15, blank=True)
-    email = models.EmailField(_(u'个人邮箱'), blank=True)
-    address = models.CharField(_(u'现居地'), max_length=10, blank=True)
-    description = models.TextField(_(u'个人简介'), blank=True)
-    avatar = models.ImageField(_(u'照片'), upload_to=user_directory_path, blank=True)
+    first_name = models.CharField(_(u'名'), max_length=30,  null=True)
+    last_name = models.CharField(_(u'姓'), max_length=30,  null=True)
+    edu_degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, null=True)
+    service_years = models.IntegerField(_(u'工作年限'), choices=SERVICE_YEARS, null=True)
+    tel = PhoneNumberField(_(u'手机号码'), max_length=15, null=True)
+    email = models.EmailField(_(u'个人邮箱'), null=True)
+    address = models.CharField(_(u'现居地'), max_length=10, null=True)
+    description = models.TextField(_(u'个人简介'), null=True)
+    avatar = models.ImageField(_(u'照片'), upload_to=user_directory_path,blank=True )
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True,)
-
     class Meta:
         db_table = 'profiles'
         verbose_name = _('profile')
@@ -57,8 +58,11 @@ class Profile(models.Model):
         """
         Returns the first_name plus the last_name, with a space in between.
         """
-        full_name = '{0} {1}'.format(self.first_name, self.last_name)
-        return full_name.strip()
+        if self.last_name == None:
+            return None
+        else:
+            full_name = '{0} {1}'.format(self.last_name, self.first_name)
+            return full_name.strip()
 
     def query_work_exp(self,):
         return WorkExperience.objects.filter(user=self.user)
@@ -132,7 +136,7 @@ class Skill(models.Model):
 
 class Resume(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, )
-    resume = models.FileField(upload_to=user_directory_path, validators=[validate_file_extension])
+    resume = models.FileField(upload_to=resume_directory_path, validators=[validate_resume_extension])
 
     class Meta:
         db_table = 'profiles_resume'
@@ -148,7 +152,6 @@ def auto_delete_avatar_on_delete(sender, instance, **kwargs):
     when corresponding `Profile` object is deleted.
     """
     if instance.avatar:
-        print(os.path.dirname(instance.avatar.path))
         if os.path.isdir(os.path.dirname(instance.avatar.path)):
             shutil.rmtree(os.path.dirname(instance.avatar.path))
 
@@ -163,3 +166,9 @@ def auto_delete_resume_on_delete(sender, instance, **kwargs):
     if instance.resume:
         if os.path.isdir(os.path.dirname(instance.resume.path)):
             shutil.rmtree(os.path.dirname(instance.resume.path))
+
+@receiver(create_proflie)
+def auto_create_profile_on_user_create(sender, instance, **kwargs):
+    if instance.id:
+        obj = Profile(user=instance, avatar=get_default_image())
+        obj.save()

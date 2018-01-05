@@ -1,6 +1,7 @@
 #-*- coding: UTF-8 -*-
 from django.contrib.auth.validators import ASCIIUsernameValidator,UnicodeUsernameValidator
 from django.utils.deconstruct import deconstructible
+import django.dispatch
 
 from yunpian_python_sdk.model import constant as YC
 from yunpian_python_sdk.ypclient import YunpianClient
@@ -24,3 +25,6 @@ class MyASCIIUsernameValidator(ASCIIUsernameValidator):
 @deconstructible
 class MyUnicodeUsernameValidator(UnicodeUsernameValidator):
     message = _(u"用户名只能包含字母，数字以及@/./+/-/")
+
+
+create_proflie = django.dispatch.Signal(providing_args=["instance"])

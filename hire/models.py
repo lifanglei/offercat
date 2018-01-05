@@ -174,3 +174,4 @@ def auto_delete_avatar_on_delete(sender, instance, **kwargs):
     if instance.photo:
         if os.path.isdir(os.path.dirname(instance.photo.path)):
             shutil.rmtree(os.path.dirname(instance.photo.path))
+

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from rest_framework import serializers
-from .models import Profile, WorkExperience, EducationalExperience, Skill
-from .utils import get_default_image, ChoicesDisplayField
+from .models import Profile, WorkExperience, EducationalExperience, Skill, Resume
+from .utils import get_default_image, ChoicesDisplayField, validate_resume_extension
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -153,3 +153,23 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
             return []
         return SkillSerializer(obj.query_skills(), many=True, context={'request': self.context.get('request')}).data
 
+class ResumeSerializer(serializers.ModelSerializer):
+    resume = serializers.FileField(allow_empty_file=True, use_url=True,write_only=True,)
+    resume_url = serializers.SerializerMethodField(read_only=True)
+    user_uuid = serializers.SerializerMethodField(read_only=True)
+    edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:resumes-detail', lookup_url_kwarg='pk')
+    class Meta:
+        model = Resume
+        fields = ("resume",
+                  "resume_url",
+                  "user_uuid",
+                  "edit_url",)
+        read_only_fields = ('edit_url','resume_url')
+        extra_kwargs = {'user': {'write_only': True},
+                        }
+
+    def get_resume_url(self, obj):
+        return self.context['request'].build_absolute_uri(obj.resume.url)
+
+    def get_user_uuid(self,obj):
+        return obj.user.uuid

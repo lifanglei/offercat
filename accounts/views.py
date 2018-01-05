@@ -22,6 +22,7 @@ from .serializers import (
     UserRegisterSerializer,
     UserLoginSerializer)
 
+from .utils import create_proflie
 
 class UserRegisterAPIView(generics.CreateAPIView):
     """
@@ -66,6 +67,7 @@ class UserRegisterAPIView(generics.CreateAPIView):
                     data['audio_url'] = reverse('captcha-audio', kwargs={'key': key})
                 return Response(data, status=status.HTTP_400_BAD_REQUEST)
             self.perform_create(serializer)
+            create_proflie.send(sender=serializer.instance.__class__, instance=serializer.instance)
             headers = self.get_success_headers(serializer.data)
             response_data_success = serializer.data
             response_data_success['register_success'] = True

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
 from datetime import date, timedelta
 from django.utils import timezone
@@ -63,8 +64,15 @@ class PositionView(ModelViewSet):
                     return super(PositionView, self).get_queryset().none()
         return super(PositionView, self).get_queryset()
 
-    def perform_create(self, serializer):
+    def create(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            return Response({'msg': u'请先登录！'}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save(post_by=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class CompanyOrderListAPIView(ListAPIView):
     three_days_ago = timezone.now() - timedelta(days=3)

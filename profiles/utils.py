@@ -47,6 +47,14 @@ def user_directory_path(instance, filename):
     print(instance.__dict__)
     return '{0}/{1}'.format(type(instance).__name__.lower(), filename)
 
+def resume_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    ext = filename.split('.')[-1]
+    print(instance)
+    filename = '{}.{}'.format(instance.user.uuid, ext)
+    print(instance.pk)
+    print(instance.__dict__)
+    return '{0}/{1}'.format(type(instance).__name__.lower(), filename)
 
 def validate_file_extension(value):
     import os
@@ -54,7 +62,15 @@ def validate_file_extension(value):
     ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
     valid_extensions = ['.pdf', '.doc', '.docx', '.jpg', '.png', '.xlsx', '.xls']
     if not ext.lower() in valid_extensions:
-        raise ValidationError(u'Unsupported file extension.')
+        raise ValidationError(u'文件格式不支持！')
+
+def validate_resume_extension(value):
+    import os
+    from django.core.exceptions import ValidationError
+    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    valid_extensions = ['.pdf', '.doc', '.docx',]
+    if not ext.lower() in valid_extensions:
+        raise ValidationError(u'文件格式不支持！')
 
 
 class ChoicesDisplayField(serializers.ChoiceField):
