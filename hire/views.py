@@ -20,8 +20,9 @@ class CompanyView(ModelViewSet):
     queryset = Company.objects.all()
     permission_classes = [AllowAny]
     serializer_class = CompanySerializer
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,SearchFilter)
     filter_fields = ('industry', 'headquarters')
+    search_fields = ('^name', '^abbreviation')
     lookup_field = 'uuid'
 
     def get_queryset(self):

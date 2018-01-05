@@ -59,6 +59,13 @@ class ProfileOverViewAPIView(generics.RetrieveAPIView):
     queryset = Profile.objects.all()
     lookup_field = 'id'
 
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return super(ProfileOverViewAPIView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(ProfileOverViewAPIView, self).get_queryset().filter(user = self.request.user)
+
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, context={'request': request})
