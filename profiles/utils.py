@@ -50,11 +50,10 @@ def user_directory_path(instance, filename):
 def resume_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     ext = filename.split('.')[-1]
-    print(instance)
-    filename = '{}.{}'.format(instance.user.uuid, ext)
+    # filename = '{}.{}'.format(instance.user.uuid, ext)
     print(instance.pk)
     print(instance.__dict__)
-    return '{0}/{1}'.format(type(instance).__name__.lower(), filename)
+    return '{0}/{1}/{2}'.format(type(instance).__name__.lower(),instance.user.uuid,filename)
 
 def validate_file_extension(value):
     import os

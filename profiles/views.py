@@ -9,10 +9,11 @@ from rest_framework import status, generics
 from rest_framework.parsers import FileUploadParser,MultiPartParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
+from rest_framework import exceptions
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Profile, WorkExperience, EducationalExperience, Skill, Resume
@@ -26,8 +27,9 @@ from .serializers import (ProfileSerializer,
 
 class ProfileView(ModelViewSet):
     queryset = Profile.objects.all()
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     serializer_class = ProfileSerializer
+    pagination_class = None
 
     def get_queryset(self):
         curr_user = self.request.user
