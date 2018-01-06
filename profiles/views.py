@@ -105,3 +105,12 @@ class ResumeView(ModelViewSet):
         serializer.save(user=self.request.user)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def getChoicesForProfile(request):
+    rlt = {
+        'edu_degree':[value for key,value in Profile.EDUCATION_DEGREE],
+        'service_year':[value for key,value in Profile.SERVICE_YEARS],
+    }
+    return Response(rlt, status=status.HTTP_200_OK)
