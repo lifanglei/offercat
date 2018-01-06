@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 class ProfileSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(default= get_default_image(), use_url=True,write_only=True)
     avatar_url = serializers.SerializerMethodField(read_only=True)
-    full_name = serializers.SerializerMethodField(read_only=True)
     edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
     service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
     edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail', lookup_url_kwarg='pk')
@@ -17,7 +16,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
-            'full_name',
             'first_name',
             'last_name',
             'edu_degree',
@@ -31,8 +29,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'edit_url',
             'uuid',
         )
-        extra_kwargs = {'first_name': {'write_only': True},
-                        'last_name': {'write_only': True}}
+        extra_kwargs = {}
 
     def get_edu_degree(self, obj):
         return obj.get_edu_degree_display()
@@ -98,7 +95,6 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class ProfileOverViewSerializer(serializers.ModelSerializer):
     avatar_url = serializers.SerializerMethodField(read_only=True)
-    full_name = serializers.SerializerMethodField(read_only=True)
     edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
     service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
     edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail', lookup_url_kwarg='pk')
@@ -110,7 +106,8 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
-            'full_name',
+            'first_name',
+            'last_name',
             'edu_degree',
             'service_years',
             'tel',
@@ -123,8 +120,7 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
             'edu_exp',
             'skills',
         )
-        extra_kwargs = {'first_name': {'write_only': True},
-                        'last_name': {'write_only': True}}
+        extra_kwargs = {}
 
     def get_edu_degree(self, obj):
         return obj.get_edu_degree_display()

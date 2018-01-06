@@ -30,13 +30,9 @@ class Profile(models.Model):
 
     SERVICE_YEARS = [(SERVICE_STUDENT, u'在读'),
                      (SERVICE_GRADUATE, u'应届生'),
-                     (SERVICE_YEAR1, u'1年'),
-                     (SERVICE_YEAR2, u'2年'),
-                     (SERVICE_YEAR3, u'3年'),
-                     (SERVICE_YEAR4, u'4年'),
-                     (SERVICE_YEAR5, u'5年'),
-                     (SERVICE_YEAR10, u'10年'),
-                     (SERVICE_10MORE, u'10年以上')]
+                     (SERVICE_YEAR1, u'1-3年'),
+                     (SERVICE_YEAR2, u'3-5年'),
+                     (SERVICE_YEAR3, u'5年以上'),]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE,)
     first_name = models.CharField(_(u'名'), max_length=30,  null=True)

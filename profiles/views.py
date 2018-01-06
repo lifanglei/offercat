@@ -38,6 +38,7 @@ class ProfileView(ModelViewSet):
         elif isinstance(curr_user, get_user_model()):
             return super(ProfileView, self).get_queryset().filter(user = self.request.user)
 
+
 class WorkExperienceView(ModelViewSet):
     queryset = WorkExperience.objects.all()
     permission_classes = [AllowAny]
@@ -110,7 +111,7 @@ class ResumeView(ModelViewSet):
 @permission_classes([AllowAny])
 def getChoicesForProfile(request):
     rlt = {
-        'edu_degree':[value for key,value in Profile.EDUCATION_DEGREE],
-        'service_year':[value for key,value in Profile.SERVICE_YEARS],
+        'edu_degree':Profile.EDUCATION_DEGREE,
+        'service_year':Profile.SERVICE_YEARS,
     }
     return Response(rlt, status=status.HTTP_200_OK)
