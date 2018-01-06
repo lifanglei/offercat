@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Profile, WorkExperience, EducationalExperience, Skill, Resume
 from .utils import get_default_image, ChoicesDisplayField, validate_resume_extension
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -10,7 +11,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     avatar_url = serializers.SerializerMethodField(read_only=True)
     edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
     service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
-    edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail', lookup_url_kwarg='pk')
+    # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail', lookup_url_kwarg='pk')
+    edit_url = serializers.SerializerMethodField()
     class Meta:
         model = Profile
         fields = (
@@ -29,6 +31,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'edit_url',
             'uuid',
         )
+        read_only_fields= ('user',)
         extra_kwargs = {}
 
     def get_edu_degree(self, obj):
@@ -39,6 +42,10 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_avatar_url(self, obj):
         return self.context['request'].build_absolute_uri(obj.avatar.url)
+
+    def get_edit_url(self,obj):
+        return reverse('profiles:profile-detail',kwargs={'uuid': obj.uuid})
+
 
     def get_full_name(self, obj):
         return obj.get_full_name()

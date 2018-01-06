@@ -30,6 +30,7 @@ class ProfileView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = ProfileSerializer
     pagination_class = None
+    lookup_field = 'uuid'
 
     def get_queryset(self):
         curr_user = self.request.user
