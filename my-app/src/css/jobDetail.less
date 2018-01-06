@@ -1,3 +1,93 @@
 .jobDetailContainer{
+  .job-basic-info{
+    padding: 30px;
+    border-bottom: solid 1px #eee;
+    .header{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .title{
+        color: black;
+        font-size: large;
+      }
+    }
+    .footer{
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .left{
+        display: flex;
+        flex-direction: row;
+        .salary{
+          font-size: larger;
+          color: red;
+          margin-right: 10px;
+        }
+        .experience{
+          margin-left: 10px;
+        }
+      }
+    }
+    .time{
+      margin-top: 10px;
+      color: gray;
+    }
 
+    &-company{
+      margin-bottom: 20px;
+    }
+
+    .button-panel{
+      padding: 15px 10px 15px 10px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .share-panel{
+      margin-left: 20px;
+    }
+  }
+  .job-detail-info{
+    .basic-info{
+      .basic-info-frame{
+        margin-top: 5px;
+        padding: 20px;
+        &-item{
+          display: flex;
+          flex-direction: row;
+          margin-top: 15px;
+          margin-left: 15px;
+        }
+        &-name{
+          display: flex;
+          align-items: center;
+          margin-left: 20px;
+        }
+      }
+    }
+    &-items{
+      border-bottom: solid 1px #eee;
+    }
+    .job-detail-info-items{
+      padding: 15px;
+    }
+    .job-address{
+      margin-top: 2px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+    .job-description{
+      margin-bottom: 20px;
+    }
+    .job-requirement{
+      margin-top: 10px;
+      margin-bottom: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 }

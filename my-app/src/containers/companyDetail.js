@@ -59,8 +59,8 @@ class companyDetailContainer extends Component {
     let jobList2=[];
     let jobList3=[];
     const {companyDetail,history} = this.props;
-    const shareHolders = companyDetail.shareholders?companyDetail.shareholders.map((sh)=>{
-      return <span style={{marginRight:'5px'}}>{sh}</span>
+    const shareHolders = companyDetail.shareholders?companyDetail.shareholders.map((sh, index)=>{
+      return <span key={index} style={{marginRight:'5px'}}>{sh}</span>
     }):'';
     if(companyDetail.positions && companyDetail.positions.length){
       jobList1 = companyDetail.positions.filter((po)=>{

@@ -37,5 +37,9 @@ export default createConstants(
     'JOB_DETAIL_SUCCESS',
     'JOB_DETAIL_FAILURE',
 
+    'PROFILE_INFO_REQUEST',
+    'PROFILE_INFO_SUCCESS',
+    'PROFILE_INFO_FAILURE',
+
     'INTERNAL_SERVER_ERROR',
 );

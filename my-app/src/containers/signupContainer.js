@@ -130,7 +130,7 @@ class signupContainer extends Component {
                 <label className="control-label">再次输入密码</label>
                 <input ref={(input) => {
                   this.confirmpasswordInput = input;
-                }} onFocus={this.onInputFocus} type="password" id="ms-form-pass" className="form-control"></input>
+                }} onFocus={this.onInputFocus} type="password" id="ms-form-pass2" className="form-control"></input>
               </div>
             </div>
             <div className="form-group label-floating is-empty">

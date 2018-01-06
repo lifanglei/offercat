@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import NomarchComponent from '../components/noMatch';
 import companyDetailContainer from './companyDetail';
+import profileContainer from './profile';
 import jobDetail from './jobDetail'
 import NavBarComponent from '../components/navBar';
 import '../css/appContainer.css'
-
 import {
   Route,
   Switch,
@@ -30,7 +30,7 @@ class appContainer extends Component {
             <Switch>
               <Route path={`${match.url}/app`} component={Welcome}/>
               <Route path={`${match.url}/test`} component={Welcome}/>
-              <Route path={`${match.url}/clock`} component={Welcome}/>
+              <Route path={`${match.url}/profile`} component={profileContainer}/>
               <Route path={`${match.url}/company/:companyId`} component={companyDetailContainer}/>
               <Route path={`${match.url}/position/:positionId`} component={jobDetail}/>
               <Route component={NomarchComponent}/>

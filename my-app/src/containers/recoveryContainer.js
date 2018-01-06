@@ -33,7 +33,7 @@ class recoveryContainer extends Component {
                             <i className="zmdi zmdi-account"></i>
                           </span>
                 <label className="control-label">用户名</label>
-                <input type="text" id="ms-form-user" className="form-control"/>
+                <input type="text" id="ms-form-user3" className="form-control"/>
               </div>
             </div>
             <div className="form-group label-floating is-empty">
@@ -42,7 +42,7 @@ class recoveryContainer extends Component {
                             <i className="zmdi zmdi-email"></i>
                           </span>
                 <label className="control-label">邮箱</label>
-                <input type="email" id="ms-form-email" className="form-control"/>
+                <input type="email" id="ms-form-email3" className="form-control"/>
               </div>
             </div>
             <button className="btn btn-raised btn-block btn-primary">重置密码</button>
