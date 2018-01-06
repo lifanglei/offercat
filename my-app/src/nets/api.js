@@ -87,5 +87,11 @@ export default {
     return callApi(url, {
       method: 'GET'
     })
+  },
+  fethProfileBasic(token){
+    const url = 'http://localhost:8080/profiles/profile/';
+    return callApi(url, {
+      method: 'GET'
+    },token)
   }
 }

@@ -41,7 +41,7 @@ class loginContainer extends Component {
     const { login_success,error_message} = nextProps;
     if(login_success && localstore.getToken()){
       nextProps.userSigninFinish();
-      if(this.props.location.state.from.pathname){
+      if(this.props.location.state && this.props.location.state.from.pathname){
         nextProps.history.push(this.props.location.state.from.pathname);
       }else{
         nextProps.history.push('/home/app');
@@ -73,7 +73,7 @@ class loginContainer extends Component {
                           <i className="zmdi zmdi-account"></i>
                         </span>
                 <label className="control-label">用户名</label>
-                <input onFocus={this.onInputFocus} ref={(input)=>{this.username = input}} type="text" id="ms-form-user" className="form-control"/>
+                <input onFocus={this.onInputFocus} ref={(input)=>{this.username = input}} type="text" id="ms-form-user1" className="form-control"/>
               </div>
             </div>
             <div className="form-group label-floating is-empty">
@@ -82,7 +82,7 @@ class loginContainer extends Component {
                           <i className="zmdi zmdi-lock"></i>
                         </span>
                 <label className="control-label">密码</label>
-                <input onFocus={this.onInputFocus} ref={(input)=>{this.password = input}} type="password" id="ms-form-pass" className="form-control"/>
+                <input onFocus={this.onInputFocus} ref={(input)=>{this.password = input}} type="password" id="ms-form-pass1" className="form-control"/>
               </div>
             </div>
             <div className="row ">

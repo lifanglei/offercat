@@ -27,7 +27,7 @@ from .serializers import (ProfileSerializer,
 
 class ProfileView(ModelViewSet):
     queryset = Profile.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = ProfileSerializer
     pagination_class = None
 
