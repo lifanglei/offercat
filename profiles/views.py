@@ -13,8 +13,10 @@ from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
+from django.utils.translation import ugettext_lazy as _
 from rest_framework import exceptions
 from rest_framework.viewsets import ModelViewSet
+
 
 from .models import Profile, WorkExperience, EducationalExperience, Skill, Resume
 from .serializers import (ProfileSerializer,
@@ -91,17 +93,18 @@ class ResumeView(ModelViewSet):
     queryset = Resume.objects.all()
     permission_classes = [AllowAny]
     serializer_class = ResumeSerializer
+    pagination_class = None
 
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
             return super(ResumeView, self).get_queryset()
         elif isinstance(curr_user, get_user_model()):
-            return super(ResumeView, self).get_queryset().filter(user = self.request.user)
+            return super(ResumeView, self).get_queryset().filter(user= self.request.user)
 
     def create(self, request, *args, **kwargs):
         if isinstance(self.request.user, AnonymousUser):
-            return Response({'msg': u'请先登录！'}, status=status.HTTP_400_BAD_REQUEST)
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
         serializer = self.get_serializer(data=self.request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=self.request.user)
