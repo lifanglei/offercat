@@ -48,6 +48,7 @@ class WorkExperienceView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = WorkExperienceSerializer
     pagination_class = None
+    lookup_field = 'uuid'
 
     def get_queryset(self):
         curr_user = self.request.user
@@ -61,60 +62,103 @@ class WorkExperienceView(ModelViewSet):
             return super(WorkExperienceView, self).get_queryset().filter(user = self.request.user)
 
     def create(self, request, *args, **kwargs):
-        if isinstance(self.request.user, AnonymousUser):
+        user = None
+        if isinstance(self.request.user, AnonymousUser) and self.request.data.get('user_uuid', None) is None:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
-        serializer = self.get_serializer(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=self.request.user)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        elif isinstance(self.request.user, AnonymousUser) is not None:
+            user = self.request.user
+        elif self.request.data.get('user_uuid', None):
+            user_uuid = self.request.data.get('user_uuid', None)
+            user = User.objects.filter(uuid=user_uuid).first()
+        if user:
+            serializer = self.get_serializer(data=self.request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=user)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
 
-
-    
+    def update(self, request, *args, **kwargs):
+        return super(WorkExperienceView,self).update(request,partial=True)
 
 class EducationalExoerienceView(ModelViewSet):
     queryset = EducationalExperience.objects.all()
     permission_classes = [AllowAny]
     serializer_class = EducationalExperienceSerializer
     pagination_class = None
+    lookup_field = 'uuid'
 
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
+            if self.request.data.get('user_uuid', None):
+                user_uuid = self.request.data.get('user_uuid', None)
+                user = User.objects.filter(uuid=user_uuid).first()
+                return super(EducationalExoerienceView, self).get_queryset().filter(user=user)
             return super(EducationalExoerienceView, self).get_queryset()
         elif isinstance(curr_user, get_user_model()):
             return super(EducationalExoerienceView, self).get_queryset().filter(user = self.request.user)
 
     def create(self, request, *args, **kwargs):
-        if isinstance(self.request.user, AnonymousUser):
+        user = None
+        if isinstance(self.request.user, AnonymousUser) and self.request.data.get('user_uuid', None) is None:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
-        serializer = self.get_serializer(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=self.request.user)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        elif isinstance(self.request.user, AnonymousUser) is not None:
+            user = self.request.user
+        elif self.request.data.get('user_uuid', None):
+            user_uuid = self.request.data.get('user_uuid', None)
+            user = User.objects.filter(uuid=user_uuid).first()
+        if user:
+            serializer = self.get_serializer(data=self.request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=user)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+
+    def update(self, request, *args, **kwargs):
+        return super(EducationalExoerienceView,self).update(request,partial=True)
 
 class SkillView(ModelViewSet):
     queryset = Skill.objects.all()
     permission_classes = [AllowAny]
     serializer_class = SkillSerializer
     pagination_class = None
+    lookup_field = 'uuid'
 
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
+            if self.request.data.get('user_uuid', None):
+                user_uuid = self.request.data.get('user_uuid', None)
+                user = User.objects.filter(uuid=user_uuid).first()
+                return super(SkillView, self).get_queryset().filter(user=user)
             return super(SkillView, self).get_queryset()
         elif isinstance(curr_user, get_user_model()):
             return super(SkillView, self).get_queryset().filter(user = self.request.user)
 
     def create(self, request, *args, **kwargs):
-        if isinstance(self.request.user, AnonymousUser):
+        user = None
+        if isinstance(self.request.user, AnonymousUser) and self.request.data.get('user_uuid', None) is None:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
-        serializer = self.get_serializer(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=self.request.user)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        elif isinstance(self.request.user, AnonymousUser) is not None:
+            user = self.request.user
+        elif self.request.data.get('user_uuid', None):
+            user_uuid = self.request.data.get('user_uuid', None)
+            user = User.objects.filter(uuid=user_uuid).first()
+        if user:
+            serializer = self.get_serializer(data=self.request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=user)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+
+    def update(self, request, *args, **kwargs):
+        return super(SkillView,self).update(request,partial=True)
 
 class ProfileOverViewAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]

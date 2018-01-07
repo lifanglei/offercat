@@ -16,7 +16,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id',
             'user',
             'first_name',
             'last_name',
@@ -53,62 +52,71 @@ class ProfileSerializer(serializers.ModelSerializer):
 class WorkExperienceSerializer(serializers.ModelSerializer):
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:work_exp-detail', lookup_url_kwarg='pk')
     edit_url = serializers.SerializerMethodField()
+    user_uuid = serializers.SerializerMethodField()
     class Meta:
         model = WorkExperience
         fields = (
-            'id',
-            'user',
+            'uuid',
+            'user_uuid',
             'company',
             'position',
             'start_date',
             'end_date',
             'edit_url',
         )
-        read_only_fields = ('user',)
+        read_only_fields = ('user_uuid',)
 
     def get_edit_url(self,obj):
-        return reverse('profiles:work_exp-detail',kwargs={'pk': obj.id})
+        return reverse('profiles:work_exp-detail',kwargs={'uuid': obj.uuid})
+
+    def get_user_uuid(self, obj):
+        return obj.user.uuid
 
 class EducationalExperienceSerializer(serializers.ModelSerializer):
     degree = ChoicesDisplayField(choices=EducationalExperience.EDUCATION_DEGREE)
     graduate_date = serializers.DateField(format="%Y")
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:edu_exp-detail', lookup_url_kwarg='pk')
     edit_url = serializers.SerializerMethodField()
+    user_uuid = serializers.SerializerMethodField()
     class Meta:
         model = EducationalExperience
         fields = (
-            'id',
-            'user',
+            'uuid',
+            'user_uuid',
             'college',
             'major',
             'degree',
             'graduate_date',
             'edit_url',
         )
-        read_only_fields = ('user',)
+        read_only_fields = ('user_uuid',)
 
     def get_edit_url(self,obj):
-        return reverse('profiles:edu_exp-detail',kwargs={'pk': obj.id})
+        return reverse('profiles:edu_exp-detail',kwargs={'uuid': obj.uuid})
+
+    def get_user_uuid(self, obj):
+        return obj.user.uuid
 
 class SkillSerializer(serializers.ModelSerializer):
-    degree = ChoicesDisplayField(choices=Skill.SKILL_LEVEL)
-    graduate_date = serializers.DateField(format="%Y")
+    level = ChoicesDisplayField(choices=Skill.SKILL_LEVEL)
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:skills-detail', lookup_url_kwarg='pk')
     edit_url = serializers.SerializerMethodField()
+    user_uuid = serializers.SerializerMethodField()
     class Meta:
-        model = EducationalExperience
+        model = Skill
         fields = (
-            'id',
-            'user',
-            'college',
-            'major',
-            'degree',
-            'graduate_date',
+            'uuid',
+            'user_uuid',
+            'name',
+            'level',
             'edit_url',
         )
-        read_only_fields = ('user',)
+        read_only_fields = ('user_uuid',)
     def get_edit_url(self, obj):
-        return reverse('profiles:skills-detail', kwargs={'pk': obj.id})
+        return reverse('profiles:skills-detail', kwargs={'uuid': obj.uuid})
+
+    def get_user_uuid(self, obj):
+        return obj.user.uuid
 
 class ProfileOverViewSerializer(serializers.ModelSerializer):
     avatar_url = serializers.SerializerMethodField(read_only=True)
@@ -122,7 +130,7 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id',
+            'uuid',
             'user',
             'first_name',
             'last_name',
@@ -148,9 +156,6 @@ class ProfileOverViewSerializer(serializers.ModelSerializer):
 
     def get_avatar_url(self, obj):
         return self.context['request'].build_absolute_uri(obj.avatar.url)
-
-    def get_full_name(self, obj):
-        return obj.get_full_name()
 
     def get_work_exp(self,obj):
         if obj.query_work_exp().count() == 0:
