@@ -39,7 +39,8 @@ class Profile(models.Model):
     last_name = models.CharField(_(u'姓'), max_length=30,  null=True)
     edu_degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, null=True)
     service_years = models.IntegerField(_(u'工作年限'), choices=SERVICE_YEARS, null=True)
-    tel = PhoneNumberField(_(u'手机号码'), max_length=15, null=True)
+    # tel = PhoneNumberField(_(u'手机号码'), max_length=15, null=True)
+    tel = models.CharField(_(u'手机号码'), max_length=15, null=True)
     email = models.EmailField(_(u'个人邮箱'), null=True)
     address = models.CharField(_(u'现居地'), max_length=10, null=True)
     description = models.TextField(_(u'个人简介'), null=True)
@@ -73,10 +74,10 @@ class Profile(models.Model):
 
 
 class WorkExperience(models.Model):
-    company = models.CharField(_(u'公司'), max_length=200, blank=False)
-    position = models.CharField(_(u'职位'), max_length=100, blank=False)
-    start_date = models.CharField(_(u'开始日期'), max_length=10, blank=False)
-    end_date = models.CharField(_(u'结束日期'), max_length=10, blank=False)
+    company = models.CharField( max_length=200, blank=False)
+    position = models.CharField( max_length=100, blank=False)
+    start_date = models.CharField( max_length=10, blank=False)
+    end_date = models.CharField( max_length=10, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     # uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
 

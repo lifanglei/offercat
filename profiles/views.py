@@ -26,7 +26,7 @@ from .serializers import (ProfileSerializer,
                           ProfileOverViewSerializer,
                           ResumeSerializer)
 
-
+User = get_user_model()
 class ProfileView(ModelViewSet):
     queryset = Profile.objects.all()
     permission_classes = [AllowAny]
@@ -46,16 +46,73 @@ class WorkExperienceView(ModelViewSet):
     queryset = WorkExperience.objects.all()
     permission_classes = [AllowAny]
     serializer_class = WorkExperienceSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            if self.request.data.get('user_uuid', None):
+                user_uuid = self.request.data.get('user_uuid', None)
+                user = User.objects.filter(uuid=user_uuid).first()
+                return super(WorkExperienceView, self).get_queryset().filter(user=user)
+            return super(WorkExperienceView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(WorkExperienceView, self).get_queryset().filter(user = self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    
 
 class EducationalExoerienceView(ModelViewSet):
     queryset = EducationalExperience.objects.all()
     permission_classes = [AllowAny]
     serializer_class = EducationalExperienceSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return super(EducationalExoerienceView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(EducationalExoerienceView, self).get_queryset().filter(user = self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class SkillView(ModelViewSet):
     queryset = Skill.objects.all()
     permission_classes = [AllowAny]
     serializer_class = SkillSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return super(SkillView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(SkillView, self).get_queryset().filter(user = self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class ProfileOverViewAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
@@ -69,13 +126,16 @@ class ProfileOverViewAPIView(generics.ListAPIView):
         if isinstance(curr_user, AnonymousUser):
             return super(ProfileOverViewAPIView, self).get_queryset()
         elif isinstance(curr_user, get_user_model()):
-            return super(ProfileOverViewAPIView, self).get_queryset().filter(user = self.request.user)
+            # return super(ProfileOverViewAPIView, self).get_queryset().filter(user = self.request.user)
+            return Profile.objects.filter(user = self.request.user)
 
+    def list(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        obj = Profile.objects.filter(user = self.request.user).first()
+        serializer = self.get_serializer(obj, many=False)
+        return Response(serializer.data)
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     serializer = self.get_serializer(instance, context={'request': request})
-    #     return Response(serializer.data)
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])
@@ -104,6 +164,25 @@ class ResumeView(ModelViewSet):
             return super(ResumeView, self).get_queryset()
         elif isinstance(curr_user, get_user_model()):
             return super(ResumeView, self).get_queryset().filter(user= self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        try:
+            obj = Resume.objects.filter(user=self.request.user).first()
+            if obj is None:
+                rlt = {
+                        "resume_url": None,
+                        "user_uuid": None,
+                        "edit_url": None,
+                }
+                return Response(rlt)
+            else:
+                serializer = self.get_serializer(obj, many=False)
+                rlt= serializer.data
+        except:
+            return Response(None)
+        return Response(rlt)
 
     def create(self, request, *args, **kwargs):
         if isinstance(self.request.user, AnonymousUser):

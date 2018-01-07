@@ -9,8 +9,8 @@ from django.core.urlresolvers import reverse
 class ProfileSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(default= get_default_image(), use_url=True,write_only=True)
     avatar_url = serializers.SerializerMethodField(read_only=True)
-    edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
-    service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
+    # edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
+    # service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail',lookup_field='uuid',lookup_url_kwarg='uuid')
     edit_url = serializers.SerializerMethodField()
     class Meta:
@@ -64,6 +64,8 @@ class WorkExperienceSerializer(serializers.ModelSerializer):
             'end_date',
             'edit_url',
         )
+        read_only_fields = ('user',)
+
     def get_edit_url(self,obj):
         return reverse('profiles:work_exp-detail',kwargs={'pk': obj.id})
 
@@ -83,6 +85,8 @@ class EducationalExperienceSerializer(serializers.ModelSerializer):
             'graduate_date',
             'edit_url',
         )
+        read_only_fields = ('user',)
+
     def get_edit_url(self,obj):
         return reverse('profiles:edu_exp-detail',kwargs={'pk': obj.id})
 
@@ -102,7 +106,7 @@ class SkillSerializer(serializers.ModelSerializer):
             'graduate_date',
             'edit_url',
         )
-
+        read_only_fields = ('user',)
     def get_edit_url(self, obj):
         return reverse('profiles:skills-detail', kwargs={'pk': obj.id})
 
@@ -185,6 +189,7 @@ class ResumeSerializer(serializers.ModelSerializer):
                         }
 
     def get_resume_url(self, obj):
+        print(obj)
         return self.context['request'].build_absolute_uri(obj.resume.url)
 
     def get_user_uuid(self, obj):
