@@ -86,3 +86,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         pass
+
+    def query_position_uuid_through_laud(self):
+        return [item.position.uuid for item in self.laud_set.all()]

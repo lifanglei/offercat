@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 from profiles.utils import ChoicesDisplayField
 from .models import Subscription,Laud,Collection,Application,Invitation
 from notifications.models import Notification
+from hire.serializers import PositionBriefSerializer
 from profiles.utils import ChoicesDisplayField
 from django.utils.translation import ugettext_lazy as _
 
@@ -78,10 +80,22 @@ class NotificationSerializer(serializers.ModelSerializer):
 
 
 class LaudSerializer(serializers.ModelSerializer):
-
+    user_uuid = serializers.SerializerMethodField()
+    position_info = PositionBriefSerializer(read_only=True, source='position')
+    edit_url = serializers.SerializerMethodField()
     class Meta:
         model = Laud
-        fields = '__all__'
+        fields = ('user_uuid', 'position','position_info','edit_url')
+        read_only_fields = ('user_uuid',)
+        extra_kwargs = {'position': {'write_only': True}, }
+
+    def get_user_uuid(self,obj):
+        return obj.user.uuid
+
+    def get_edit_url(self,obj):
+        return reverse('functions:laud-detail', kwargs={'pk': obj.id})
+
+
 
 class CollectionSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()

@@ -3,11 +3,11 @@ from django.shortcuts import render
 from datetime import date, timedelta
 from django.utils import timezone
 from django.db.models import Count, When, Case
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -73,6 +73,35 @@ class LaudView(ModelViewSet):
     queryset = Laud.objects.all()
     permission_classes = [AllowAny]
     serializer_class = LaudSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return super(LaudView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(LaudView, self).get_queryset().filter(user = self.request.user)
+            # return Profile.objects.filter(user = self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        position_id = Position.objects.filter(uuid=request.data['position']).first().id
+        if Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
+            self.perform_destroy(Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).first())
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return self.create(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        position = Position.objects.filter(uuid=request.data['position'])
+        serializer = self.get_serializer(data={'position':position})
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class ApplicationView(ModelViewSet):
     queryset = Application.objects.all()
