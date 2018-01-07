@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    avatar = serializers.ImageField(default= get_default_image(), use_url=True,write_only=True)
+    avatar = serializers.ImageField(required=False, use_url=True,write_only=True)
     avatar_url = serializers.SerializerMethodField(read_only=True)
     # edu_degree = ChoicesDisplayField(choices=Profile.EDUCATION_DEGREE)
     # service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)

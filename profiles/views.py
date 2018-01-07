@@ -42,6 +42,7 @@ class ProfileView(ModelViewSet):
             return super(ProfileView, self).get_queryset().filter(user = self.request.user)
 
 
+
 class WorkExperienceView(ModelViewSet):
     queryset = WorkExperience.objects.all()
     permission_classes = [AllowAny]
@@ -67,6 +68,7 @@ class WorkExperienceView(ModelViewSet):
         serializer.save(user=self.request.user)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
     
 

@@ -164,6 +164,17 @@ def auto_delete_resume_on_delete(sender, instance, **kwargs):
         if os.path.isdir(os.path.dirname(instance.resume.path)):
             shutil.rmtree(os.path.dirname(instance.resume.path))
 
+@receiver(models.signals.post_delete, sender=Resume)
+def auto_delete_resume_on_put(sender, instance, **kwargs):
+    import shutil
+    """
+    Deletes file from filesystem
+    when corresponding `Profile` object is deleted.
+    """
+    if instance.resume:
+        if os.path.isdir(os.path.dirname(instance.resume.path)):
+            shutil.rmtree(os.path.dirname(instance.resume.path))
+
 @receiver(create_proflie)
 def auto_create_profile_on_user_create(sender, instance, **kwargs):
     if instance.id:
