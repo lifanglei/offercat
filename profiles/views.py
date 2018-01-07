@@ -134,9 +134,30 @@ class ProfileOverViewAPIView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         if isinstance(self.request.user, AnonymousUser):
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
-        obj = Profile.objects.filter(user = self.request.user).first()
-        serializer = self.get_serializer(obj, many=False)
-        return Response(serializer.data)
+        try:
+            obj = Resume.objects.filter(user=self.request.user).first()
+            if obj is None:
+                rlt = {
+                            "user_uuid": self.request.user.uuid,
+                            "first_name": None,
+                            "last_name": None,
+                            "edu_degree": None,
+                            "service_years": None,
+                            "tel": None,
+                            "email": None,
+                            "address": None,
+                            "description": None,
+                            "work_exp": [],
+                            "edu_exp": [],
+                            "skills": [],
+                }
+                return Response(rlt)
+            else:
+                serializer = self.get_serializer(obj, many=False)
+                rlt= serializer.data
+        except:
+            return Response(None)
+        return Response(rlt)
 
 
 # @api_view(['GET'])
