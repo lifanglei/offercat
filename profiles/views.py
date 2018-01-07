@@ -74,12 +74,14 @@ class WorkExperienceView(ModelViewSet):
             serializer.is_valid(raise_exception=True)
             serializer.save(user=user)
             headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            return self.list(request,*args, **kwargs)
+            # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
 
     def update(self, request, *args, **kwargs):
-        return super(WorkExperienceView,self).update(request,partial=True)
+        super(WorkExperienceView,self).update(request,partial=True)
+        return self.list(request, *args, **kwargs)
 
 class EducationalExoerienceView(ModelViewSet):
     queryset = EducationalExperience.objects.all()
@@ -112,13 +114,15 @@ class EducationalExoerienceView(ModelViewSet):
             serializer = self.get_serializer(data=self.request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save(user=user)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            # headers = self.get_success_headers(serializer.data)
+            return self.list(request, *args, **kwargs)
+            # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
 
     def update(self, request, *args, **kwargs):
-        return super(EducationalExoerienceView,self).update(request,partial=True)
+        super(EducationalExoerienceView,self).update(request,partial=True)
+        return self.list(request, *args, **kwargs)
 
 class SkillView(ModelViewSet):
     queryset = Skill.objects.all()
@@ -151,13 +155,15 @@ class SkillView(ModelViewSet):
             serializer = self.get_serializer(data=self.request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save(user=user)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            # headers = self.get_success_headers(serializer.data)
+            return self.list(request, *args, **kwargs)
+            # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
 
     def update(self, request, *args, **kwargs):
-        return super(SkillView,self).update(request,partial=True)
+        super(SkillView,self).update(request,partial=True)
+        return self.list(request, *args, **kwargs)
 
 class ProfileOverViewAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
