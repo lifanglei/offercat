@@ -9,7 +9,7 @@ from rest_framework import status, generics
 from rest_framework.parsers import FileUploadParser,MultiPartParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny,IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
@@ -57,11 +57,12 @@ class SkillView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = SkillSerializer
 
-class ProfileOverViewAPIView(generics.RetrieveAPIView):
+class ProfileOverViewAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = ProfileOverViewSerializer
     queryset = Profile.objects.all()
-    lookup_field = 'id'
+    pagination_class = None
+    # lookup_field = 'uuid'
 
     def get_queryset(self):
         curr_user = self.request.user
@@ -70,10 +71,11 @@ class ProfileOverViewAPIView(generics.RetrieveAPIView):
         elif isinstance(curr_user, get_user_model()):
             return super(ProfileOverViewAPIView, self).get_queryset().filter(user = self.request.user)
 
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, context={'request': request})
-        return Response(serializer.data)
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     serializer = self.get_serializer(instance, context={'request': request})
+    #     return Response(serializer.data)
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])
@@ -94,6 +96,7 @@ class ResumeView(ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = ResumeSerializer
     pagination_class = None
+    lookup_field = 'user__uuid'
 
     def get_queryset(self):
         curr_user = self.request.user

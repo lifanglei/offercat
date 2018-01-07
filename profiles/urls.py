@@ -19,7 +19,7 @@ router.register('resumes', ResumeView, base_name='resumes')
 
 urlpatterns = [
     # /profiles/,
-    url(r'^overview/(?P<id>.+)/$', ProfileOverViewAPIView.as_view(), name='profile-overview'),
+    url(r'^overview/$', ProfileOverViewAPIView.as_view(), name='profile-overview'),
     url(r'^profile/choices/$', getChoicesForProfile, name='profile-choices'),
 ]
 
