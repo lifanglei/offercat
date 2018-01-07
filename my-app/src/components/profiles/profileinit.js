@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import defaultpng from '../../img/default-profile.png';
 
+
 class Profileinit extends Component {
   constructor(props) {
     super(props);
@@ -60,11 +61,14 @@ class Profileinit extends Component {
 
 
 function mapStateToProps(state, ownProps) {
-  return {}
+  return {
+
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {}
+  return {
+  }
 }
 
 export default withRouter(connect(
