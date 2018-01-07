@@ -175,7 +175,7 @@ class ResumeView(ModelViewSet):
             if obj is None:
                 rlt = {
                         "resume_url": None,
-                        "user_uuid": None,
+                        "user_uuid": self.request.user.uuid,
                         "edit_url": None,
                 }
                 return Response(rlt)
