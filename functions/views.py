@@ -3,7 +3,7 @@ from django.shortcuts import render
 from datetime import date, timedelta
 from django.utils import timezone
 from django.db.models import Count, When, Case
-from rest_framework import status, mixins
+from rest_framework import status, mixins, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
@@ -15,6 +15,7 @@ from django_filters import rest_framework as filters
 from notifications.signals import notify
 from notifications.views import live_unread_notification_list as lunl
 from rest_framework.pagination import PageNumberPagination
+from django.utils.translation import ugettext_lazy as _
 from hire.models import Position
 from .models import (Subscription,
                      Laud,
@@ -87,20 +88,29 @@ class LaudView(ModelViewSet):
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        position_id = Position.objects.filter(uuid=request.data['position']).first().id
-        if Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
+        try:
+            position_id = Position.objects.filter(uuid=request.data['position']).first().id
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position_id and Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
             self.perform_destroy(Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).first())
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return self.create(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
-        position = Position.objects.filter(uuid=request.data['position'])
-        serializer = self.get_serializer(data={'position':position})
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=self.request.user)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        try:
+            position = Position.objects.filter(uuid=request.data['position'])
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position.exists():
+            serializer = self.get_serializer(data={'position': position})
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=self.request.user)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 
 
 class ApplicationView(ModelViewSet):
@@ -112,6 +122,39 @@ class CollectionView(ModelViewSet):
     queryset = Collection.objects.all()
     permission_classes = [AllowAny]
     serializer_class = CollectionSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return super(CollectionView, self).get_queryset()
+        elif isinstance(curr_user, get_user_model()):
+            return super(CollectionView, self).get_queryset().filter(user = self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            position_id = Position.objects.filter(uuid=request.data['position']).first().id
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position_id and Collection.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
+            self.perform_destroy(Collection.objects.filter(user_id=self.request.user.id,position_id = position_id).first())
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return self.create(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            position = Position.objects.filter(uuid=request.data['position'])
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position.exists():
+            serializer = self.get_serializer(data={'position':position})
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=self.request.user)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 
 class InvitationView(ModelViewSet):
     queryset = Invitation.objects.all()

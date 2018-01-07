@@ -99,16 +99,25 @@ class LaudSerializer(serializers.ModelSerializer):
 
 class CollectionSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
-
+    user_uuid = serializers.SerializerMethodField()
+    position_info = PositionBriefSerializer(read_only=True, source='position')
+    edit_url = serializers.SerializerMethodField()
     class Meta:
         model = Collection
-        fields = ('id', 'user', 'position','created_at')
+        fields = ('id', 'user_uuid','position','position_info','edit_url','created_at')
+        extra_kwargs = {'position': {'write_only': True}, }
 
     def get_created_at(self, obj):
         if obj.created_at.date() == timezone.now().date():
             return obj.created_at.strftime(u"今天 %H:%M")
         else:
             return obj.created_at.strftime("%Y-%m-%d")
+
+    def get_user_uuid(self,obj):
+        return obj.user.uuid
+
+    def get_edit_url(self,obj):
+        return reverse('functions:collection-detail', kwargs={'pk': obj.id})
 
 class ApplicationSerializer(serializers.ModelSerializer):
 

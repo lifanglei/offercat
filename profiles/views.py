@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from captcha.models import CaptchaStore
 from captcha.conf import settings as captcha_settings
-from rest_framework import status, generics
+from rest_framework import status, generics,exceptions
 from rest_framework.parsers import FileUploadParser,MultiPartParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -14,7 +14,6 @@ from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.settings import api_settings
 from django.utils.translation import ugettext_lazy as _
-from rest_framework import exceptions
 from rest_framework.viewsets import ModelViewSet
 
 
