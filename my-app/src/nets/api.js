@@ -5,18 +5,28 @@ import 'whatwg-fetch'
  * request:{method, requestbody(if post)}
  *
  * */
-const callApi = (endpoint, request, token) => {
-  if (request && request.body) {
+const callApi = (endpoint, request, token, header) => {
+  if (request && request.body && request.method === 'POST'){
+    request.body = JSON.stringify(request.body);
+  }
+  if(request && header && request.body && request.method === 'PUT'){
     request.body = JSON.stringify(request.body);
   }
 
-  const headers = {
+  let headers = {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
   };
 
   if(token){
     headers['Authorization'] = 'jwt '+token;
+  }
+
+  if(request.method === 'POST'){
+    headers['Content-Type'] = 'application/json';
+  }
+
+  if(header){
+    headers = Object.assign({}, headers, header);
   }
 
   const requestWithHeaders = {
@@ -93,5 +103,55 @@ export default {
     return callApi(url, {
       method: 'GET'
     },token)
+  },
+  postProfileBasic(payload,uuid,token){
+    const url = 'http://localhost:8080/profiles/profile/'+uuid+'/';
+    return callApi(url, {
+      method: 'PUT',
+      body:payload
+    },token)
+  },
+  resumeFetchBasic(token){
+    const url = 'http://localhost:8080/profiles/resumes/';
+    return callApi(url, {
+      method: 'GET',
+    },token)
+  },
+  postResume(payload,uuid,token){
+    if(uuid){
+      const url = 'http://localhost:8080/profiles/resumes/'+uuid+'/';
+      return callApi(url, {
+        method: 'PUT',
+        body:payload
+      },token)
+    }else{
+      const url = 'http://localhost:8080/profiles/resumes/';
+      return callApi(url, {
+        method: 'POST',
+        body:payload
+      },token)
+    }
+  },
+  fetchprofilework(token){
+    const url = 'http://localhost:8080/profiles/work_exp/';
+    return callApi(url, {
+      method: 'GET',
+    },token)
+  },
+  profileworkpost(payload,uuid,token){
+    if(uuid){
+      const url = 'http://localhost:8080/profiles/work_exp/'+uuid+'/';
+      console.log(payload);
+      return callApi(url, {
+        method: 'PUT',
+        body:payload
+      },token, {'Content-Type':'application/json'})
+    }else{
+      const url = 'http://localhost:8080/profiles/work_exp/';
+      return callApi(url, {
+        method: 'POST',
+        body:payload
+      },token)
+    }
   }
 }

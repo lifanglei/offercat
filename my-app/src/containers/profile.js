@@ -5,6 +5,10 @@ import {withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom'
 import Profileinit from '../components/profiles/profileinit';
 import Profilebasic from '../components/profiles/profilebasic';
+import Profilework from '../components/profiles/profilework';
+import {getResumeBasicRequest,postResumeBasicRequest,resumeRefresh} from '../actions/profileAction';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Welcome extends React.Component {
   render() {
@@ -19,7 +23,39 @@ class profileContainer extends Component {
 
   componentDidMount() {
     console.log('profile-container did mount');
+    this.props.fetchResume();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errorcode === 403){
+      this.authModal.classList.add('in');
+      this.authModal.style.display = 'block';
+    }
+    if(nextProps.resume_code === 200){
+      NotificationManager.success('简历上传成功', '消息通知',1500);
+      this.props.refreshResume();
+    }
+  }
+  attachChange =()=>{
+    if(this.attachinput.files && this.attachinput.files[0]){
+      let formbody = new FormData();
+      formbody.append('resume', this.attachinput.files[0]);
+      if(this.props.resume){
+        this.props.postResume(formbody,this.props.resume_uuid);
+      }else{
+        this.props.postResume(formbody);
+      }
+    }
+  };
+
+  modelClick = ()=>{
+    this.authModal.classList.remove('in');
+    this.authModal.style.display = 'none';
+    this.props.history.push({
+      pathname: '/login',
+      state: { from: this.props.location }
+    });
+  };
 
   render() {
     console.log('profile-container will ');
@@ -29,7 +65,7 @@ class profileContainer extends Component {
           <div className="col-sm-8">
             <Route path={`${match.url}/profileinit`} component={Profileinit}/>
             <Route path={`${match.url}/profilebasic`} component={Profilebasic}/>
-            <Route path={`${match.url}/profilework`} component={Welcome}/>
+            <Route path={`${match.url}/profilework`} component={Profilework}/>
             <Route path={`${match.url}/profileedu`} component={Welcome}/>
             <Route path={`${match.url}/profileskill`} component={Welcome}/>
           </div>
@@ -61,22 +97,60 @@ class profileContainer extends Component {
                   </div>
                 </div>
               </div>
-              <div className="attach" style={{cursor: 'pointer'}}>
+              <div className="attach" style={{cursor: 'pointer'}} onClick={()=>{this.attachinput.click();}}>
                 <i className="fa fa-file-pdf-o"/> 我要附件上传简历
+              </div>
+              <input type='file' onChange={this.attachChange} ref={(attachinput)=>{this.attachinput=attachinput}} style={{display:'none'}}/>
+            </div>
+          </div>
+
+          <NotificationContainer/>
+
+          <div className="modal modal-warning" ref={(modal)=>{this.authModal = modal}} tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div className="modal-dialog animated zoomIn animated-3x" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.modelClick}><span aria-hidden="true">
+                    <i className="zmdi zmdi-close"></i></span></button>
+                  <h3 className="modal-title" id="myModalLabel">Offer猫</h3>
+                </div>
+                <div className="modal-body">
+                  用户没有登录或者登录超时，请重新登录
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-raised btn-default" data-dismiss="modal" onClick={this.modelClick}>确认</button>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  return {}
+  const {errorcode, resume, resume_uuid,resume_code} = state.profileinit;
+  return {
+    errorcode,
+    resume,
+    resume_uuid,
+    resume_code
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {}
+  return {
+    fetchResume() {
+      dispatch(getResumeBasicRequest());
+    },
+    postResume(formbody,resume_uuid) {
+      dispatch(postResumeBasicRequest(formbody,resume_uuid));
+    },
+    refreshResume(){
+      dispatch(resumeRefresh())
+    }
+  }
 }
 
 export default withRouter(connect(

@@ -7,6 +7,7 @@ import positionReducer from './positionReducer';
 import companyDetailReducer from './companyDetailReducer';
 import positionDetailReducer from './positionDetailReducer';
 import profileinitReducer from './profileinitReducer';
+import profileWorkReducer from './profileworkreducer';
 
 const rootReducer = combineReducers({
   captcha:captchaReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   positionList:positionReducer,
   companyDetail:companyDetailReducer,
   positionDetail:positionDetailReducer,
-  profileinit:profileinitReducer
+  profileinit:profileinitReducer,
+  profilework:profileWorkReducer
 });
 
 export default rootReducer;
