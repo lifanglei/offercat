@@ -49,7 +49,7 @@ class PositionView(ModelViewSet):
     search_fields = ('^name', '^department','^company__name','=company__abbreviation')
     filter_fields = ('category',)
     lookup_field = 'uuid'
-
+    pagination_class = None
     def get_queryset(self):
         if self.request.query_params:
             if "ordering" in self.request.query_params and self.request.query_params["ordering"] == "hotness":
