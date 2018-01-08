@@ -40,7 +40,7 @@ class Application(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
-    status = models.IntegerField(choices=STATUS, blank=False)
+    status = models.IntegerField(choices=STATUS, blank=False, default=STATUS_SUCCESS)
     created_at = models.DateTimeField(blank=False, default=timezone.now)
     last_update = models.DateTimeField(blank=False, default=timezone.now)
 

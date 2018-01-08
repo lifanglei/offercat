@@ -156,10 +156,47 @@ class CollectionSerializer(serializers.ModelSerializer):
         return reverse('functions:collection-detail', kwargs={'pk': obj.id})
 
 class ApplicationSerializer(serializers.ModelSerializer):
-
+    created_at = serializers.SerializerMethodField()
+    last_update = serializers.SerializerMethodField()
+    position_info = PositionBriefSerializer(read_only=True, source='position')
+    status = ChoicesDisplayField(choices=Application.STATUS,default=Application.STATUS_SUCCESS,read_only=True)
+    edit_url = serializers.SerializerMethodField()
+    user_uuid = serializers.SerializerMethodField()
     class Meta:
         model = Application
-        fields = '__all__'
+        fields = (
+            'id',
+            'position',
+            'position_info',
+            'status',
+            'created_at',
+            'last_update',
+            'user_uuid',
+            'edit_url',
+        )
+        read_only_fields = ('user_uuid','status')
+        extra_kwargs = {'position': {'write_only': True}, }
+
+    def get_created_at(self, obj):
+        if obj.created_at.date() == timezone.now().date():
+            return obj.created_at.strftime(u"今天 %H:%M")
+        else:
+            return obj.created_at.strftime("%Y-%m-%d")
+
+    def get_last_update(self, obj):
+        if obj.last_update.date() == timezone.now().date():
+            return obj.last_update.strftime(u"今天 %H:%M")
+        else:
+            return obj.last_update.strftime("%Y-%m-%d")
+
+    def get_edit_url(self, obj):
+        return reverse('functions:application-detail', kwargs={'pk': obj.id})
+
+    def get_user_uuid(self, obj):
+        if obj.user:
+            return obj.user.uuid
+        else:
+            return None
 
 class InvitationSerializer(serializers.ModelSerializer):
 

@@ -53,7 +53,6 @@ class SubscriptionView(ModelViewSet):
     def create(self, request, *args, **kwargs):
         if isinstance(self.request.user, AnonymousUser):
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
-        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=self.request.user)
@@ -62,14 +61,23 @@ class SubscriptionView(ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        if instance.user == self.request.user:
+
+        if instance.user is self.request.user:
             raise exceptions.PermissionDenied(_(u"权限不够！"))
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
-        super(SubscriptionView,self).update(request,partial=True)
-        return self.list(request, *args, **kwargs)
+
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+        return Response(serializer.data)
 
 # class MessageView(ModelViewSet):
 #     queryset = Message.objects.all()
@@ -139,6 +147,30 @@ class ApplicationView(ModelViewSet):
     queryset = Application.objects.all()
     permission_classes = [AllowAny]
     serializer_class = ApplicationSerializer
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return []
+        elif isinstance(curr_user, get_user_model()):
+            return super(ApplicationView, self).get_queryset().filter(user = self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            position = Position.objects.filter(uuid=request.data['position'])
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position.exists():
+            if Application.objects.filter(user=self.request.user,position= position.first()).exists():
+                raise exceptions.NotAcceptable(_(u"已经投递"))
+            else:
+                serializer = self.get_serializer(data={'position': position})
+                serializer.is_valid(raise_exception=True)
+                serializer.save(user=self.request.user)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 
 class CollectionView(ModelViewSet):
     queryset = Collection.objects.all()
