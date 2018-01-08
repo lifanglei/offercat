@@ -22,6 +22,9 @@ class Collection(models.Model):
     class Meta:
         verbose_name = _('collection')
         verbose_name_plural = _('collections')
+        indexes = [
+            models.Index(fields=['user', 'position']),
+        ]
 
     def __str__(self):
         return self.id
@@ -99,7 +102,7 @@ class Subscription(models.Model):
     salary = ArrayField(base_field=models.IntegerField(choices=Position.SALARY_LEVEL,blank=True),default={},size=3)
     created_at = models.DateTimeField(blank=False, default=timezone.now)
     last_update = models.DateTimeField(blank=False, default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
     class Meta:
         verbose_name = _('subscription')

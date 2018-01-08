@@ -6,6 +6,7 @@ from .views import (SubscriptionView,
                     CollectionView,
                     InvitationView,
                     ApplicationView,
+                    SubscribedPositionView,
                     live_unread_notification_list,)
 from rest_framework.routers import DefaultRouter
 
@@ -21,6 +22,7 @@ router.register('application', ApplicationView, base_name='application')
 urlpatterns = [
     # /functions/,
     url(r'^notification/api/unread_list/$', live_unread_notification_list, name='notification-api-unread_list'),
+    url(r'^subscription/api/subscribed_pos/$',SubscribedPositionView.as_view(), name='subscription-api-pos_list' )
 ]
 
 urlpatterns += router.urls

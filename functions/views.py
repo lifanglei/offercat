@@ -7,7 +7,7 @@ from rest_framework import status, mixins, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView,ListAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -25,6 +25,7 @@ from .models import (Subscription,
 
 from django.contrib.auth import get_user_model
 from notifications.models import Notification
+from hire.serializers import PositionBriefSerializer
 from .serializers import (SubscriptionSerializer,
                           LaudSerializer,
                           NotificationSerializer,
@@ -50,22 +51,26 @@ class SubscriptionView(ModelViewSet):
             # return Profile.objects.filter(user = self.request.user)
 
     def create(self, request, *args, **kwargs):
-        try:
-            position = Position.objects.filter(uuid=request.data['position'])
-        except :
-            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
-        if position.exists():
-            if Collection.objects.filter(user_id=self.request.user.id,position_id = position.first().id).exists():
-                self.perform_destroy(Collection.objects.filter(user_id=self.request.user.id, position_id=position.first().id).first())
-                return self.list(request, *args, **kwargs)
-            else:
-                serializer = self.get_serializer(data={'position':position})
-                serializer.is_valid(raise_exception=True)
-                serializer.save(user=self.request.user)
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        else:
-            return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        print(request.data)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=self.request.user)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.user == self.request.user:
+            raise exceptions.PermissionDenied(_(u"权限不够！"))
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        super(SubscriptionView,self).update(request,partial=True)
+        return self.list(request, *args, **kwargs)
+
 # class MessageView(ModelViewSet):
 #     queryset = Message.objects.all()
 #     permission_classes = [AllowAny]
@@ -117,8 +122,8 @@ class LaudView(ModelViewSet,):
         except :
             raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
         if position.exists():
-            if Laud.objects.filter(user_id=self.request.user.id,position_id = position.first().id).exists():
-                self.perform_destroy(Laud.objects.filter(user_id=self.request.user.id, position_id=position.first().id).first())
+            if Laud.objects.filter(user=self.request.user,position= position.first()).exists():
+                self.perform_destroy(Laud.objects.filter(user=self.request.user, position=position.first()).first())
                 return self.list(request, *args, **kwargs)
             else:
                 serializer = self.get_serializer(data={'position': position})
@@ -171,6 +176,33 @@ class InvitationView(ModelViewSet):
     queryset = Invitation.objects.all()
     permission_classes = [AllowAny]
     serializer_class = InvitationSerializer
+
+class SubscribedPositionView(ListAPIView):
+    queryset = Position.objects.all().order_by('-id')
+    permission_classes = [AllowAny]
+    serializer_class = PositionBriefSerializer
+
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return []
+        elif isinstance(curr_user, get_user_model()):
+            if curr_user.subscription_set.exists():
+                subscription_set = curr_user.subscription_set.all()
+                total_rlt = set()
+                for spn in subscription_set:
+                    if len(spn.category)>0 :
+                        rlt = Position.objects.filter(category__in=spn.category)
+                    if len(spn.salary)>0:
+                        rlt = rlt.filter(salary__in=spn.salary)
+                    if len(spn.industry)>0:
+                        rlt = rlt.filter(company__industry__in=spn.industry)
+                    for pos in rlt.all():
+                        total_rlt.add(pos)
+                return list(total_rlt)
+            else:
+                return []
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])

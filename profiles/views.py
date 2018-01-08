@@ -46,6 +46,8 @@ class ProfileView(ModelViewSet):
             raise exceptions.NotAuthenticated(_(u"请先登录！"))
         serializer.save(user = self.request.user)
 
+    def update(self, request, *args, **kwargs):
+        super(ProfileView, self).update(request, partial=True)
 
 class WorkExperienceView(ModelViewSet):
     queryset = WorkExperience.objects.all()

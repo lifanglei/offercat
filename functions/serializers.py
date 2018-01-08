@@ -10,12 +10,13 @@ from profiles.utils import ChoicesDisplayField
 from django.utils.translation import ugettext_lazy as _
 
 class SubscriptionSerializer(serializers.ModelSerializer):
-    salary = ChoicesDisplayField(choices=Position.SALARY_LEVEL)
-    category = ChoicesDisplayField(choices=Position.CATEGORY)
-    industry = ChoicesDisplayField(choices=Company.INDUSTRY)
+    salary = serializers.ListField(child=ChoicesDisplayField(choices=Position.SALARY_LEVEL), max_length=5)
+    category = serializers.ListField(child=ChoicesDisplayField(choices=Position.CATEGORY), max_length=5)
+    industry = serializers.ListField(child=ChoicesDisplayField(choices=Company.INDUSTRY), max_length=5)
     created_at = serializers.SerializerMethodField()
     last_update = serializers.SerializerMethodField()
-
+    user = serializers.SerializerMethodField()
+    edit_url = serializers.SerializerMethodField()
     class Meta:
         model = Subscription
         fields = (
@@ -26,6 +27,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
             'created_at',
             'last_update',
             'user',
+            'edit_url',
         )
         read_only_fields = ('user',)
         extra_kwargs = {}
@@ -41,6 +43,13 @@ class SubscriptionSerializer(serializers.ModelSerializer):
             return obj.last_update.strftime(u"今天 %H:%M")
         else:
             return obj.last_update.strftime("%Y-%m-%d")
+
+    def get_user(self,obj):
+        user = obj.user
+        return user.uuid
+
+    def get_edit_url(self,obj):
+        return reverse('functions:subscription-detail', kwargs={'pk': obj.id})
 # class MessageSerializer(serializers.ModelSerializer):
 #
 #     class Meta:
