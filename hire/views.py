@@ -42,7 +42,6 @@ class CompanyView(ModelViewSet):
         return Response(serializer.data)
 
 class PositionView(ModelViewSet):
-
     queryset = Position.objects.all().order_by('-id')
     permission_classes = [AllowAny]
     serializer_class = PositionSerializer
