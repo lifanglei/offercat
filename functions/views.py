@@ -39,7 +39,33 @@ class SubscriptionView(ModelViewSet):
     queryset = Subscription.objects.all()
     permission_classes = [AllowAny]
     serializer_class = SubscriptionSerializer
+    pagination_class = None
 
+    def get_queryset(self):
+        curr_user = self.request.user
+        if isinstance(curr_user, AnonymousUser):
+            return []
+        elif isinstance(curr_user, get_user_model()):
+            return super(SubscriptionView, self).get_queryset().filter(user = self.request.user)
+            # return Profile.objects.filter(user = self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            position = Position.objects.filter(uuid=request.data['position'])
+        except :
+            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
+        if position.exists():
+            if Collection.objects.filter(user_id=self.request.user.id,position_id = position.first().id).exists():
+                self.perform_destroy(Collection.objects.filter(user_id=self.request.user.id, position_id=position.first().id).first())
+                return self.list(request, *args, **kwargs)
+            else:
+                serializer = self.get_serializer(data={'position':position})
+                serializer.is_valid(raise_exception=True)
+                serializer.save(user=self.request.user)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 # class MessageView(ModelViewSet):
 #     queryset = Message.objects.all()
 #     permission_classes = [AllowAny]

@@ -26,6 +26,7 @@ from .serializers import (ProfileSerializer,
                           ResumeSerializer)
 
 User = get_user_model()
+
 class ProfileView(ModelViewSet):
     queryset = Profile.objects.all()
     permission_classes = [AllowAny]
@@ -40,6 +41,10 @@ class ProfileView(ModelViewSet):
         elif isinstance(curr_user, get_user_model()):
             return super(ProfileView, self).get_queryset().filter(user = self.request.user)
 
+    def perform_create(self, serializer):
+        if isinstance(self.request.user, AnonymousUser):
+            raise exceptions.NotAuthenticated(_(u"请先登录！"))
+        serializer.save(user = self.request.user)
 
 
 class WorkExperienceView(ModelViewSet):

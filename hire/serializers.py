@@ -213,7 +213,11 @@ class PositionSerializer(serializers.ModelSerializer):
             return curr_user in obj.lauds.all()
 
     def get_post_by(self,obj):
-        return obj.post_by.uuid
+        if obj.post_by:
+            return obj.post_by.uuid
+        else:
+            return None
+        
     def _current_user(self, obj):
         curr_user = self.context['request'].user
         if isinstance(curr_user, AnonymousUser):

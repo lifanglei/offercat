@@ -3,17 +3,44 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 from profiles.utils import ChoicesDisplayField
 from .models import Subscription,Laud,Collection,Application,Invitation
+from hire.models import Position, Company
 from notifications.models import Notification
 from hire.serializers import PositionBriefSerializer
 from profiles.utils import ChoicesDisplayField
 from django.utils.translation import ugettext_lazy as _
 
 class SubscriptionSerializer(serializers.ModelSerializer):
+    salary = ChoicesDisplayField(choices=Position.SALARY_LEVEL)
+    category = ChoicesDisplayField(choices=Position.CATEGORY)
+    industry = ChoicesDisplayField(choices=Company.INDUSTRY)
+    created_at = serializers.SerializerMethodField()
+    last_update = serializers.SerializerMethodField()
 
     class Meta:
         model = Subscription
-        fields = '__all__'
+        fields = (
+            'id',
+            'category',
+            'industry',
+            'salary',
+            'created_at',
+            'last_update',
+            'user',
+        )
+        read_only_fields = ('user',)
+        extra_kwargs = {}
 
+    def get_created_at(self,obj):
+        if obj.created_at.date() == timezone.now().date():
+            return obj.created_at.strftime(u"今天 %H:%M")
+        else:
+            return obj.created_at.strftime("%Y-%m-%d")
+
+    def get_last_update(self,obj):
+        if obj.last_update.date() == timezone.now().date():
+            return obj.last_update.strftime(u"今天 %H:%M")
+        else:
+            return obj.last_update.strftime("%Y-%m-%d")
 # class MessageSerializer(serializers.ModelSerializer):
 #
 #     class Meta:
