@@ -4,6 +4,7 @@ from rest_framework import serializers
 from django.utils import timezone
 from profiles.utils import ChoicesDisplayField
 from .models import Company, Position
+from functions.models import Laud,Collection
 from django.contrib.auth.models import AnonymousUser
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -146,6 +147,7 @@ class PositionSerializer(serializers.ModelSerializer):
     laud_count = serializers.SerializerMethodField()
     is_lauded = serializers.SerializerMethodField()
     serializers.CurrentUserDefault()
+    post_by = serializers.SerializerMethodField()
     class Meta:
         model = Position
         fields = (
@@ -199,6 +201,7 @@ class PositionSerializer(serializers.ModelSerializer):
         if isinstance(curr_user, AnonymousUser):
             return False
         elif isinstance(curr_user, get_user_model()):
+            return Collection.objects.get(user_id=curr_user.id,position_id = obj.id).exists()
             return curr_user in obj.collections.all()
 
     def get_is_lauded(self, obj):
@@ -206,8 +209,11 @@ class PositionSerializer(serializers.ModelSerializer):
         if isinstance(curr_user, AnonymousUser):
             return False
         elif isinstance(curr_user, get_user_model()):
+            return Laud.objects.get(user_id=curr_user.id,position_id = obj.id).exists()
             return curr_user in obj.lauds.all()
 
+    def get_post_by(self,obj):
+        return obj.post_by.uuid
     def _current_user(self, obj):
         curr_user = self.context['request'].user
         if isinstance(curr_user, AnonymousUser):

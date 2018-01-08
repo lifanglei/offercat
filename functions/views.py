@@ -7,7 +7,7 @@ from rest_framework import status, mixins, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -70,7 +70,7 @@ class NotificationView(ModelViewSet):
             return self.queryset
 
 
-class LaudView(ModelViewSet):
+class LaudView(ModelViewSet,):
     queryset = Laud.objects.all()
     permission_classes = [AllowAny]
     serializer_class = LaudSerializer
@@ -84,19 +84,6 @@ class LaudView(ModelViewSet):
             return super(LaudView, self).get_queryset().filter(user = self.request.user)
             # return Profile.objects.filter(user = self.request.user)
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        try:
-            position_id = Position.objects.filter(uuid=request.data['position']).first().id
-        except :
-            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
-        if position_id and Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
-            self.perform_destroy(Laud.objects.filter(user_id=self.request.user.id,position_id = position_id).first())
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return self.create(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         try:
@@ -104,11 +91,15 @@ class LaudView(ModelViewSet):
         except :
             raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
         if position.exists():
-            serializer = self.get_serializer(data={'position': position})
-            serializer.is_valid(raise_exception=True)
-            serializer.save(user=self.request.user)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            if Laud.objects.filter(user_id=self.request.user.id,position_id = position.first().id).exists():
+                self.perform_destroy(Laud.objects.filter(user_id=self.request.user.id, position_id=position.first().id).first())
+                return self.list(request, *args, **kwargs)
+            else:
+                serializer = self.get_serializer(data={'position': position})
+                serializer.is_valid(raise_exception=True)
+                serializer.save(user=self.request.user)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 
@@ -131,16 +122,6 @@ class CollectionView(ModelViewSet):
         elif isinstance(curr_user, get_user_model()):
             return super(CollectionView, self).get_queryset().filter(user = self.request.user)
 
-    def post(self, request, *args, **kwargs):
-        try:
-            position_id = Position.objects.filter(uuid=request.data['position']).first().id
-        except :
-            raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
-        if position_id and Collection.objects.filter(user_id=self.request.user.id,position_id = position_id).exists():
-            self.perform_destroy(Collection.objects.filter(user_id=self.request.user.id,position_id = position_id).first())
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return self.create(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         try:
@@ -148,11 +129,15 @@ class CollectionView(ModelViewSet):
         except :
             raise exceptions.NotAcceptable(_(u"position uuid is not validated!"))
         if position.exists():
-            serializer = self.get_serializer(data={'position':position})
-            serializer.is_valid(raise_exception=True)
-            serializer.save(user=self.request.user)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            if Collection.objects.filter(user_id=self.request.user.id,position_id = position.first().id).exists():
+                self.perform_destroy(Collection.objects.filter(user_id=self.request.user.id, position_id=position.first().id).first())
+                return self.list(request, *args, **kwargs)
+            else:
+                serializer = self.get_serializer(data={'position':position})
+                serializer.is_valid(raise_exception=True)
+                serializer.save(user=self.request.user)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             return Response(_(u"职位不存在！"), status=status.HTTP_400_BAD_REQUEST, )
 
