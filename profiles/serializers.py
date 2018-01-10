@@ -74,7 +74,7 @@ class WorkExperienceSerializer(serializers.ModelSerializer):
 
 class EducationalExperienceSerializer(serializers.ModelSerializer):
     degree = ChoicesDisplayField(choices=EducationalExperience.EDUCATION_DEGREE)
-    graduate_date = serializers.DateField(format="%Y")
+    graduate_date = serializers.DateField(format="%Y", input_formats=["%Y"])
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:edu_exp-detail', lookup_url_kwarg='pk')
     edit_url = serializers.SerializerMethodField()
     user_uuid = serializers.SerializerMethodField()
