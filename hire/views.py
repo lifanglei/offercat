@@ -24,7 +24,7 @@ class CompanyView(ModelViewSet):
     filter_fields = ('industry', 'headquarters')
     search_fields = ('^name', '^abbreviation')
     lookup_field = 'uuid'
-
+    pagination_class = None
     def get_queryset(self):
 
         if self.request.query_params.get('ordering', None):
@@ -52,16 +52,23 @@ class PositionView(ModelViewSet):
     pagination_class = None
     def get_queryset(self):
         if self.request.query_params:
+            rlt = Position.objects.all()
             if "ordering" in self.request.query_params and self.request.query_params["ordering"] == "hotness":
-                return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
-            elif "category" in self.request.query_params:
+                print("CALL1")
+                rlt = rlt.annotate(hotness=Count('collection')).order_by('-hotness')
+                # return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
+            if "category" in self.request.query_params:
+                print("CALL2")
                 if self.request.query_params['category'] in [str(key) for key,value in Position.CATEGORY]:
-                    return Position.objects.filter(category=self.request.query_params['category'])
+                    rlt = rlt.filter(category=self.request.query_params['category'])
+                    # return Position.objects.filter(category=self.request.query_params['category'])
                 elif self.request.query_params['category'] in [value for key,value in Position.CATEGORY]:
                     val = [key for key, value in Position.CATEGORY if value == self.request.query_params['category']][0]
-                    return Position.objects.filter(category=val)
+                    rlt = rlt.filter(category=val)
+                    # return Position.objects.filter(category=val)
                 else:
                     return super(PositionView, self).get_queryset().none()
+            return rlt
         return super(PositionView, self).get_queryset()
 
     def create(self, request, *args, **kwargs):
