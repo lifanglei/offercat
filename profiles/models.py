@@ -5,8 +5,8 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
-from .utils import user_directory_path, resume_directory_path, validate_resume_extension, get_default_image
-from accounts.utils import create_proflie
+from .utils import user_directory_path, resume_directory_path, validate_hr_doc_extension,validate_resume_extension, get_default_image
+from accounts.utils import create_proflie, create_hrproflie
 
 from django.core.signals import request_finished
 
@@ -71,6 +71,24 @@ class Profile(models.Model):
         return Skill.objects.filter(user=self.user)
 
 
+class HRProfile(models.Model):
+    STATUS_NOT_CERTIFICATED = 1
+    STATUS_IN_PROGRESS = 2
+    STATUS_CERTIFICATED = 3
+    STATUS = [(STATUS_NOT_CERTIFICATED, u"未认证"), (STATUS_IN_PROGRESS, u"认证中"), (STATUS_CERTIFICATED, u"已认证"),
+              ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE, )
+    name = models.CharField(_(u'名'), max_length=30,  null=True)
+    company = models.CharField(_(u'所在公司'), max_length=50,  null=True)
+    position = models.CharField(_(u'现任职位'), max_length=30,  null=True)
+    is_certificated = models.BooleanField(_(u'已认证'), default=False)
+    status = models.IntegerField(_(u'认证状态'), choices=STATUS, default=STATUS_NOT_CERTIFICATED)
+    certificated_doc = models.FileField(upload_to=resume_directory_path, validators=[validate_hr_doc_extension], null=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
+    class Meta:
+        db_table = 'profiles_hr'
+        verbose_name = _('profile for hr')
+        verbose_name_plural = _('profiles for hrs')
 
 
 class WorkExperience(models.Model):
@@ -99,7 +117,7 @@ class EducationalExperience(models.Model):
     college = models.CharField(_(u'学校'), max_length=200, blank=False)
     major = models.CharField(_(u'专业'), max_length=100, blank=False)
     degree = models.IntegerField(_(u'学历'), choices=EDUCATION_DEGREE, blank=False)
-    graduate_date = models.DateField(_(u'毕业年份'),blank=False)
+    graduate_date = models.DateField(_(u'毕业年份'),blank=False,)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True, )
 
@@ -179,4 +197,14 @@ def auto_delete_resume_on_put(sender, instance, **kwargs):
 def auto_create_profile_on_user_create(sender, instance, **kwargs):
     if instance.id:
         obj = Profile(user=instance, avatar=get_default_image())
+        obj.save()
+
+@receiver(create_hrproflie)
+def auto_create_hrprofile_on_user_create(sender, instance, **kwargs):
+    name = kwargs['name']
+    company = kwargs['company']
+    position = kwargs['position']
+
+    if instance.id:
+        obj = HRProfile(user=instance, company=company, position=position, name=name, )
         obj.save()

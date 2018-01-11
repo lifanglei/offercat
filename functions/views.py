@@ -118,7 +118,7 @@ class LaudView(ModelViewSet,):
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
-            return super(LaudView, self).get_queryset()
+            return []
         elif isinstance(curr_user, get_user_model()):
             return super(LaudView, self).get_queryset().filter(user = self.request.user)
             # return Profile.objects.filter(user = self.request.user)
@@ -147,7 +147,7 @@ class ApplicationView(ModelViewSet):
     queryset = Application.objects.all()
     permission_classes = [AllowAny]
     serializer_class = ApplicationSerializer
-
+    pagination_class = None
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
@@ -181,7 +181,7 @@ class CollectionView(ModelViewSet):
     def get_queryset(self):
         curr_user = self.request.user
         if isinstance(curr_user, AnonymousUser):
-            return super(CollectionView, self).get_queryset()
+            return []
         elif isinstance(curr_user, get_user_model()):
             return super(CollectionView, self).get_queryset().filter(user = self.request.user)
 

@@ -71,6 +71,13 @@ def validate_resume_extension(value):
     if not ext.lower() in valid_extensions:
         raise ValidationError(u'文件格式不支持！')
 
+def validate_hr_doc_extension(value):
+    import os
+    from django.core.exceptions import ValidationError
+    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    valid_extensions = ['.pdf', '.jpg', '.png',]
+    if not ext.lower() in valid_extensions:
+        raise ValidationError(u'文件格式不支持！')
 
 class ChoicesDisplayField(serializers.ChoiceField):
     def to_representation(self, value):
