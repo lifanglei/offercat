@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}详细信息{% endblock %}
+
+{% block javascript %}
+    <script>
+        $( document ).ready(function() {
+        var location =  window.location;
+        var new_href = location.protocol + '//' + location.host+'/media/'+ $('#pdf-link').attr("href");
+        $('#pdf-link').attr("href", new_href);
+        });
+    </script>
+
+{% endblock %}
+
+
+{% block content %}
+  <h2>详细信息</h2>
+    {% if messages %}
+        <div class="span12">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if application %}
+        <ul>
+            <li>申请人： {{ application.user.profile.last_name}} {{application.user.profile.first_name }}</li>
+            <li>申请职位： {{ application.position}}</li>
+        </ul>
+        <h3>申请人资料</h3>
+        <ul>
+            <li>学历： {{ application.user.profile.get_edu_degree_display}}</li>
+            <li>工作经验： {{ application.user.profile.get_service_years_display}}</li>
+            <li>个人电话： {{ application.user.profile.tel}}</li>
+            <li>邮箱： {{ application.user.profile.email}}</li>
+            <li>现居地： {{ application.user.profile.address}}</li>
+            <li>个人简介： {{ application.user.profile.description}}</li>
+        </ul>
+        <h3>教育经历</h3>
+        {% if edu_exps %}
+            {% for edu_exp in edu_exps%}
+            <ul>
+                <li>学校： {{ edu_exp.college }}</li>
+                <li>专业： {{ edu_exp.major }}</li>
+                <li>毕业时间： {{ edu_exp.graduate_date }}</li>
+                <li>学位： {{ edu_exp.get_degree_display }}</li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        <h3>工作经历</h3>
+        {% if work_exps %}
+            {% for work_exp in work_exps%}
+            <ul>
+                <li>任职公司： {{ work_exp.company }}</li>
+                <li>任职学位： {{ work_exp.position }}</li>
+                <li>开始时间： {{ work_exp.start_date }}</li>
+                <li>结束时间： {{ work_exp.end_date }}</li>
+
+            </ul>
+            {% endfor %}
+        {% endif %}
+        <h3>技能</h3>
+        {% if skills %}
+            {% for skill in skills%}
+            <ul>
+                <li>技能： {{ skill.name }}</li>
+                <li>程度： {{ skill.get_level_display }}</li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        <h3>简历</h3>
+        <ul>
+            {% if resumes %}
+            <ul>
+            {% for resume in resumes%}
+                <li>
+                简历:
+                <a href="{{ resume.resume }}" id="pdf-link" class="btn btn-outline-info btn-sm" role="button" value="查看">查看</a>
+                </li>
+            {% endfor %}
+            </ul>
+
+        {% endif %}
+        </ul>
+    {% endif %}
+        <li>
+            <a href="/cms/dashboard/" class="btn btn-outline-info btn-sm" role="button" value="返回">返回</a>
+        </li>
+
+{% endblock %}
