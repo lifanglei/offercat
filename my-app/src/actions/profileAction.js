@@ -80,6 +80,15 @@ export const getResumeBasicSuccess = (payload) => {
   }
 };
 
+export const getResumeBasicFailure = (payload) => {
+  return {
+    type: types.PROFILE_RESUME_FAILURE,
+    payload:{
+      ...payload
+    }
+  }
+};
+
 export const postResumeBasicSuccess = (payload) => {
   return {
     type: types.PROFILE_RESUME_POST_SUCCESS,

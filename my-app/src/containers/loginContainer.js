@@ -44,7 +44,7 @@ class loginContainer extends Component {
       if(this.props.location.state && this.props.location.state.from.pathname){
         nextProps.history.push(this.props.location.state.from.pathname);
       }else{
-        nextProps.history.push('/home/app');
+        nextProps.history.push('/home/welcome');
       }
     }else if(!login_success && error_message){
       this.setState({danger: true, errorText:error_message});

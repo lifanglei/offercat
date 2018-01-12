@@ -2,7 +2,9 @@ import { all, put, takeLatest, call } from 'redux-saga/effects';
 import types from '../actions/actionType'
 import {ServerSideError, fetchProfileBasicSuccess,fetchProfileBasicFailure ,
   postProfileBasicSuccess,postProfileBasicFailure,
-  getResumeBasicSuccess,postResumeBasicSuccess,
+  getResumeBasicSuccess,
+  getResumeBasicFailure,
+  postResumeBasicSuccess,
    profileWorkSuccess,profileWorkFailure,
   profileWorkPostSuccess,
   profileEduSuccess,profileEduFailure,
@@ -45,6 +47,8 @@ export function*  resumeFetchBasicTask(action){
     const {status,result} = yield call(Api.resumeFetchBasic, token);
     if(status){
       yield put(getResumeBasicSuccess(result));
+    }else{
+      yield put(getResumeBasicFailure(result));
     }
   }catch(err){
     yield put(ServerSideError({serverError:500}));

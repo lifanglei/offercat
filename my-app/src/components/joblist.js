@@ -94,7 +94,7 @@ class JobCard extends React.Component {
                 <div className="col-sm-9">
                   <div className="card-block" style={{paddingLeft: '50px'}}>
                     <h4 className="color-info">岗位职责</h4>
-                    <p>{position.detail_req}</p>
+                    <p dangerouslySetInnerHTML={{ __html: position.detail_req}}>{}</p>
                   </div>
                 </div>
                 <div className ="col-sm-3">
