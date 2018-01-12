@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}创建公司{% endblock %}
+
+{% block content %}
+  <h2>创建公司</h2>
+    {% if messages %}
+        <div class="span12">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+  <form enctype="multipart/form-data" action="/cms/company_create/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">创建</button>
+  </form>
+{% endblock %}
+

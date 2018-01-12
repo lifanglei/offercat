@@ -208,4 +208,4 @@ class ResumeSerializer(serializers.ModelSerializer):
         return obj.user.uuid
 
     def get_edit_url(self,obj):
-        return reverse('profiles:resumes-detail',kwargs={'user__uuid': obj.user.uuid})
+        return reverse('profiles:resumes-detail', kwargs={'user__uuid': obj.user.uuid})

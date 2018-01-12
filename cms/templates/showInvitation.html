@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}详细信息{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+
+
+{% block content %}
+  <h2>邀请信息</h2>
+    {% if messages %}
+        <div class="span12">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if invitation %}
+        <li>应聘者： {{ invitation.user.profile.last_name}} {{invitation.user.profile.first_name }}</li>
+        <li>应聘者学历： {{ invitation.user.profile.get_edu_degree_display}}</li>
+        <li>应聘者工作经验： {{ invitation.user.profile.get_service_years_display}}</li>
+        <li>应聘职位： {{ invitation.position }}</li>
+        <li>面试邀请状态： {{ invitation.get_status_display}}</li>
+        <li>面试时间： {{ invitation.interview_time}}</li>
+        <li>面试地点： {{ invitation.interview_address}}</li>
+        <li>邀请信息： {{ invitation.content}}</li>
+    {% endif %}
+        <li>
+            <a href="/cms/dashboard/" class="btn btn-outline-info btn-sm" role="button" value="返回">返回</a>
+        </li>
+{% endblock %}

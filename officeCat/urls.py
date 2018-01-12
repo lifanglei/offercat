@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^profiles/', include('profiles.urls',namespace='profiles')),
     url(r'^hire/', include('hire.urls',namespace='hire')),
     url(r'^functions/', include('functions.urls',namespace='functions')),
+    url(r'^cms/', include('cms.urls',namespace='cms')),
     # url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
     # url(r'^admin/', admin.site.urls),
 ]

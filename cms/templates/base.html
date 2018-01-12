@@ -1,0 +1,36 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap3-wysihtml5.min.css' %}" />
+{#    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">#}
+    <title>{% block title %}/cms/base.html{% endblock %}</title>
+</head>
+<body>
+{#<div id="sidebar">#}
+{#    {% block sidebar %}#}
+{#    <ul>#}
+{#        <li><a href="/">Home</a></li>#}
+{##}
+{#        {% if user.is_authenticated %}#}
+{#            <li><a href="/accounts/logout">Logout</a></li>#}
+{#        {% else %}#}
+{#            <li><a href="/accounts/login">Login</a></li>#}
+{#        {% endif %}#}
+{#    </ul>#}
+{#    {% endblock %}#}
+{#</div>#}
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/wysihtml5x-toolbar.min.js' %}"></script>
+    <script src="{% static 'js/tether.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap3-wysihtml5.all.min.js' %}"></script>
+    <script src="{% static 'js/ajax-setup.js' %}"></script>
+    {% block javascript %}{% endblock %}
+</body>
+</html>

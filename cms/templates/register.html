@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block javascript %}
+  <script>
+    $('.js-captcha-refresh').click(function(){
+        $form = $(this).parents('form');
+        console.log('dddd');
+        $.getJSON('/accounts/api/captcha/', {}, function(json) {
+            $("img", $form).attr('src',json['captcha_url'])
+            $("#id_captcha_0", $form).attr('value',json['captcha_key'])
+            console.log($("img", $form));
+
+            // This should update your captcha image src and captcha hidden input
+        });
+        return false;
+    });
+  </script>
+{% endblock %}
+
+
+{% block content %}
+  <h2>Register</h2>
+  <form action="/cms/register/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class='js-captcha-refresh' url="/accounts/api/captcha/">刷新验证码</button>
+    <button type="submit">下一步</button>
+  </form>
+{% endblock %}

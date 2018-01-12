@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}上传认证资料{% endblock %}
+
+{% block content %}
+    <h2>普通员工请上传工卡/员工证明</h2>
+    <h2>HR请上传公司营业执照</h2>
+    <form enctype="multipart/form-data" action="/cms/certification_upload/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">提交认证</button>
+    </form>
+    <form action="/cms/dashboard/" method="get">
+        <button>跳过</button>
+    </form>
+{% endblock %}
