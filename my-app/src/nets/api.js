@@ -226,7 +226,7 @@ export default {
     },token)
   },
   fetchCollected(token){
-    let url = 'http://localhost:8080/functions/collection/';
+    let url = '/functions/collection/';
     return callApi(url, {
       method: 'GET',
     },token)
