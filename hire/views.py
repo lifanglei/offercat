@@ -26,7 +26,6 @@ class CompanyView(ModelViewSet):
     lookup_field = 'uuid'
     pagination_class = None
     def get_queryset(self):
-
         if self.request.query_params.get('ordering', None):
             if self.request.query_params.get('ordering', None) == "hotness":
                 three_days_ago = timezone.now() - timedelta(days=3)
@@ -54,11 +53,9 @@ class PositionView(ModelViewSet):
         if self.request.query_params:
             rlt = Position.objects.all()
             if "ordering" in self.request.query_params and self.request.query_params["ordering"] == "hotness":
-                print("CALL1")
                 rlt = rlt.annotate(hotness=Count('collection')).order_by('-hotness')
                 # return Position.objects.all().annotate(hotness=Count('collection')).order_by('-hotness')
             if "category" in self.request.query_params:
-                print("CALL2")
                 if self.request.query_params['category'] in [str(key) for key,value in Position.CATEGORY]:
                     rlt = rlt.filter(category=self.request.query_params['category'])
                     # return Position.objects.filter(category=self.request.query_params['category'])

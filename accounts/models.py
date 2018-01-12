@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
     # last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    password = models.CharField(_('password'), max_length=128, blank=False, )
+    password = models.CharField(_('password'), max_length=128, blank=False,)
     email = models.EmailField(_('email address'), blank=False, unique=True,
                               error_messages={
         'invalid': _(u"邮箱格式不正确！"),
@@ -53,6 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     last_login = models.DateTimeField(_('last login'), default=timezone.now, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True,db_index=True,)
@@ -82,6 +83,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def get_full_name(self):
+        if self.is_staff:
+            return self.hrprofile.get_full_name()
+        else:
+            return self.profile.get_full_name()
         pass
 
     def get_short_name(self):

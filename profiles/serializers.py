@@ -56,8 +56,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         else :
             return True
 
-
-
 class WorkExperienceSerializer(serializers.ModelSerializer):
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:work_exp-detail', lookup_url_kwarg='pk')
     edit_url = serializers.SerializerMethodField()

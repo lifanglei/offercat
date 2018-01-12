@@ -58,7 +58,7 @@ class Profile(models.Model):
         if self.last_name == None:
             return None
         else:
-            full_name = '{0} {1}'.format(self.last_name, self.first_name)
+            full_name = '{0}{1}'.format(self.last_name, self.first_name)
             return full_name.strip()
 
     def query_work_exp(self,):
@@ -89,6 +89,13 @@ class HRProfile(models.Model):
         db_table = 'profiles_hr'
         verbose_name = _('profile for hr')
         verbose_name_plural = _('profiles for hrs')
+
+    def get_full_name(self):
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        return self.name
+
 
 
 class WorkExperience(models.Model):

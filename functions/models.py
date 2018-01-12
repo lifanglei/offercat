@@ -57,12 +57,13 @@ class Invitation(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
-    status = models.IntegerField(choices=STATUS, blank=False)
+    status = models.IntegerField(choices=STATUS, default=STATUS_UNDECIDED)
     created_at = models.DateTimeField(blank=False, default=timezone.now)
     interview_time = models.DateTimeField(blank=False)
     interview_address = models.CharField(max_length=200, blank=False)
     content = models.TextField(blank=False)
-
+    sent_by = models.ForeignKey(User, related_name='sent_invitation', on_delete=models.CASCADE)
+    application = models.ForeignKey(Application, on_delete=models.DO_NOTHING)
     class Meta:
         verbose_name = _('invitation')
         verbose_name_plural = _('invitations')

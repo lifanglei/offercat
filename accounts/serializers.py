@@ -117,7 +117,7 @@ class UserLoginSerializer(JSONWebTokenSerializer):
     def validate(self, data):
         tmp = User.objects.filter(Q(username=data.get('username_email')) | Q(email=data.get('username_email'))).first()
 
-        if tmp:
+        if tmp and tmp.is_staff ==False:
             # check user auth
             name = tmp.username
             credentials = {
@@ -149,6 +149,9 @@ class UserLoginSerializer(JSONWebTokenSerializer):
             #     msg = _(' "{username_field}" and "password".')
             #     msg = msg.format(username_field=self.username_field,)
             #     raise serializers.ValidationError(msg)
+        elif tmp.is_staff:
+            msg =_(u"请通过HR通道登录！")
+            raise serializers.ValidationError(msg)
         else:
             msg = _(u"该用户不存在！")
             raise serializers.ValidationError(msg)
