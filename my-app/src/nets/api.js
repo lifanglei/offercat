@@ -153,5 +153,76 @@ export default {
         body:payload
       },token)
     }
+  },
+
+  fetchprofiledu(token){
+    const url = 'http://localhost:8080/profiles/edu_exp/';
+    return callApi(url, {
+      method: 'GET',
+    },token)
+  },
+  profileedupost(payload,uuid,token){
+    if(uuid){
+      const url = 'http://localhost:8080/profiles/edu_exp/'+uuid+'/';
+      console.log(payload);
+      return callApi(url, {
+        method: 'PUT',
+        body:payload
+      },token, {'Content-Type':'application/json'})
+    }else{
+      const url = 'http://localhost:8080/profiles/edu_exp/';
+      return callApi(url, {
+        method: 'POST',
+        body:payload
+      },token)
+    }
+  },
+
+  fetchCustomJobList(keyword,sorter,token){
+    let url = 'http://localhost:8080/hire/position/';
+    if(keyword){
+      url = url +'?search='+keyword;
+      if(sorter){
+        url = url +'&ordering='+sorter;
+      }
+    }else{
+      if(sorter){
+        url = url +'?ordering='+sorter;
+      }
+    }
+    return callApi(url, {
+      method: 'GET'
+    },token)
+  },
+
+  fetchCustomOrganizationsList(keyword,sorter){
+    let url = 'http://localhost:8080/hire/company/';
+    if(keyword){
+      url = url +'?search='+keyword;
+      if(sorter){
+        url = url +'&ordering='+sorter;
+      }
+    }else{
+      if(sorter){
+        url = url +'?ordering='+sorter;
+      }
+    }
+    return callApi(url, {
+      method: 'GET'
+    })
+  },
+  postLike(payload,token){
+    let url = 'http://localhost:8080/functions/laud/';
+    return callApi(url, {
+      method: 'POST',
+      body:payload
+    },token)
+  },
+  postCollected(payload,token){
+    let url = 'http://localhost:8080/functions/collection/';
+    return callApi(url, {
+      method: 'POST',
+      body:payload
+    },token)
   }
 }

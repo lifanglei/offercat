@@ -136,6 +136,47 @@ export const profileWorkPostSuccess = (payload) =>{
   }
 };
 
+
+export const profileEduRequest = () => {
+  return {
+    type: types.PROFILE_EDU_REQUEST,
+  }
+};
+
+export const profileEduSuccess = (payload) => {
+  return {
+    type: types.PROFILE_EDU_SUCCESS,
+    payload:payload
+  }
+};
+
+export const profileEduFailure = (payload) => {
+  return {
+    type: types.PROFILE_EDU_FAILURE,
+    payload:{
+      ...payload
+    }
+  }
+};
+
+export const profileEDUPost = (payload,uuid) =>{
+  return {
+    type: types.PROFILE_EDUPOST_REQUEST,
+    payload:payload,
+    uuid:uuid
+  }
+};
+
+export const profileEDUPostSuccess = (payload) =>{
+  return {
+    type: types.PROFILE_EDUPOST_SUCCESS,
+    payload:payload
+  }
+};
+
+
+
+
 export const ServerSideError = (payload) => {
   return {
     type: types.INTERNAL_SERVER_ERROR,

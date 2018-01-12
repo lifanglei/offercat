@@ -20,9 +20,7 @@ export const fetchCompanyListFailure= (payload) => {
 export const fetchCompanyListSuccess = (payload) => {
   return {
     type: types.COMPANY_LIST_SUCCESS,
-    payload:{
-      ...payload
-    }
+    payload:payload
   }
 };
 

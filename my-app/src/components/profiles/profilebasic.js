@@ -99,7 +99,7 @@ class Profilebasic extends Component {
                   <div className="form-group">
                     <label className="col-md-2 control-label">学历</label>
                     <div className="col-md-8">
-                      <select ref={(edu_degree)=>{this.edu_degree=edu_degree}}  defaultValue={profileinit.edu_degree?profileinit.edu_degree:1} className="form-control selectpicker">
+                      <select ref={(edu_degree)=>{this.edu_degree=edu_degree}}  defaultValue={profileinit.edu_degree?profileinit.edu_degree:1} className="form-control">
                         <option value='1'>本科</option>
                         <option value='2'>硕士</option>
                         <option value='3'>博士</option>
@@ -111,7 +111,7 @@ class Profilebasic extends Component {
                   <div className="form-group">
                     <label className="col-md-2 control-label">工作年限</label>
                     <div className="col-md-8">
-                      <select ref={(service_years)=>{this.service_years=service_years}} defaultValue={profileinit.service_years?profileinit.service_years:1} className="form-control selectpicker">
+                      <select ref={(service_years)=>{this.service_years=service_years}} defaultValue={profileinit.service_years?profileinit.service_years:1} className="form-control">
                         <option value='1'>在读</option>
                         <option value='2'>应届生</option>
                         <option value='3'>1-3年</option>

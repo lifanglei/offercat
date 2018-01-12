@@ -8,6 +8,9 @@ import companyDetailReducer from './companyDetailReducer';
 import positionDetailReducer from './positionDetailReducer';
 import profileinitReducer from './profileinitReducer';
 import profileWorkReducer from './profileworkreducer';
+import customjobReducer from './customjobReducer';
+import profileEduReducer from './profileduReducer';
+import customOrgReducer from './customOrgReducer';
 
 const rootReducer = combineReducers({
   captcha:captchaReducer,
@@ -18,7 +21,10 @@ const rootReducer = combineReducers({
   companyDetail:companyDetailReducer,
   positionDetail:positionDetailReducer,
   profileinit:profileinitReducer,
-  profilework:profileWorkReducer
+  profilework:profileWorkReducer,
+  customjobList:customjobReducer,
+  customOrgList:customOrgReducer,
+  profileedu:profileEduReducer
 });
 
 export default rootReducer;

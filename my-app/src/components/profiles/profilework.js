@@ -59,6 +59,7 @@ class WorkForm extends Component{
             <button style={{backgroundColor: '#009688'}} onClick={() => {
               this.post();
               NotificationManager.success('添加成功', '消息通知',1500);
+              window.location.reload();
             }} className="btn btn-raised btn-info">保存并添加一个职位
             </button>
           </div>
@@ -89,7 +90,7 @@ class Profilework extends Component {
 
 
   onClickToNext = ()=>{
-
+   this.props.history.push('/home/profile/profileedu');
   };
 
   render(){
@@ -110,7 +111,7 @@ class Profilework extends Component {
                  <fieldset>
                    {profileForms}
                   <div className="form-group">
-                    <button style={{backgroundColor:'#009688'}} className="btn btn-raised btn-info" onClick = {this.onClickToNext}>保存并下一步</button>
+                    <button style={{backgroundColor:'#009688'}} className="btn btn-raised btn-info" onClick = {this.onClickToNext}>下一步</button>
                     <button style={{marginLeft:'10px'}} className="btn btn-raised btn-default" onClick = {this.onCancelClick}>取消</button>
                   </div>
                 </fieldset>}

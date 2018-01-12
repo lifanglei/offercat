@@ -1,17 +1,17 @@
 import actionTypes from '../actions/actionType';
 
-function positionReducer(state = { positions: [], totalCount: 0, currentPage: 1, errorMessage:''}, action) {
+function customOrgReducer(state = { orgs: [], totalCount: 0, currentPage: 1, errorMessage:''}, action) {
   const {payload} = action;
   switch (action.type) {
-    case actionTypes.POSITION_LIST_SUCCESS:
+    case actionTypes.CUSTOMEORGANIZATIONS_LIST_SUCCESS:
       return Object.assign({}, state, {
-        positions:payload,
+        orgs:payload,
         totalCount:payload.length,
         errorMessage:''
       });
-    case actionTypes.POSITION_LIST_FAILURE:
+    case actionTypes.CUSTOMEORGANIZATIONS_LIST_FAILURE:
       return Object.assign({}, state, {
-        positions: [],
+        orgs: [],
         totalCount: 0,
         errorMessage: payload['errormessage']
       });
@@ -19,4 +19,4 @@ function positionReducer(state = { positions: [], totalCount: 0, currentPage: 1,
       return state;
   }
 }
-export default positionReducer;
+export default customOrgReducer;
