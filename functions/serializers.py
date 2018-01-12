@@ -118,10 +118,10 @@ class NotificationSerializer(serializers.ModelSerializer):
 class LaudSerializer(serializers.ModelSerializer):
     user_uuid = serializers.SerializerMethodField()
     position_info = PositionBriefSerializer(read_only=True, source='position')
-    edit_url = serializers.SerializerMethodField()
+    # edit_url = serializers.SerializerMethodField()
     class Meta:
         model = Laud
-        fields = ('user_uuid', 'position','position_info','edit_url')
+        fields = ('user_uuid', 'position','position_info',)
         read_only_fields = ('user_uuid',)
         extra_kwargs = {'position': {'write_only': True}, }
 

@@ -13,6 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     # service_years = ChoicesDisplayField(choices=Profile.SERVICE_YEARS)
     # edit_url = serializers.HyperlinkedIdentityField(view_name='profiles:profile-detail',lookup_field='uuid',lookup_url_kwarg='uuid')
     edit_url = serializers.SerializerMethodField()
+    is_initial = serializers.SerializerMethodField()
     class Meta:
         model = Profile
         fields = (
@@ -29,6 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'avatar_url',
             'edit_url',
             'uuid',
+            'is_initial',
         )
         read_only_fields= ('user',)
         extra_kwargs = {}
@@ -47,6 +49,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_full_name(self, obj):
         return obj.get_full_name()
+
+    def get_is_initial(self, obj):
+        if obj.first_name or obj.last_name or obj.edu_degree or obj.service_years or obj.tel or obj.email:
+            return False
+        else :
+            return True
+
 
 
 class WorkExperienceSerializer(serializers.ModelSerializer):
