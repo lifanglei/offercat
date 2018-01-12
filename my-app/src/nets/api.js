@@ -224,5 +224,11 @@ export default {
       method: 'POST',
       body:payload
     },token)
+  },
+  fetchCollected(token){
+    let url = 'http://localhost:8080/functions/collection/';
+    return callApi(url, {
+      method: 'GET',
+    },token)
   }
 }

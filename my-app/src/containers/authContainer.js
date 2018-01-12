@@ -74,7 +74,7 @@ class authContainer extends Component {
               </div>
             </div>
             <div className="text-center animated fadeInUp animation-delay-7">
-              <a href="index.html" className="btn btn-white">
+              <a href="/cms/login/" className="btn btn-white">
                 <i className="zmdi zmdi-open-in-new"></i><strong>去发布职位</strong></a>
             </div>
           </div>

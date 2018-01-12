@@ -12,7 +12,7 @@ class searchComponent extends Component {
       if(this.type.value==='公司'){
         this.props.history.push('/home/organizations?search='+this.keyword.value);
       }else if(this.type.value==='职位'){
-        this.props.history.push('/home/jobs?='+this.keyword.value);
+        this.props.history.push('/home/jobs?search='+this.keyword.value);
       }
     }
   };

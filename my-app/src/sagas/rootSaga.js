@@ -10,6 +10,7 @@ import profileSaga from './profileSaga';
 import customjobSaga from './customjobSage';
 import customOrgSaga from './customOrgSaga';
 import userActionSaga from './userActionSaga';
+import userCenterSaga from './userCenterSaga';
 
 export default function* rootSaga() {
   yield  all([
@@ -23,6 +24,7 @@ export default function* rootSaga() {
     profileSaga(),
     customjobSaga(),
     customOrgSaga(),
-    userActionSaga()
+    userActionSaga(),
+    userCenterSaga()
   ]);
 };

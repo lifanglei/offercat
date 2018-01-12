@@ -11,6 +11,7 @@ import profileWorkReducer from './profileworkreducer';
 import customjobReducer from './customjobReducer';
 import profileEduReducer from './profileduReducer';
 import customOrgReducer from './customOrgReducer';
+import collectionReducer from './collectionReducer';
 
 const rootReducer = combineReducers({
   captcha:captchaReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   profilework:profileWorkReducer,
   customjobList:customjobReducer,
   customOrgList:customOrgReducer,
-  profileedu:profileEduReducer
+  profileedu:profileEduReducer,
+  collection:collectionReducer
 });
 
 export default rootReducer;

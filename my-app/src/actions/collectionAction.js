@@ -9,9 +9,7 @@ export const collectionRequest= (companyID) => {
 export const collectionRequestlSuccess = (payload) => {
   return {
     type: types.COLLECTION_SUCCESS,
-    payload:{
-      ...payload
-    }
+    payload:payload
   }
 };
 

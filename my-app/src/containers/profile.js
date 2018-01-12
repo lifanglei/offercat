@@ -7,6 +7,7 @@ import Profileinit from '../components/profiles/profileinit';
 import Profilebasic from '../components/profiles/profilebasic';
 import Profilework from '../components/profiles/profilework';
 import Profileedu from '../components/profiles/profileedu';
+import Collection from '../components/userCenter/collection';
 import {getResumeBasicRequest,postResumeBasicRequest,resumeRefresh} from '../actions/profileAction';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
@@ -69,7 +70,7 @@ class profileContainer extends Component {
             <Route path={`${match.url}/profilework`} component={Profilework}/>
             <Route path={`${match.url}/profileedu`} component={Profileedu}/>
             <Route path={`${match.url}/profileskill`} component={Welcome}/>
-            <Route path={`${match.url}/collectlist`} component={Welcome}/>
+            <Route path={`${match.url}/collectlist`} component={Collection}/>
           </div>
           <div className="col-sm-4">
             <div className="card">

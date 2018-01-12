@@ -27,6 +27,13 @@ function profileinitReducer(state = { profileinit:{},errorcode:0,resume:'',resum
         errorcode:0,
         resume_code:0,
       });
+    case actionTypes.PROFILE_RESUME_FAILURE:
+      return Object.assign({}, state,{
+        resume:'',
+        resume_uuid:'',
+        errorcode:payload.status_code,
+        resume_code:0,
+      });
     case actionTypes.PROFILE_RESUME_POST_SUCCESS:
       return Object.assign({}, state,{
         resume:payload.resume_url,
