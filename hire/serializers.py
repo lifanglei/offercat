@@ -18,6 +18,7 @@ class PositionBriefSerializer(serializers.ModelSerializer):
     work_exp_req = ChoicesDisplayField(choices=Position.WORK_EXP_REQ)
     edu_req = ChoicesDisplayField(choices=Position.EDUCATION_DEGREE)
     created_at = serializers.SerializerMethodField(read_only=True)
+    company = serializers.SerializerMethodField(read_only=True)
     # last_update = serializers.DateTimeField(format="%Y-%m-%d %H:%M",read_only=True)
 
     class Meta:
@@ -37,6 +38,7 @@ class PositionBriefSerializer(serializers.ModelSerializer):
             'subscription_count',
             'edit_url',
             'is_certified',
+            'company',
             'uuid',
         )
         read_only_fields = ('subscription_count','uuid','is_certified')
@@ -51,6 +53,8 @@ class PositionBriefSerializer(serializers.ModelSerializer):
     def get_edit_url(self,obj):
         return reverse('hire:position-detail',kwargs={'uuid': obj.uuid})
 
+    def get_company(self, obj):
+        return obj.company.name
 
 class CompanySerializer(serializers.ModelSerializer):
     photo = serializers.ImageField(use_url=True, required=False, allow_empty_file=True, write_only=True)

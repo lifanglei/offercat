@@ -25,7 +25,7 @@
   <form action="/cms/register/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class='js-captcha-refresh' url="/accounts/api/captcha/">刷新验证码</button>
-    <button type="submit">下一步</button>
+    <button class="js-captcha-refresh btn btn-outline-info btn-sm" url="/accounts/api/captcha/">刷新验证码</button>
+    <button class="btn btn-outline-info btn-sm" type="submit">下一步</button>
   </form>
 {% endblock %}

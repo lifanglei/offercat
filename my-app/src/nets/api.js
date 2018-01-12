@@ -55,77 +55,77 @@ const callApi = (endpoint, request, token, header) => {
 
 export default {
   getCaptcha() {
-    const url = 'http://localhost:8080/accounts/api/register/';
+    const url = '/accounts/api/register/';
     return callApi(url, {
       method: 'GET'
     })
   },
   userSignup(userinfo){
-    const url = 'http://localhost:8080/accounts/api/register/';
+    const url = '/accounts/api/register/';
     return callApi(url, {
       method: 'POST',
       body: userinfo
     })
   },
   userSignin(userinfo){
-    const url = 'http://localhost:8080/accounts/api/login/';
+    const url = '/accounts/api/login/';
     return callApi(url, {
       method: 'POST',
       body: userinfo
     })
   },
   companyList(){
-    const url = 'http://localhost:8080/hire/company/';
+    const url = '/hire/company/';
     return callApi(url, {
       method: 'GET'
     })
   },
   positionList(){
-    const url = 'http://localhost:8080/hire/position/';
+    const url = '/hire/position/';
     return callApi(url, {
       method: 'GET'
     })
   },
   companyDetail(uid){
-    const url = 'http://localhost:8080/hire/company/'+uid+'/';
+    const url = '/hire/company/'+uid+'/';
     return callApi(url, {
       method: 'GET'
     })
   },
   jobDetail(jobId){
-    const url = 'http://localhost:8080/hire/position/'+jobId+'/';
+    const url = '/hire/position/'+jobId+'/';
     return callApi(url, {
       method: 'GET'
     })
   },
   fethProfileBasic(token){
-    const url = 'http://localhost:8080/profiles/profile/';
+    const url = '/profiles/profile/';
     return callApi(url, {
       method: 'GET'
     },token)
   },
   postProfileBasic(payload,uuid,token){
-    const url = 'http://localhost:8080/profiles/profile/'+uuid+'/';
+    const url = '/profiles/profile/'+uuid+'/';
     return callApi(url, {
       method: 'PUT',
       body:payload
     },token)
   },
   resumeFetchBasic(token){
-    const url = 'http://localhost:8080/profiles/resumes/';
+    const url = '/profiles/resumes/';
     return callApi(url, {
       method: 'GET',
     },token)
   },
   postResume(payload,uuid,token){
     if(uuid){
-      const url = 'http://localhost:8080/profiles/resumes/'+uuid+'/';
+      const url = '/profiles/resumes/'+uuid+'/';
       return callApi(url, {
         method: 'PUT',
         body:payload
       },token)
     }else{
-      const url = 'http://localhost:8080/profiles/resumes/';
+      const url = '/profiles/resumes/';
       return callApi(url, {
         method: 'POST',
         body:payload
@@ -133,21 +133,21 @@ export default {
     }
   },
   fetchprofilework(token){
-    const url = 'http://localhost:8080/profiles/work_exp/';
+    const url = '/profiles/work_exp/';
     return callApi(url, {
       method: 'GET',
     },token)
   },
   profileworkpost(payload,uuid,token){
     if(uuid){
-      const url = 'http://localhost:8080/profiles/work_exp/'+uuid+'/';
+      const url = '/profiles/work_exp/'+uuid+'/';
       console.log(payload);
       return callApi(url, {
         method: 'PUT',
         body:payload
       },token, {'Content-Type':'application/json'})
     }else{
-      const url = 'http://localhost:8080/profiles/work_exp/';
+      const url = '/profiles/work_exp/';
       return callApi(url, {
         method: 'POST',
         body:payload
@@ -156,21 +156,21 @@ export default {
   },
 
   fetchprofiledu(token){
-    const url = 'http://localhost:8080/profiles/edu_exp/';
+    const url = '/profiles/edu_exp/';
     return callApi(url, {
       method: 'GET',
     },token)
   },
   profileedupost(payload,uuid,token){
     if(uuid){
-      const url = 'http://localhost:8080/profiles/edu_exp/'+uuid+'/';
+      const url = '/profiles/edu_exp/'+uuid+'/';
       console.log(payload);
       return callApi(url, {
         method: 'PUT',
         body:payload
       },token, {'Content-Type':'application/json'})
     }else{
-      const url = 'http://localhost:8080/profiles/edu_exp/';
+      const url = '/profiles/edu_exp/';
       return callApi(url, {
         method: 'POST',
         body:payload
@@ -179,7 +179,7 @@ export default {
   },
 
   fetchCustomJobList(keyword,sorter,token){
-    let url = 'http://localhost:8080/hire/position/';
+    let url = '/hire/position/';
     if(keyword){
       url = url +'?search='+keyword;
       if(sorter){
@@ -196,7 +196,7 @@ export default {
   },
 
   fetchCustomOrganizationsList(keyword,sorter){
-    let url = 'http://localhost:8080/hire/company/';
+    let url = '/hire/company/';
     if(keyword){
       url = url +'?search='+keyword;
       if(sorter){
@@ -212,14 +212,14 @@ export default {
     })
   },
   postLike(payload,token){
-    let url = 'http://localhost:8080/functions/laud/';
+    let url = '/functions/laud/';
     return callApi(url, {
       method: 'POST',
       body:payload
     },token)
   },
   postCollected(payload,token){
-    let url = 'http://localhost:8080/functions/collection/';
+    let url = '/functions/collection/';
     return callApi(url, {
       method: 'POST',
       body:payload
