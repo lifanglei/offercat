@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import '../css/profile.css';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom'
 import Profileinit from '../components/profiles/profileinit';
 import Profilebasic from '../components/profiles/profilebasic';
 import Profilework from '../components/profiles/profilework';
+import Profileedu from '../components/profiles/profileedu';
 import {getResumeBasicRequest,postResumeBasicRequest,resumeRefresh} from '../actions/profileAction';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
@@ -66,35 +67,44 @@ class profileContainer extends Component {
             <Route path={`${match.url}/profileinit`} component={Profileinit}/>
             <Route path={`${match.url}/profilebasic`} component={Profilebasic}/>
             <Route path={`${match.url}/profilework`} component={Profilework}/>
-            <Route path={`${match.url}/profileedu`} component={Welcome}/>
+            <Route path={`${match.url}/profileedu`} component={Profileedu}/>
             <Route path={`${match.url}/profileskill`} component={Welcome}/>
+            <Route path={`${match.url}/collectlist`} component={Welcome}/>
           </div>
           <div className="col-sm-4">
             <div className="card">
               <div className="button-panel">
                 <div className="col-sm-3">
+                  <NavLink to={`${this.props.match.url}/collectlist`}>
                   <div className="boxbutton">
                     <div><i className="fa fa-inbox fa-3x"/></div>
                     <div>投递箱</div>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="col-sm-3">
+                  <NavLink to={`${this.props.match.url}/collectlist`}>
                   <div className="boxbutton">
                     <div><i className="fa fa-file-o fa-3x"/></div>
                     <div>邀请函</div>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="col-sm-3">
+                  <NavLink to={`${this.props.match.url}/collectlist`}>
                   <div className="boxbutton">
                     <div><i className="fa fa-bookmark-o fa-3x"/></div>
-                    <div>订阅览</div>
+                    <div>订阅拦</div>
                   </div>
+                  </NavLink>
                 </div>
                 <div className="col-sm-3">
+                  <NavLink to={`${this.props.match.url}/collectlist`}>
                   <div className="boxbutton">
                     <div><i className="fa fa-star-o fa-3x"/></div>
                     <div>收藏夹</div>
                   </div>
+                </NavLink>
                 </div>
               </div>
               <div className="attach" style={{cursor: 'pointer'}} onClick={()=>{this.attachinput.click();}}>

@@ -4,7 +4,9 @@ import {ServerSideError, fetchProfileBasicSuccess,fetchProfileBasicFailure ,
   postProfileBasicSuccess,postProfileBasicFailure,
   getResumeBasicSuccess,postResumeBasicSuccess,
    profileWorkSuccess,profileWorkFailure,
-  profileWorkPostSuccess} from '../actions/profileAction';
+  profileWorkPostSuccess,
+  profileEduSuccess,profileEduFailure,
+  profileEDUPostSuccess} from '../actions/profileAction';
 import Api from '../nets/api';
 import {localstore} from '../store/localstore';
 
@@ -87,6 +89,32 @@ export function*  profileWorkPostTask(action) {
   }
 }
 
+export function*  profileEduRequestTask() {
+  try {
+    const token = localstore.getToken();
+    const {status,result} = yield call(Api.fetchprofiledu, token);
+    if(status){
+      yield put(profileEduSuccess(result));
+    }else{
+      yield put(profileEduFailure(result));
+    }
+  }catch(err){
+    yield put(ServerSideError({serverError:500}));
+  }
+}
+
+export function* profileEduPostTask(action) {
+  try {
+    const token = localstore.getToken();
+    const {status,result} = yield call(Api.profileedupost, action.payload, action.uuid, token);
+    if(status){
+      yield put(profileEDUPostSuccess(result));
+    }
+  }catch(err){
+    yield put(ServerSideError({serverError:500}));
+  }
+}
+
 export function* watchfetchProfileBasicTask() {
   yield takeLatest(types.PROFILE_INFO_REQUEST, fetchProfileBasicTask);
 }
@@ -111,6 +139,14 @@ export function* watchProfileWorkPost() {
   yield takeLatest(types.PROFILE_WORKPOST_REQUEST, profileWorkPostTask);
 }
 
+export function* watchProfileEduRequest() {
+  yield takeLatest(types.PROFILE_EDU_REQUEST, profileEduRequestTask);
+}
+
+export function* watchProfileEduPost() {
+  yield takeLatest(types.PROFILE_EDUPOST_REQUEST, profileEduPostTask);
+}
+
 export default function* profileSaga() {
   yield all([
     watchfetchProfileBasicTask(),
@@ -118,6 +154,8 @@ export default function* profileSaga() {
     watchresumeFetchBasicTask(),
     watchresumePostBasicTask(),
     watchProfileWorkRequest(),
-    watchProfileWorkPost()
+    watchProfileWorkPost(),
+    watchProfileEduRequest(),
+    watchProfileEduPost()
   ]);
 }

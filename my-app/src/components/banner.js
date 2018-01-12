@@ -114,3 +114,5 @@ export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
 )(CompanyBanner));
+
+export {CompanyCard};

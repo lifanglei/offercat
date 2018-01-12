@@ -7,6 +7,9 @@ import positionSaga from './positionSaga';
 import companyDetailSaga from './companyDetailSaga';
 import jobDetailSaga from './jobDetailSaga';
 import profileSaga from './profileSaga';
+import customjobSaga from './customjobSage';
+import customOrgSaga from './customOrgSaga';
+import userActionSaga from './userActionSaga';
 
 export default function* rootSaga() {
   yield  all([
@@ -17,6 +20,9 @@ export default function* rootSaga() {
     positionSaga(),
     companyDetailSaga(),
     jobDetailSaga(),
-    profileSaga()
+    profileSaga(),
+    customjobSaga(),
+    customOrgSaga(),
+    userActionSaga()
   ]);
 };

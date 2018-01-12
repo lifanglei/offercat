@@ -20,9 +20,7 @@ export const fetchPositionListFailure= (payload) => {
 export const fetchPositionListSuccess = (payload) => {
   return {
     type: types.POSITION_LIST_SUCCESS,
-    payload:{
-      ...payload
-    }
+    payload:payload
   }
 };
 

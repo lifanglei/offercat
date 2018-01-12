@@ -21,12 +21,14 @@ class NavBarComponent extends Component {
             </div>
             <div className="navbar-collapse">
               <ul className="nav navbar-nav">
-                <li className="dropdown"><NavLink to={`${match.url}/app`} activeClassName="active">Home</NavLink></li>
-                <li className="dropdown"><NavLink to={`${match.url}/test`} activeClassName="active">welcome</NavLink></li>
-                <li className="dropdown"><NavLink to={`${match.url}/clock`} activeClassName="active">clock</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/welcome`} activeClassName="active">首页</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/organizations`} activeClassName="active">公司</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/jobs`} activeClassName="active">职位</NavLink></li>
+                <li className="dropdown"><NavLink to={`${match.url}/profile/profileinit`} activeClassName="active">个人中心</NavLink></li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li><a className="login">注册</a>|<a className="signup">登录</a></li>
+                <li><a className="login">搜索</a></li>
+                <li><a><i className="zmdi zmdi-email zmdi-hc-fw"/></a></li>
               </ul>
             </div>
           </div>
