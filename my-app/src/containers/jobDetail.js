@@ -86,7 +86,7 @@ class jobDetail extends Component {
                   <div className="job-description">
                     <div className="col-sm-10">
                       <div>【岗位职责】</div>
-                      {positionDetail.duty}
+                      <div dangerouslySetInnerHTML={{ __html: positionDetail.duty}}>{}</div>
                     </div>
                     <div className="col-sm-2">
                       <button className="btn" style={{backgroundColor:'#009688',color:'white'}}>完善在线简历</button>
@@ -94,7 +94,7 @@ class jobDetail extends Component {
                   </div>
                   <div className="job-requirement">
                     <div>【任职要求】</div>
-                    {positionDetail.detail_req}
+                    <div dangerouslySetInnerHTML={{ __html: positionDetail.detail_req}}>{}</div>
                   </div>
                   <div style={{paddingLeft:'15px',paddingRight:'15px'}}>
                     工作地址
@@ -103,7 +103,7 @@ class jobDetail extends Component {
                         {positionDetail.address}
                       </div>
                       <div>
-                         <a>查看地图</a>
+                         <a href={"https://ditu.amap.com/search?query="+positionDetail.address} style={{cursor:'pointer'}} target="_blank">查看地图</a>
                       </div>
                     </div>
                   </div>
