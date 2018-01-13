@@ -19,6 +19,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_433397760b40_key -iv $encrypted_433397760b40_iv
   -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
+- ls
 - mv officeCat_rsa ~/.ssh/
 - mv config.py ~/officeCat/officeCat/
 - ssh -V
