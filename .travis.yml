@@ -36,13 +36,13 @@ before_script:
 script:
 - npm run --silent build
 after_success:
-- ssh root@106.14.134.47 "cd ~/officeCat/ && git checkout deploy && git pull"
+- ssh root@47.104.154.254 "cd ~/officeCat/ && git checkout deploy && git pull"
 - cd $TRAVIS_BUILD_DIR/my-app/
-- scp -r build/ root@106.14.134.47:~/officeCat/my-app/
-- ssh root@106.14.134.47 "~/officeCat/prepareBackend.sh"
+- scp -r build/ root@47.104.154.254:~/officeCat/my-app/
+- ssh root@47.104.154.254 "~/officeCat/prepareBackend.sh"
 - echo "build and deploy successfully!"
 branches:
   only:
   - deploy
 addons:
-  ssh_known_hosts: 47.105.154.254
+  ssh_known_hosts: 47.104.154.254
