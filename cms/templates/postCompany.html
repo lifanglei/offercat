@@ -20,3 +20,18 @@
   </form>
 {% endblock %}
 
+{% block javascript %}
+    <script type="text/javascript">
+        $('.textarea').wysihtml5({
+            toolbar: {
+              fa: true
+            }
+          });
+        $('.btn-default').attr("type", "button");
+
+        {% if messages %}
+            alert('{{ message }}');
+        {% endif %}
+    </script>
+{% endblock %}
+
