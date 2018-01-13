@@ -35,7 +35,6 @@ jwt_decode_handler = jwt_settings.JWT_DECODE_HANDLER
 
 def cmsLogin(request):
     form = LoginForm(request.POST or None, request.FILES or None)
-
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -51,7 +50,7 @@ def cmsLogin(request):
                 payload = jwt_payload_handler(user)
                 token = jwt_encode_handler(payload)
 
-                return HttpResponseRedirect(reverse('cms:dashboard', args=(token,)))
+                return HttpResponseRedirect(reverse('cms:dashboard'))
             elif not user.is_active:
                 messages.error(request, _(u"用户已注销！"))
                 # raise forms.ValidationError(_(u"用户已注销！"),code='role_wrong')

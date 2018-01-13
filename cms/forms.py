@@ -93,6 +93,8 @@ class CompanyCreateForm(ModelForm):
     size = forms.ChoiceField(choices=Company.SIZE, initial=Company.SIZE_SMALL)
     stock = forms.ChoiceField(choices=Company.STOCK, initial=Company.STOCK_NONE)
     name = forms.CharField(required=True,max_length=100, error_messages={'required': _(u"请输入公司名称！")})
+    introduction = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea"}),)
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea"}), )
     class Meta:
         model = Company
         fields = (
