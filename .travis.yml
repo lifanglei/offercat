@@ -20,12 +20,12 @@ before_install:
   -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 - ls
-- mv officeCat_rsa ~/.ssh/id_rsa
+- mv officeCat_rsa ~/.ssh/
 - mv config.py $TRAVIS_BUILD_DIR/officeCat/
 - ssh -V
 - chmod 700 ~/.ssh/
-- chmod 600 ~/.ssh/officeCat_rsa
-- echo -e "Host 47.105.154.254\n\tIdentityFile ~/.ssh/officeCat_rsa" >> ~/.ssh/config
+- chmod 600 ~/.ssh/office_rsa
+- echo -e "Host 47.104.154.254\n\tIdentityFile ~/.ssh/officeCat_rsa" >> ~/.ssh/config
 - less ~/.ssh/config
 - pip install -U pip
 install:
