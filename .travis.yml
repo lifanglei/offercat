@@ -36,7 +36,7 @@ before_script:
 script:
 - npm run --silent build
 after_success:
-- ssh root@47.104.154.254 "cd ~/officeCat/ && git checkout deploy && git pull"
+- ssh -vvv root@47.104.154.254 "cd ~/officeCat/ && git checkout deploy && git pull"
 - cd $TRAVIS_BUILD_DIR/my-app/
 - scp -r build/ root@47.104.154.254:~/officeCat/my-app/
 - ssh root@47.104.154.254 "~/officeCat/prepareBackend.sh"
