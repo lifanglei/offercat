@@ -20,7 +20,7 @@ before_install:
   -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 - ls
-- mv officeCat_rsa ~/.ssh/
+- mv officeCat_rsa ~/.ssh/id_rsa
 - mv config.py $TRAVIS_BUILD_DIR/officeCat/
 - ssh -V
 - chmod 700 ~/.ssh/
