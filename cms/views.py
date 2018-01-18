@@ -232,6 +232,44 @@ def cmsDashBoard(request):
         data['sent_invitations'] = sent_invitations.all()
     return render(request, template_name='dashboard.html',context=data)
 
+def cmsPositionList(request):
+    position_form = PositionCreateForm(request.POST)
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+            return HttpResponse("....")
+
+    my_positions = Position.objects.filter(post_by=request.user).defer('id')
+    received_applications = Application.objects.filter(position__post_by=request.user).select_related('user','position','user__profile')
+    sent_invitations = Invitation.objects.filter(sent_by=request.user).select_related('application','user__profile','position')
+    data = {}
+    if my_positions.exists():
+        data['my_positions'] = my_positions.all()
+    return render(request, template_name='listPosition.html',context=data)
+
+def cmsReceivedApplications(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        return HttpResponse("....")
+
+    received_applications = Application.objects.filter(position__post_by=request.user).select_related('user',
+                                                                                                      'position',)
+    data = {}
+    if received_applications.exists():
+        data['received_applications'] = received_applications.all()
+    return render(request, template_name='receivedApplications.html', context=data)
+
+def cmsSentInvitations(request):
+
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+            return HttpResponse("....")
+
+    sent_invitations = Invitation.objects.filter(sent_by=request.user).select_related('application','user__profile','position')
+    data = {}
+    if sent_invitations.exists():
+        data['sent_invitations'] = sent_invitations.all()
+    return render(request, template_name='sentInvitations.html',context=data)
+
 def cmsInvitationCreate(request):
     form = InvitationCreateForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}面试邀请管理{% endblock %}
+
+{% block content %}
+    <h2>已发送的邀请</h2>
+    {% if sent_invitations %}
+        <ul>
+            {% for invitation in sent_invitations %}
+                <li>
+                    <ul>
+                        <li>应聘者： {{ invitation.user.profile.last_name}} {{invitation.user.profile.first_name }}</li>
+                        <li>应聘者学历： {{ invitation.user.profile.get_edu_degree_display}}</li>
+                        <li>应聘者工作经验： {{ invitation.user.profile.get_service_years_display}}</li>
+                        <li>应聘职位： {{ invitation.position }}</li>
+                        <li>面试邀请状态： {{ invitation.get_status_display}}</li>
+                        <li>面试时间： {{ invitation.interview_time}}</li>
+                        <li>面试地点： {{ invitation.interview_address}}</li>
+                        <li>
+{#                            <form action="/cms/position_delete/{{ position.uuid }}/" method="post">#}
+{#                                {% csrf_token %}#}
+{#                                <button class="btn btn-danger btn-sm" type="submit">删除</button>#}
+{#                            </form>#}
+                            <a href="/cms/show_invitation/{{ invitation.id }}/" class="btn btn-outline-info btn-sm" role="button" value="查看">查看</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+    </script>
+
+{% endblock %}

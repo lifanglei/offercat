@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}职位管理{% endblock %}
+
+{% block content %}
+
+  <h2>职位管理</h2>
+    {% if my_positions %}
+        <ul>
+            {% for position in my_positions %}
+                <li>
+                    <ul>
+                        <li>职位： {{ position.name }}</li>
+                        <li>公司： {{ position.company }}</li>
+                        <li>薪水： {{ position.get_salary_display }}</li>
+                        <li>{{ position.get_work_exp_req_display }}/{{ position.get_edu_req_display }}/{{ position.city }}</li>
+                        <li>{{ position.get_last_update }}</li>
+                        <li>{{ position.get_application_count }}</li>
+                        <li>{{ position.get_invitation_count }}</li>
+                        <li>
+                            <a href="" class="btn btn-outline-info btn-sm" role="button" value="查看">查看</a>
+                            <a href="/cms/position_update/{{ position.uuid }}/" class="btn btn-outline-primary btn-sm" role="button" value="修改">修改</a>
+{#                            <button class="btn btn-outline-primary btn-sm" type="button" value="修改" >修改</button>#}
+                            <button class="btn btn-outline-danger btn-sm" type="button" value="删除" onclick="delete_position('/cms/position_delete/{{ position.uuid }}/')">删除</button>
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function delete_position(edit_url) {
+                $.ajax({
+                    url: edit_url,
+                    {#headers: {"Authorization": token},#}
+                    type: 'POST',
+                    success: function(result) {
+                        // Do something with the result
+                        console.log(result)
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+            });}
+    </script>
+
+{% endblock %}

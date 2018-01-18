@@ -163,6 +163,18 @@ class Position(models.Model):
     def __str__(self):
         return self.name
 
+    def get_last_update(self):
+        if self.last_update.date() == timezone.now().date():
+            return self.last_update.strftime(u"今天 %H:%M")
+        else:
+            return self.last_update.strftime("%Y-%m-%d")
+
+    def get_application_count(self):
+        return self.collection_set.count()
+
+    def get_invitation_count(self):
+        return self.invitation_set.count()
+
 
 @receiver(models.signals.post_delete, sender=Company)
 def auto_delete_avatar_on_delete(sender, instance, **kwargs):

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}申请管理{% endblock %}
+
+{% block content %}
+
+    {% load cms_my_filter %}
+    <h2>投递管理</h2>
+    {% if received_applications %}
+        {% if invitation_form %}
+            {% include 'modal_base_createInvitation.html' with modal_form_id="new-invitation" modal_form_title="Create a New Invitation" modal_form_method="POST" modal_form_action="/cms/invitation_create/" form=invitation_form %}
+        {% endif %}
+        <ul>
+            {% for application in received_applications %}
+                <li>
+                    <ul>
+                        <li>申请人： {{ application.user.profile.last_name}} {{application.user.profile.first_name }}</li>
+                        <li>申请人学历： {{ application.user.profile.get_edu_degree_display}}</li>
+                        <li>申请人工作经验： {{ application.user.profile.get_service_years_display}}</li>
+                        <li>申请职位： {{ application.position }}</li>
+                        <li>投递状态： {{ application.get_status_display|switch_application_status }}</li>
+                        <li>
+{#                            <form action="/cms/position_delete/{{ position.uuid }}/" method="post">#}
+{#                                {% csrf_token %}#}
+{#                                <button class="btn btn-danger btn-sm" type="submit">删除</button>#}
+{#                            </form>#}
+                            <a href="/cms/show_application/{{ application.id }}/" class="btn btn-outline-info btn-sm" role="button" value="查看">查看</a>
+{#                            <a href="/cms/invitation_create/" class="btn btn-outline-info btn-sm" role="button" value="邀请">邀请</a>#}
+{#                            {% if application.status == 1 %}#}
+                            <button  class="show-invitation-modal btn btn-outline-primary btn-sm" data-toggle="modal"
+                                     data-target="#new-invitation" data-applicant-uuid='{{ application.user.uuid }}'
+                                     data-position-uuid='{{ application.position.uuid }}'
+                                     data-applicant-name ='{{ application.user.profile.last_name}} {{application.user.profile.first_name }}'
+                                     data-position-name ='{{ application.position }}'
+                                     data-application-id ={{ application.id }}>邀请</button>
+                            <button class="btn btn-outline-danger btn-sm" type="button" value="回绝"
+                            onclick="reject_application('/cms/application_reject/{{ application.id }}/')">回绝</button>
+{#                            {% endif %}#}
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function reject_application(to_url){
+            $.ajax({
+                    url: to_url,
+                    {#headers: {"Authorization": token},#}
+                    type: 'POST',
+                    success: function(result) {
+                        // Do something with the result
+                        alert(result);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+            });
+        }
+
+        $(document).on("click", ".show-invitation-modal", function () {
+            var applicant_uuid = $(this).data('applicant-uuid');
+            var position_uuid = $(this).data('position-uuid');
+            var applicant_name = $(this).data('applicant-name');
+            var position_name = $(this).data('position-name');
+            var application_id = $(this).data('application-id');
+            $(" #id_user_uuid").val( applicant_uuid );
+            $(" #id_position_uuid").val( position_uuid );
+            $(" #modal-applicant-name").html( applicant_name);
+            $(" #modal-position-name").html( position_name );
+            $(" #id_application").val( application_id);
+        });
+    </script>
+
+{% endblock %}
