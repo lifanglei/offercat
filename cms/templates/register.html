@@ -21,11 +21,13 @@
 
 
 {% block content %}
-  <h2>Register</h2>
-  <form action="/cms/register/" method="post">
+<div class="login-page container">
+  <h2>注册</h2>
+  <form action="/cms/register/" method="post" class="form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="js-captcha-refresh btn btn-outline-info btn-sm" url="/accounts/api/captcha/">刷新验证码</button>
-    <button class="btn btn-outline-info btn-sm" type="submit">下一步</button>
+    <button class="js-captcha-refresh btn btn-info btn-lg btn-block" url="/accounts/api/captcha/">刷新验证码</button>
+    <button class="btn btn-success btn btn-lg btn-block" type="submit">下一步</button>
   </form>
+  </div>
 {% endblock %}
