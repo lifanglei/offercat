@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bdshare": "0.0.6",
     "fetch": "^1.1.0",
     "history": "^4.7.2",
     "jquery": "^3.2.1",

@@ -118,8 +118,8 @@ class PositionCreateForm(ModelForm):
     type = forms.ChoiceField(choices=Position.TYPE, initial=Position.TYPE_GRADUATION)
     work_exp_req = forms.ChoiceField(choices=Position.WORK_EXP_REQ, initial=Position.WORK_EXP_LEVEL1)
     edu_req = forms.ChoiceField(choices=Position.EDUCATION_DEGREE, initial=Position.EDU_BACHELOR)
-    duty = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea"}),)
-    detail_req = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea"}), )
+    duty = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea form-control"}),)
+    detail_req = forms.CharField(widget=forms.Textarea(attrs={'class': "textarea form-control"}), )
 
     class Meta:
         model=Position

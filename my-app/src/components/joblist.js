@@ -5,6 +5,7 @@ import {fetchPositionListRequest} from '../actions/positionListActions';
 import {likeRequest,collectRequest} from '../actions/userActions';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import {localstore} from '../store/localstore';
+import bdshare from 'bdshare';
 
 import {
   withRouter
@@ -119,7 +120,10 @@ class JobCard extends React.Component {
                           {position.is_collected?(<i className="fa fa-star fa-lg" aria-hidden="true"/>):(<i className="fa fa-star-o fa-lg" aria-hidden="true"/>)}
                           <span style={{marginLeft:'2px'}}>收藏</span>
                         </div>
-                        <div>
+                        <div onClick={()=>{
+                          this.shareModal.classList.add('in');
+                          this.shareModal.style.display = 'block';
+                        }}>
                           <i className="fa fa-share-square-o fa-lg" aria-hidden="true"></i>
                           <span style={{marginLeft:'2px'}}>分享</span>
                         </div>
@@ -139,6 +143,41 @@ class JobCard extends React.Component {
               </div>
             </div>
           </div>
+
+
+          <div className="modal modal-info" ref={(modal)=>{this.shareModal = modal}} tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div className="modal-dialog animated zoomIn animated-3x" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={()=>{
+                    this.shareModal.classList.remove('in');
+                    this.shareModal.style.display = 'none';
+                  }}>
+                    <span aria-hidden="true"><i className="zmdi zmdi-close"></i></span></button>
+                  <h3 className="modal-title">职位分享</h3>
+                </div>
+                <div className="modal-body">
+                  <div className="share-panel">
+                    <span style={{marginRight: '10px'}}>分享到:</span>
+                    <span style={{marginRight: '10px',cursor:'pointer'}}
+                          onClick={()=>{
+                            bdshare.weixin({
+                              bdText: '我发现了一个新职位',
+                              bdUrl: 'http://www.baidu.com' ,
+                            })}}><i className="fa fa-wechat fa-lg" aria-hidden="true"></i></span>
+                    <span style={{marginRight: '10px',cursor:'pointer'}}
+                          onClick={()=>{
+                            bdshare.tsina({
+                              bdText: '我发现了一个新职位',
+                              bdUrl: window.location.href ,
+                            })}}><i className="fa fa-weibo fa-lg" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
     )
   }

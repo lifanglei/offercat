@@ -3,6 +3,7 @@ import '../css/jobDetail.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {jobDetailRequest} from '../actions/jobDetailActions';
+import bdshare from 'bdshare';
 
 
 class jobDetail extends Component {
@@ -73,8 +74,18 @@ class jobDetail extends Component {
                     <span style={{marginLeft:'2px'}}>收藏</span>
                   </span>
                   <span style={{marginRight: '10px'}}>分享</span>
-                  <span style={{marginRight: '10px',cursor:'pointer'}}><i className="fa fa-wechat fa-lg" aria-hidden="true"></i></span>
-                  <span style={{marginRight: '10px',cursor:'pointer'}}><i className="fa fa-weibo fa-lg" aria-hidden="true"></i></span>
+                  <span style={{marginRight: '10px',cursor:'pointer'}}
+                        onClick={()=>{
+                          bdshare.weixin({
+                            bdText: '我发现了一个新职位',
+                            bdUrl: 'http://www.baidu.com' ,
+                          })}}><i className="fa fa-wechat fa-lg" aria-hidden="true"></i></span>
+                  <span style={{marginRight: '10px',cursor:'pointer'}}
+                        onClick={()=>{
+                          bdshare.tsina({
+                            bdText: '我发现了一个新职位',
+                            bdUrl: window.location.href ,
+                          })}}><i className="fa fa-weibo fa-lg" aria-hidden="true"></i></span>
                 </div>
               </div>
             </div>
