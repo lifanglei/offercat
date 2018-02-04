@@ -19,6 +19,7 @@
 
 
 {% block content %}
+<div class="container postPosition login-page">
   <h2>发布职位</h2>
     {% if messages %}
         <div class="span12">
@@ -32,7 +33,7 @@
   <form enctype="multipart/form-data" action="/cms/position_create/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">发布</button>
+    <button type="submit" class="btn btn-success">发布</button>
   </form>
-
+</div>
 {% endblock %}
