@@ -3,13 +3,13 @@
 
 参考资料:[DgitialOcean Blog](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04)
 1.安装Nginx,Postgresql:
-	​```bash
+	```bash 
 	$ sudo apt-get update
 	$ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx virtualenv nodejs npm
 	```
 
 2.创建数据库和新用户/相关命令：
-	​```bash
+	```bash 
 	$ sudo -u postgres psql
 	postgres=# CREATE DATABASE myproject;
 	postgres=# CREATE USER myprojectuser WITH PASSWORD 'password';
@@ -17,8 +17,7 @@
 	postgres=# ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
 	postgres=# ALTER ROLE myprojectuser SET timezone TO 'UTC';
 	postgres=# GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
-
-	​```
+	```
 
 3.创建Django settings.py和config.py：
 	根据所创建的数据库名，新用户，用户密码修改settings.py(参照样例settings.py,config.py)
@@ -26,11 +25,11 @@
 	修改ALLOWED_HOSTS
 
 4.创建venv以及安装依赖/相关命令：
-	​```bash
+	```bash
 	$ virtualenv -p python3 venv
 	$ source venv/bin/activate
 	$ pip install -r requirements.txt
-	​```
+	```
 
 5.初始化数据库：
 	`$ ./manage.py makemigrations accounts`
@@ -55,13 +54,13 @@
 
 7.创建并启动gunicorn服务
 	创建/etc/systemd/systemd/gunicorn.target
-	​``` 
+	``` 
 	[Unit]
 	Description=Gunicorn
 	Documentation=https://example.com/path/to/your/docs
 	[Install]
 	WantedBy=multi-user.target
-	​```
+	```
 	创建/etc/systemd/systemd/gunicorn@officeCat.service (参考gunicorn@officeCat.service)
 
 8.创建并运行Nginx服务
