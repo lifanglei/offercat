@@ -36,22 +36,22 @@ pip install -r requirements.txt
 	
 5.初始化数据库:  
 
-```
+```bash
 ./manage.py makemigrations accounts
 ./manage.py makemigrations functions
 ```
 	
 因为functions和hire应用存在相互依赖，此时需要先注释掉hire/models.py里class position中的collections和lauds字段  
 
-```
+```bash
 ./manage.py makemigrations hire
 ./manage.py makemigrations profiles
 ./manage.py migrate
 ```
 	
-取消之前的注释  
+然后取消之前的注释，重新做migrate操作  
 
-```
+```bash
 ./manage.py makemigrations hire
 ./manage.py migtate
 ```
@@ -61,20 +61,20 @@ pip install -r requirements.txt
 6.安装Recat,编译前端组件并准备media文件:  
 进入my-app目录  
 
-```
+```bash
 npm install
 npm run build
 ```
 	
-返回officeCat目录
-根据settings.py中的STATIC_ROOT的值创建statics文件 
+返回到officeCat目录
+根据settings.py中的STATIC_ROOT的值创建statics文件，并把相关文件统一存放到statics文件下(利用Django命令)
 
-```
+```bash
 ./manage.py collectstatic
 ```
 	
 7.创建并启动gunicorn服务
-创建/etc/systemd/systemd/gunicorn.target 
+创建/etc/systemd/systemd/gunicorn.target，其内容如下：
 
 ``` 
 [Unit]
