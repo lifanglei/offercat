@@ -17,13 +17,15 @@ cache:
   - "$TRAVIS_BUILD_DIR/my-app/node_modules"
 before_install:
 - openssl aes-256-cbc -K $encrypted_433397760b40_key -iv $encrypted_433397760b40_iv
-  -in officeCat_rsa.enc -out ~/.ssh/officeCat_rsa -d
-- openssl aes-256-cbc -K $encrypted_433397760b40_key -iv $encrypted_433397760b40_iv
-  -in config.py.enc -out $TRAVIS_BUILD_DIR/officeCat/config.py -d
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
+- ls
+- mv officeCat_rsa ~/.ssh/
+- mv config.py $TRAVIS_BUILD_DIR/officeCat/
 - ssh -V
 - chmod 700 ~/.ssh/
 - chmod 600 ~/.ssh/officeCat_rsa
-- echo -e "Host 47.105.154.254\n\tIdentityFile ~/.ssh/officeCat_rsa" >> ~/.ssh/config
+- echo -e "Host 47.104.154.254\n\tIdentityFile ~/.ssh/officeCat_rsa" >> ~/.ssh/config
 - less ~/.ssh/config
 - pip install -U pip
 install:
@@ -34,13 +36,13 @@ before_script:
 script:
 - npm run --silent build
 after_success:
-- ssh root@106.14.134.47 "cd ~/officeCat/ && git checkout deploy && git pull"
+- ssh -vvv root@47.104.154.254 "cd ~/officeCat/ && git checkout deploy && git pull"
 - cd $TRAVIS_BUILD_DIR/my-app/
-- scp -r build/ root@106.14.134.47:~/officeCat/my-app/
-- ssh root@106.14.134.47 "~/officeCat/prepareBackend.sh"
+- scp -r build/ root@47.104.154.254:~/officeCat/my-app/
+- ssh root@47.104.154.254 "~/officeCat/prepareBackend.sh"
 - echo "build and deploy successfully!"
 branches:
   only:
   - deploy
 addons:
-  ssh_known_hosts: 47.105.154.254
+  ssh_known_hosts: 47.104.154.254
